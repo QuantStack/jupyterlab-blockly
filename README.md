@@ -15,6 +15,9 @@ Blockly extension for JupyterLab.
 To install the extension, execute:
 
 ```bash
+micromamba create -n blockly -c conda-forge python
+micromamba activate blockly
+pip install jupyterlab --pre
 pip install jupyterlab_blockly
 ```
 
@@ -38,6 +41,9 @@ The `jlpm` command is JupyterLab's pinned version of
 `yarn` or `npm` in lieu of `jlpm` below.
 
 ```bash
+micromamba create -n blockly -c conda-forge python nodejs yarn
+micromamba activate blockly
+pip install jupyterlab --pre
 # Clone the repo to your local environment
 # Change directory to the jupyterlab_blockly directory
 # Install package in development mode

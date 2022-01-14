@@ -72,17 +72,17 @@ const plugin: JupyterFrontEndPlugin<void> = {
         editorPanel = new MainAreaWidget({ content });
         editorPanel.title.label = 'Blockly Editor';
 
-        const workspace = Blockly.inject(content.node, {
-          toolbox: TOOLBOX
-        });
-        console.debug('Blockly:', workspace);
-
         editorPanel.disposed.connect(() => {
           editorPanel = null;
           workspace.dispose();
         });
 
         app.shell.add(editorPanel, 'main');
+
+        const workspace = Blockly.inject(content.node, {
+          toolbox: TOOLBOX
+        });
+        console.debug('Blockly:', workspace);
       }
     });
 
