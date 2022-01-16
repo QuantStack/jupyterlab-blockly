@@ -4,6 +4,11 @@
 
 Blockly extension for JupyterLab.
 
+## Blockly
+Blockly is a library from Google for building beginner-friendly block-based programming languages.
+
+Docs: https://developers.google.com/blockly/guides/overview
+Repo: https://github.com/google/blockly
 
 
 ## Requirements
