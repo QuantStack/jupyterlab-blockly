@@ -50,7 +50,7 @@ micromamba create -n blockly -c conda-forge python nodejs yarn
 micromamba activate blockly
 pip install jupyterlab --pre
 # Clone the repo to your local environment
-# Change directory to the jupyterlab_blockly directory
+# Change directory to the jupyterlab-blockly directory
 # Install package in development mode
 pip install -e .
 # Link your development version of the extension with JupyterLab
