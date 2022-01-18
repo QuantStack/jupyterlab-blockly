@@ -8,10 +8,11 @@ import { Widget } from '@lumino/widgets';
 
 import { Signal } from '@lumino/signaling';
 
+import { Message } from '@lumino/messaging';
+
 import * as Blockly from 'blockly';
 
 import { TOOLBOX } from './utils';
-import { Message } from '@lumino/messaging';
 
 /**
  * DocumentWidget: widget that represents the view or editor for a file type.
@@ -43,7 +44,7 @@ export class BlocklyPanel extends Widget {
     super();
     this.addClass('jp-BlocklyPanel');
     this._context = context;
-    this._context.model.contentChanged.connect(this._onContentChanged, this);
+    //this._context.model.contentChanged.connect(this._onContentChanged, this);
   }
 
   /**
@@ -57,11 +58,11 @@ export class BlocklyPanel extends Widget {
     super.dispose();
   }
 	
-  protected onUpdateRequest(msg: Message): void {
-    this._workspace = Blockly.inject('jp-BlocklyPanel', {
+  protected onAfterShow(msg: Message): void {
+    this._workspace = Blockly.inject(this.node, {
       toolbox: TOOLBOX
     });
-    console.debug('Blockly:', this._workspace);
+    console.debug('Blockly:', this._workspace, TOOLBOX);
 
     this._workspace.addChangeListener(event => {
       if (
@@ -76,20 +77,27 @@ export class BlocklyPanel extends Widget {
       }
     });
 
-    const content = this._context.model.toJSON();
-    console.debug('Loading:', content);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    Blockly.serialization.workspaces.load(content, this._workspace);
+    if (this._context.isReady) {
+      const content = this._context.model.toJSON();
+      console.debug('Loading show:', content);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      Blockly.serialization.workspaces.load(content, this._workspace);
+    }
   }
 
-  private _onContentChanged(sender: DocumentModel): void {
+  protected onBeforeHide(msg: Message): void {
+    this._workspace.dispose();
+    this._workspace = null;
+  }
+
+  /* private _onContentChanged(sender: DocumentModel): void {
     const content = this._context.model.toJSON();
     console.debug('Loading:', content);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     Blockly.serialization.workspaces.load(content, this._workspace);
-  }
+  } */
 
   private _context: DocumentRegistry.IContext<DocumentModel>;
   private _workspace: Blockly.WorkspaceSvg | null;
