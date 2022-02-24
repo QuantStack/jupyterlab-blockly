@@ -90,7 +90,7 @@ export class BlocklyLayout extends Layout {
   protected onResize(msg: Message): void {
     console.debug('[BlocklyLayout] onResize');
     // TODO: write the resize logic
-    var rect = this.parent.node.getBoundingClientRect();
+    const rect = this.parent.node.getBoundingClientRect();
     this._host.style.width = rect.width + 'px';
     this._host.style.height = rect.height + 'px';
     Blockly.svgResize(this._workspace);
