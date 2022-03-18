@@ -3,23 +3,34 @@ import {
   DocumentRegistry,
   DocumentModel
 } from '@jupyterlab/docregistry';
+import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
 
 import { BlocklyEditor, BlocklyPanel } from './widget';
+import { BlocklyManager } from './manager';
 
 /**
- * A widget factory to create new instances of ExampleDocWidget.
+ * A widget factory to create new instances of BlocklyEditor.
  */
 export class BlocklyEditorFactory extends ABCWidgetFactory<
   BlocklyEditor,
   DocumentModel
 > {
+  private _manager: BlocklyManager;
+  private _rendermime: IRenderMimeRegistry;
+
   /**
-   * Constructor of ExampleWidgetFactory.
+   * Constructor of BlocklyEditorFactory.
    *
    * @param options Constructor options
    */
-  constructor(options: DocumentRegistry.IWidgetFactoryOptions) {
+  constructor(options: BlocklyEditorFactory.IOptions) {
     super(options);
+    this._manager = new BlocklyManager();
+    this._rendermime = options.rendermime;
+  }
+
+  get manager(): BlocklyManager {
+    return this._manager;
   }
 
   /**
@@ -33,7 +44,16 @@ export class BlocklyEditorFactory extends ABCWidgetFactory<
   ): BlocklyEditor {
     return new BlocklyEditor({
       context,
-      content: new BlocklyPanel(context)
+      content: new BlocklyPanel(context, this._manager, this._rendermime)
     });
+  }
+}
+
+export namespace BlocklyEditorFactory {
+  export interface IOptions extends DocumentRegistry.IWidgetFactoryOptions {
+    /*
+     * A rendermime instance.
+     */
+    rendermime: IRenderMimeRegistry;
   }
 }

@@ -1,33 +1,45 @@
-import { Layout, Widget } from '@lumino/widgets';
-
-import { PartialJSONValue } from '@lumino/coreutils';
-
-import { IIterator, ArrayIterator } from '@lumino/algorithm';
+import { SimplifiedOutputArea, OutputAreaModel } from '@jupyterlab/outputarea';
+import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
+import { ISessionContext } from '@jupyterlab/apputils';
 
 import { Message } from '@lumino/messaging';
+import { PartialJSONValue } from '@lumino/coreutils';
+import { PanelLayout, Widget } from '@lumino/widgets';
+import { IIterator, ArrayIterator } from '@lumino/algorithm';
 
 import * as Blockly from 'blockly';
 
-import { TOOLBOX } from './utils';
+import { BlocklyManager } from './manager';
 
 /**
  * A blockly layout to host the Blockly editor.
  */
-export class BlocklyLayout extends Layout {
-  private _workspace: Blockly.WorkspaceSvg;
+export class BlocklyLayout extends PanelLayout {
   private _host: HTMLElement;
+  private _manager: BlocklyManager;
+  private _workspace: Blockly.WorkspaceSvg;
+  private _sessionContext: ISessionContext;
+  private _outputArea: SimplifiedOutputArea;
 
   /**
    * Construct a `BlocklyLayout`.
    *
    */
-  constructor() {
+  constructor(
+    manager: BlocklyManager,
+    sessionContext: ISessionContext,
+    rendermime: IRenderMimeRegistry
+  ) {
     super();
-    console.debug('[BlocklyLayout]');
+    this._manager = manager;
+    this._sessionContext = sessionContext;
 
     // Creating the container for the Blockly editor
     this._host = document.createElement('div');
-    this._host.className = 'grid-stack';
+    this._outputArea = new SimplifiedOutputArea({
+      model: new OutputAreaModel({ trusted: true }),
+      rendermime
+    });
   }
 
   get workspace(): PartialJSONValue {
@@ -55,9 +67,8 @@ export class BlocklyLayout extends Layout {
    */
   init(): void {
     super.init();
-    console.debug('[BlocklyLayout] init');
     // Add the blockly container into the DOM
-    this.parent!.node.appendChild(this._host);
+    this.addWidget(new Widget({ node: this._host }));
   }
 
   /**
@@ -76,49 +87,61 @@ export class BlocklyLayout extends Layout {
     return;
   }
 
+  run(): void {
+    const code = this._manager.generator.workspaceToCode(this._workspace);
+    SimplifiedOutputArea.execute(code, this._outputArea, this._sessionContext)
+      .then(resp => {
+        this.addWidget(this._outputArea);
+        this._resizeWorkspace();
+      })
+      .catch(e => console.error(e));
+  }
+
   /**
    * Handle `update-request` messages sent to the widget.
    */
   protected onUpdateRequest(msg: Message): void {
-    console.debug('[BlocklyLayout] onUpdateRequest');
-    // TODO: write the resize logic
+    this._resizeWorkspace();
   }
 
   /**
    * Handle `resize-request` messages sent to the widget.
    */
   protected onResize(msg: Message): void {
-    console.debug('[BlocklyLayout] onResize');
-    // TODO: write the resize logic
-    const rect = this.parent.node.getBoundingClientRect();
-    this._host.style.width = rect.width + 'px';
-    this._host.style.height = rect.height + 'px';
-    Blockly.svgResize(this._workspace);
+    this._resizeWorkspace();
   }
 
   /**
    * Handle `fit-request` messages sent to the widget.
    */
   protected onFitRequest(msg: Message): void {
-    console.debug('[BlocklyLayout] onFitRequest');
-    // TODO: write the resize logic
-    //
+    this._resizeWorkspace();
   }
 
   /**
    * Handle `after-attach` messages sent to the widget.
    */
   protected onAfterAttach(msg: Message): void {
-    console.debug('[BlocklyLayout] onAfterAttach');
     this._workspace = Blockly.inject(this._host, {
-      toolbox: TOOLBOX
+      toolbox: this._manager.toolbox
     });
   }
 
-  /**
-   * Handle `after-show` messages sent to the widget.
-   */
-  protected onAfterShow(msg: Message): void {
-    console.debug('[BlocklyLayout] onAfterShow');
+  private _resizeWorkspace(): void {
+    const rect = this.parent.node.getBoundingClientRect();
+    const { height } = this._outputArea.node.getBoundingClientRect();
+    this._host.style.width = rect.width + 'px';
+    const margin = rect.height / 3;
+
+    if (height > margin) {
+      this._host.style.height = rect.height - margin + 'px';
+      this._outputArea.node.style.height = margin + 'px';
+      this._outputArea.node.style.overflowY = 'scroll';
+    } else {
+      this._host.style.height = rect.height - height + 'px';
+      this._outputArea.node.style.overflowY = 'hidden';
+    }
+
+    Blockly.svgResize(this._workspace);
   }
 }

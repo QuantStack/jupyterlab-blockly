@@ -3,11 +3,11 @@ import {
   JupyterFrontEndPlugin,
   ILayoutRestorer
 } from '@jupyterlab/application';
-
 import { WidgetTracker } from '@jupyterlab/apputils';
+import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
 
 import { BlocklyEditorFactory } from './factory';
-
+import { IBlocklyManager } from './token';
 import { BlocklyEditor } from './widget';
 
 /**
@@ -18,11 +18,16 @@ const FACTORY = 'Blockly editor';
 /**
  * Initialization data for the jupyterlab-blocky extension.
  */
-const plugin: JupyterFrontEndPlugin<void> = {
+const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
   id: 'jupyterlab-blocky:plugin',
   autoStart: true,
-  requires: [ILayoutRestorer],
-  activate: (app: JupyterFrontEnd, restorer: ILayoutRestorer) => {
+  requires: [ILayoutRestorer, IRenderMimeRegistry],
+  provides: IBlocklyManager,
+  activate: (
+    app: JupyterFrontEnd,
+    restorer: ILayoutRestorer,
+    rendermime: IRenderMimeRegistry
+  ): IBlocklyManager => {
     console.log('JupyterLab extension jupyterlab-blocky is activated!');
 
     // Namespace for the tracker
@@ -46,7 +51,12 @@ const plugin: JupyterFrontEndPlugin<void> = {
     const widgetFactory = new BlocklyEditorFactory({
       name: FACTORY,
       modelName: 'text',
-      fileTypes: ['json']
+      fileTypes: ['json'],
+      defaultFor: ['json'],
+      canStartKernel: true,
+      preferKernel: true,
+      shutdownOnClose: true,
+      rendermime: rendermime
     });
 
     // Add the widget to the tracker when it's created
@@ -59,6 +69,8 @@ const plugin: JupyterFrontEndPlugin<void> = {
     });
     // Registering the widget factory
     app.docRegistry.addWidgetFactory(widgetFactory);
+
+    return widgetFactory.manager;
   }
 };
 
