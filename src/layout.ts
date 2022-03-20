@@ -1,4 +1,3 @@
-import { SimplifiedOutputArea, OutputAreaModel } from '@jupyterlab/outputarea';
 import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
 import { ISessionContext } from '@jupyterlab/apputils';
 
@@ -19,7 +18,7 @@ export class BlocklyLayout extends PanelLayout {
   private _manager: BlocklyManager;
   private _workspace: Blockly.WorkspaceSvg;
   private _sessionContext: ISessionContext;
-  private _outputArea: SimplifiedOutputArea;
+  private _outputArea: Widget;
 
   /**
    * Construct a `BlocklyLayout`.
@@ -35,11 +34,9 @@ export class BlocklyLayout extends PanelLayout {
     this._sessionContext = sessionContext;
 
     // Creating the container for the Blockly editor
+    // and the output area to render the execution replies.
     this._host = document.createElement('div');
-    this._outputArea = new SimplifiedOutputArea({
-      model: new OutputAreaModel({ trusted: true }),
-      rendermime
-    });
+    this._outputArea = new Widget();
   }
 
   get workspace(): PartialJSONValue {
@@ -89,12 +86,7 @@ export class BlocklyLayout extends PanelLayout {
 
   run(): void {
     const code = this._manager.generator.workspaceToCode(this._workspace);
-    SimplifiedOutputArea.execute(code, this._outputArea, this._sessionContext)
-      .then(resp => {
-        this.addWidget(this._outputArea);
-        this._resizeWorkspace();
-      })
-      .catch(e => console.error(e));
+    // Execute the code using the kernel
   }
 
   /**

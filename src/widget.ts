@@ -18,11 +18,11 @@ export class BlocklyEditor extends DocumentWidget<BlocklyPanel, DocumentModel> {
   constructor(options: DocumentWidget.IOptions<BlocklyPanel, DocumentModel>) {
     super(options);
 
-    const run = new Widget();
-    run.node.style.width = '25px';
-    run.node.style.backgroundColor = 'green';
-    run.node.onclick = () => (this.content.layout as BlocklyLayout).run();
-    this.toolbar.addItem('run', run);
+    // Create and add a button to the toolbar to execute
+    // the code.
+    // Example: https://github.com/jupyterlab/extension-examples/blob/9c35013ce5da125f1b5865b3f7cbb301970d5970/toolbar-button/src/index.ts#L44-L52
+    // (this.content.layout as BlocklyLayout).run();
+    // this.toolbar.addItem('run', button);
   }
 
   /**

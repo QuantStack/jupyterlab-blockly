@@ -53,9 +53,17 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
       modelName: 'text',
       fileTypes: ['json'],
       defaultFor: ['json'],
+
+      // Kernel options, in this case we need to execute the code generated
+      // in the blockly editor. The best way would be to use kernels, for
+      // that reason, we tell the widget factory to start a kernel session
+      // when opening the editor, and close the session when closing the editor.
       canStartKernel: true,
       preferKernel: true,
       shutdownOnClose: true,
+
+      // The rendermime instance, necessary to render the outputs
+      // after a code execution.
       rendermime: rendermime
     });
 
