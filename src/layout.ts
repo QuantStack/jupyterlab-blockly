@@ -17,7 +17,7 @@ export class BlocklyLayout extends PanelLayout {
   private _host: HTMLElement;
   private _manager: BlocklyManager;
   private _workspace: Blockly.WorkspaceSvg;
-  private _sessionContext: ISessionContext;
+  //private _sessionContext: ISessionContext;
   private _outputArea: Widget;
 
   /**
@@ -31,7 +31,7 @@ export class BlocklyLayout extends PanelLayout {
   ) {
     super();
     this._manager = manager;
-    this._sessionContext = sessionContext;
+    //this._sessionContext = sessionContext;
 
     // Creating the container for the Blockly editor
     // and the output area to render the execution replies.
@@ -85,7 +85,7 @@ export class BlocklyLayout extends PanelLayout {
   }
 
   run(): void {
-    const code = this._manager.generator.workspaceToCode(this._workspace);
+    //const code = this._manager.generator.workspaceToCode(this._workspace);
     // Execute the code using the kernel
   }
 
