@@ -45,15 +45,20 @@
     "watch:labextension": "jupyter labextension watch ."
   },
   "dependencies": {
-    "@jupyterlab/application": "^4.0.0-alpha.4",
-    "@jupyterlab/apputils": "^4.0.0-alpha.4",
-    "@jupyterlab/docregistry": "^4.0.0-alpha.4",
+    "@jupyterlab/application": "^4.0.0-alpha.7",
+    "@jupyterlab/apputils": "^4.0.0-alpha.7",
+    "@jupyterlab/docregistry": "^4.0.0-alpha.7",
+    "@jupyterlab/outputarea": "^4.0.0-alpha.7",
+    "@jupyterlab/rendermime": "^4.0.0-alpha.7",
+    "@lumino/algorithm": "^1.9.1",
+    "@lumino/coreutils": "^1.12.0",
+    "@lumino/messaging": "^1.10.1",
     "@lumino/signaling": "^1.10.1",
-    "@lumino/widgets": "^1.31.0",
+    "@lumino/widgets": "^1.31.1",
     "blockly": "^7.20211209.2"
   },
   "devDependencies": {
-    "@jupyterlab/builder": "^4.0.0-alpha.4",
+    "@jupyterlab/builder": "^4.0.0-alpha.7",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",
     "eslint": "^8.9.0",
