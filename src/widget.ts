@@ -5,7 +5,7 @@ import {
 } from '@jupyterlab/docregistry';
 import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
 
-import { Panel, Widget } from '@lumino/widgets';
+import { Panel } from '@lumino/widgets';
 import { Signal } from '@lumino/signaling';
 
 import { BlocklyLayout } from './layout';
