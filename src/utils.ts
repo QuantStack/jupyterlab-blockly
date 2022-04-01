@@ -1,22 +1,14 @@
+import * as Blockly from 'blockly';
+
+// Creating a toolbox containing all the main (default) blocks.
 export const TOOLBOX = {
-  //kind: 'flyoutToolbox',
-  // contents: [
-  //   {
-  //     kind: 'block',
-  //     type: 'controls_if'
-  //   },
-  //   {
-  //     kind: 'block',
-  //     type: 'controls_whileUntil'
-  //   }
-  // ]
-  //{
   kind: 'categoryToolbox',
   contents: [
     {
       kind: 'category',
       name: 'Logic',
-      colour: '210',
+      categorystyle: "logic_category",
+      blockstyle: 'logic_blocks',
       contents: [
         {
           kind: 'block',
@@ -56,7 +48,8 @@ export const TOOLBOX = {
     {
       kind: 'category',
       name: 'Loops',
-      colour: '120',
+      categorystyle: "loops_category",
+      blockstyle: 'loops_blocks',
       contents: [
         {
           kind: 'BLOCK',
@@ -90,7 +83,8 @@ export const TOOLBOX = {
     {
       kind: 'CATEGORY',
       name: 'Math',
-      colour: '230',
+      categorystyle: "math_category",
+      blockstyle: 'math_blocks',
       contents: [
         {
           kind: 'BLOCK',
@@ -171,7 +165,8 @@ export const TOOLBOX = {
     {
       kind: 'CATEGORY',
       name: 'Text',
-      colour: '160',
+      categorystyle: "text_category",
+      blockstyle: 'text_blocks',
       contents: [
         {
           kind: 'BLOCK',
@@ -248,7 +243,8 @@ export const TOOLBOX = {
     {
       kind: 'CATEGORY',
       name: 'Lists',
-      colour: '260',
+      categorystyle: "list_category",
+      blockstyle: 'list_blocks',
       contents: [
         {
           kind: 'BLOCK',
@@ -317,7 +313,8 @@ export const TOOLBOX = {
     {
       kind: 'CATEGORY',
       name: 'Color',
-      colour: '20',
+      categorystyle: "color_category",
+      blockstyle: 'color_blocks',
       contents: [
         {
           kind: 'BLOCK',
@@ -349,14 +346,100 @@ export const TOOLBOX = {
     {
       kind: 'CATEGORY',
       colour: '330',
+      // categorystyle: "variables_category",
+      // blockstyle: 'variables_blocks',
       custom: 'VARIABLE',
       name: 'Variables'
     },
     {
       kind: 'CATEGORY',
       colour: '290',
+      // categorystyle: "functions_category",
+      // blockstyle: 'functions_blocks',
       custom: 'PROCEDURE',
       name: 'Functions'
     }
   ]
 };
+
+// Defining a Blockly Theme in accordance with the current JupyterLab Theme. 
+export function define_jupyter_theme() : Blockly.Theme{
+  Blockly.registry.unregister('theme', 'jupyterlab');
+
+  var jupyterlab_theme = Blockly.Theme.defineTheme('jupyterlab', {
+  'base': Blockly.Themes.Classic,
+  'blockStyles': {
+      "logic_blocks": {
+        "colourPrimary": getComputedStyle(document.documentElement).getPropertyValue('--jp-error-color1'),
+        "colourSecondary": getComputedStyle(document.documentElement).getPropertyValue('--jp-error-color3')
+      },
+      "loops_blocks": {
+        "colourPrimary": getComputedStyle(document.documentElement).getPropertyValue('--jp-accent-color0'),
+        "colourSecondary": getComputedStyle(document.documentElement).getPropertyValue('--jp-accent-color3')
+      },
+      "math_blocks": {
+        "colourPrimary": getComputedStyle(document.documentElement).getPropertyValue('--jp-brand-color0'),
+        "colourSecondary": getComputedStyle(document.documentElement).getPropertyValue('--jp-brand-color3')
+      },
+      "text_blocks": {
+        "colourPrimary": getComputedStyle(document.documentElement).getPropertyValue('--jp-icon-contrast-color0'),
+      },
+      "list_blocks": {
+        "colourPrimary": getComputedStyle(document.documentElement).getPropertyValue('--jp-icon-contrast-color2')
+      },
+      "color_blocks": {
+        "colourPrimary": getComputedStyle(document.documentElement).getPropertyValue('--jp-warn-color0'),
+        "colourSecondary": getComputedStyle(document.documentElement).getPropertyValue('--jp-warn-color3')
+      },
+      "variables_blocks": {
+        "colourPrimary": getComputedStyle(document.documentElement).getPropertyValue('--jp-accent-color2'),
+        "colourSecondary": getComputedStyle(document.documentElement).getPropertyValue('--jp-accent-color3')
+      },
+      "functions_blocks": {
+        "colourPrimary": getComputedStyle(document.documentElement).getPropertyValue('--jp-info-color0'),
+        "colourSecondary": getComputedStyle(document.documentElement).getPropertyValue('--jp-info-color3')
+      }
+  },
+  'categoryStyles': {
+      "logic_category": {
+        "colour": getComputedStyle(document.documentElement).getPropertyValue('--jp-error-color1')
+      },
+      "loops_category": {
+        "colour": getComputedStyle(document.documentElement).getPropertyValue('--jp-accent-color0')
+      },
+      "math_category": {
+        "colour": getComputedStyle(document.documentElement).getPropertyValue('--jp-brand-color0')
+      },
+      "text_category": {
+        "colour": getComputedStyle(document.documentElement).getPropertyValue('--jp-icon-contrast-color0')
+      },
+      "list_category": {
+        "colour": getComputedStyle(document.documentElement).getPropertyValue('--jp-icon-contrast-color2')
+      },
+      "color_category": {
+        "colour": getComputedStyle(document.documentElement).getPropertyValue('--jp-warn-color0')
+      },
+      "variables_category": {
+        "colour": getComputedStyle(document.documentElement).getPropertyValue('--jp-accent-color2')
+      },
+      "functions_category": {
+        "colour": getComputedStyle(document.documentElement).getPropertyValue('--jp-info-color0')
+      }
+  },
+  'componentStyles': {
+    'workspaceBackgroundColour': getComputedStyle(document.documentElement).getPropertyValue('--jp-layout-color0'),
+    'toolboxBackgroundColour': getComputedStyle(document.documentElement).getPropertyValue('--jp-layout-color2'),
+    'toolboxForegroundColour':  getComputedStyle(document.documentElement).getPropertyValue('--jp-ui-font-color0'),
+    'flyoutBackgroundColour': getComputedStyle(document.documentElement).getPropertyValue('--jp-border-color2'),
+    'flyoutForegroundColour': getComputedStyle(document.documentElement).getPropertyValue('--jp-layout-color3'),
+    'flyoutOpacity': 1,
+    'scrollbarColour': getComputedStyle(document.documentElement).getPropertyValue('--jp-border-color0'),
+    'insertionMarkerColour': getComputedStyle(document.documentElement).getPropertyValue('--jp-warn-color-active'),
+    'insertionMarkerOpacity': 0.3,
+    'scrollbarOpacity': 0.4,
+    'cursorColour': getComputedStyle(document.documentElement).getPropertyValue('--jp-scrollbar-background-color'),
+  }
+});
+
+  return jupyterlab_theme;
+}
