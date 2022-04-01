@@ -9,6 +9,7 @@ import { IIterator, ArrayIterator } from '@lumino/algorithm';
 import * as Blockly from 'blockly';
 
 import { BlocklyManager } from './manager';
+import { define_jupyter_theme } from './utils';
 
 /**
  * A blockly layout to host the Blockly editor.
@@ -113,13 +114,25 @@ export class BlocklyLayout extends PanelLayout {
   /**
    * Handle `after-attach` messages sent to the widget.
    */
-  protected onAfterAttach(msg: Message): void {
+  protected onAfterAttach(msg: Message): void {    
+    //inject Blockly with appropiate JupyterLab theme.
+    var jupyterlab_theme = define_jupyter_theme();
     this._workspace = Blockly.inject(this._host, {
-      toolbox: this._manager.toolbox
+      toolbox: this._manager.toolbox,
+      theme : jupyterlab_theme
     });
   }
 
   private _resizeWorkspace(): void {
+    //Set theme for Blockly in accordance to JupyterLab theme.
+    var jupyterlab_theme = define_jupyter_theme();
+    if(this._workspace)
+    {
+      this._workspace.setTheme(jupyterlab_theme);
+      this._workspace.refreshTheme();
+    }
+    
+    //Resize logic.
     const rect = this.parent.node.getBoundingClientRect();
     const { height } = this._outputArea.node.getBoundingClientRect();
     this._host.style.width = rect.width + 'px';
