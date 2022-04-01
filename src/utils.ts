@@ -359,17 +359,17 @@ export function define_jupyter_theme() : Blockly.Theme{
   var jupyterlab_theme = Blockly.Theme.defineTheme('jupyterlab', {
   'base': Blockly.Themes.Classic,
   'componentStyles': {
-    'workspaceBackgroundColour': getComputedStyle(document.documentElement).getPropertyValue('--jp-layout-color0'),
-    'toolboxBackgroundColour': getComputedStyle(document.documentElement).getPropertyValue('--jp-layout-color2'),
-    'toolboxForegroundColour':  getComputedStyle(document.documentElement).getPropertyValue('--jp-ui-font-color0'),
-    'flyoutBackgroundColour': getComputedStyle(document.documentElement).getPropertyValue('--jp-border-color2'),
-    'flyoutForegroundColour': getComputedStyle(document.documentElement).getPropertyValue('--jp-layout-color3'),
+    'workspaceBackgroundColour': 'var(--jp-layout-color0)',
+    'toolboxBackgroundColour': 'var(--jp-layout-color2)',
+    'toolboxForegroundColour':  'var(--jp-ui-font-color0)',
+    'flyoutBackgroundColour': 'var(--jp-border-color2)',
+    'flyoutForegroundColour': 'var(--jp-layout-color3)',
     'flyoutOpacity': 1,
-    'scrollbarColour': getComputedStyle(document.documentElement).getPropertyValue('--jp-border-color0'),
-    'insertionMarkerColour': getComputedStyle(document.documentElement).getPropertyValue('--jp-warn-color-active'),
+    'scrollbarColour': 'var(--jp-border-color0)',
+    'insertionMarkerColour': 'var(--jp-warn-color-active)',
     'insertionMarkerOpacity': 0.3,
     'scrollbarOpacity': 0.4,
-    'cursorColour': getComputedStyle(document.documentElement).getPropertyValue('--jp-scrollbar-background-color'),
+    'cursorColour': 'var(--jp-scrollbar-background-color)',
   }
 });
 
