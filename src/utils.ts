@@ -352,11 +352,8 @@ export const TOOLBOX = {
   ]
 };
 
-// Defining a Blockly Theme in accordance with the current JupyterLab Theme. 
-export function define_jupyter_theme() : Blockly.Theme{
-  Blockly.registry.unregister('theme', 'jupyterlab');
-
-  var jupyterlab_theme = Blockly.Theme.defineTheme('jupyterlab', {
+// Defining a Blockly Theme in accordance with the current JupyterLab Theme.
+const jupyterlab_theme = Blockly.Theme.defineTheme('jupyterlab', {
   'base': Blockly.Themes.Classic,
   'componentStyles': {
     'workspaceBackgroundColour': 'var(--jp-layout-color0)',
@@ -373,5 +370,4 @@ export function define_jupyter_theme() : Blockly.Theme{
   }
 });
 
-  return jupyterlab_theme;
-}
+export const THEME: Blockly.Theme = jupyterlab_theme;
