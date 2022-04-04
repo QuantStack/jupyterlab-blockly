@@ -9,7 +9,7 @@ import { IIterator, ArrayIterator } from '@lumino/algorithm';
 import * as Blockly from 'blockly';
 
 import { BlocklyManager } from './manager';
-import { define_jupyter_theme } from './utils';
+import { THEME } from './utils';
 
 /**
  * A blockly layout to host the Blockly editor.
