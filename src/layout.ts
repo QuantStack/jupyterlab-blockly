@@ -118,7 +118,7 @@ export class BlocklyLayout extends PanelLayout {
     //inject Blockly with appropiate JupyterLab theme.
     this._workspace = Blockly.inject(this._host, {
       toolbox: this._manager.toolbox,
-      theme : jupyterlab_theme
+      theme: THEME
     });
   }
 
