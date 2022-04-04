@@ -124,14 +124,6 @@ export class BlocklyLayout extends PanelLayout {
   }
 
   private _resizeWorkspace(): void {
-    //Set theme for Blockly in accordance to JupyterLab theme.
-    var jupyterlab_theme = define_jupyter_theme();
-    if(this._workspace)
-    {
-      this._workspace.setTheme(jupyterlab_theme);
-      this._workspace.refreshTheme();
-    }
-    
     //Resize logic.
     const rect = this.parent.node.getBoundingClientRect();
     const { height } = this._outputArea.node.getBoundingClientRect();
