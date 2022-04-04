@@ -363,7 +363,6 @@ const jupyterlab_theme = Blockly.Theme.defineTheme('jupyterlab', {
     'flyoutForegroundColour': 'var(--jp-layout-color3)',
     'flyoutOpacity': 1,
     'scrollbarColour': 'var(--jp-border-color0)',
-    'insertionMarkerColour': 'var(--jp-warn-color-active)',
     'insertionMarkerOpacity': 0.3,
     'scrollbarOpacity': 0.4,
     'cursorColour': 'var(--jp-scrollbar-background-color)',
