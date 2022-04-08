@@ -39,9 +39,9 @@ export class BlocklyLayout extends PanelLayout {
     // and the output area to render the execution replies.
     this._host = document.createElement('div');
 
-    // Creating a SimplifiedOutputArea widget to render the 
+    // Creating a SimplifiedOutputArea widget to render the
     // outputs from the execution reply.
-    this._outputArea= new SimplifiedOutputArea({
+    this._outputArea = new SimplifiedOutputArea({
       model: new OutputAreaModel({ trusted: true }),
       rendermime
     });
@@ -99,11 +99,11 @@ export class BlocklyLayout extends PanelLayout {
     // Execute the code using the kernel, by using a static method from the
     // same class to make an execution request.
     SimplifiedOutputArea.execute(code, this._outputArea, this._sessionContext)
-    .then(resp => {
-      this.addWidget(this._outputArea);
-      this._resizeWorkspace();
-    })
-    .catch(e => console.error(e));
+      .then(resp => {
+        this.addWidget(this._outputArea);
+        this._resizeWorkspace();
+      })
+      .catch(e => console.error(e));
   }
 
   /**
@@ -130,7 +130,7 @@ export class BlocklyLayout extends PanelLayout {
   /**
    * Handle `after-attach` messages sent to the widget.
    */
-  protected onAfterAttach(msg: Message): void {    
+  protected onAfterAttach(msg: Message): void {
     //inject Blockly with appropiate JupyterLab theme.
     this._workspace = Blockly.inject(this._host, {
       toolbox: this._manager.toolbox,

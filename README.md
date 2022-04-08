@@ -13,7 +13,7 @@ Repo: https://github.com/google/blockly
 
 ## Requirements
 
-* JupyterLab >= 3.0
+* JupyterLab >= 4.0.0a0
 
 ## Install
 

@@ -14,10 +14,10 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Base Setup
-        uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
+      uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
 
     - name: Install dependencies
-      run: python -m pip install -U jupyterlab~=3.1 check-manifest
+      run: python -m pip install -U check-manifest jupyterlab --pre
 
     - name: Build the extension
       run: |
@@ -26,6 +26,7 @@ jobs:
         jlpm run eslint:check
         python -m pip install .
 
+        jupyter labextension list
         jupyter labextension list 2>&1 | grep -ie "jupyterlab-blockly.*OK"
         python -m jupyterlab.browser_check
 
@@ -64,6 +65,6 @@ jobs:
         sudo rm -rf $(which node)
         sudo rm -rf $(which node)
         pip install myextension.tar.gz
-        pip install jupyterlab
+        pip install jupyterlab --pre
         jupyter labextension list 2>&1 | grep -ie "jupyterlab-blockly.*OK"
-        python -m jupyterlab.browser_check --no-chrome-test
+        python -m jupyterlab.browser_check --no-browser-test
