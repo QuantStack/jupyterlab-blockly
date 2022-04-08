@@ -25,12 +25,13 @@ export class BlocklyEditor extends DocumentWidget<BlocklyPanel, DocumentModel> {
       (this.content.layout as BlocklyLayout).run();
     };
     const button = new ToolbarButton({
-      className: 'run-output-button',
       label: 'Run Code',
+      icon: runIcon,
+      className: 'jp-blockly-button',
       onClick: runCode,
-      tooltip: 'Run Code',
+      tooltip: 'Run Code'
     });
-    button.node.style.backgroundColor = 'var(--md-green-500)';
+    button.addClass('jp-blockly-runButton');
     this.toolbar.addItem('run', button);
   }
 
