@@ -3,7 +3,9 @@ import {
   DocumentWidget,
   DocumentModel
 } from '@jupyterlab/docregistry';
+import { ToolbarButton } from '@jupyterlab/apputils';
 import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
+import { runIcon } from '@jupyterlab/ui-components';
 
 import { Panel } from '@lumino/widgets';
 import { Signal } from '@lumino/signaling';
@@ -20,9 +22,18 @@ export class BlocklyEditor extends DocumentWidget<BlocklyPanel, DocumentModel> {
 
     // Create and add a button to the toolbar to execute
     // the code.
-    // Example: https://github.com/jupyterlab/extension-examples/blob/9c35013ce5da125f1b5865b3f7cbb301970d5970/toolbar-button/src/index.ts#L44-L52
-    // (this.content.layout as BlocklyLayout).run();
-    // this.toolbar.addItem('run', button);
+    const runCode = () => {
+      (this.content.layout as BlocklyLayout).run();
+    };
+    const button = new ToolbarButton({
+      label: 'Run Code',
+      icon: runIcon,
+      className: 'jp-blockly-button',
+      onClick: runCode,
+      tooltip: 'Run Code'
+    });
+    button.addClass('jp-blockly-runButton');
+    this.toolbar.addItem('run', button);
   }
 
   /**
