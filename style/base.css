@@ -1,0 +1,11 @@
+.jp-blockly-button:hover {
+	background-color: transparent !important;
+}
+
+.jp-blockly-runButton {
+	background-color: var(--md-green-500)
+}
+
+.jp-blockly-runButton:hover {
+	background-color: var(--md-green-700)
+}

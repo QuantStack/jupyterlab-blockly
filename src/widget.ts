@@ -5,6 +5,7 @@ import {
 } from '@jupyterlab/docregistry';
 import { ToolbarButton } from '@jupyterlab/apputils';
 import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
+import { runIcon } from '@jupyterlab/ui-components';
 
 import { Panel } from '@lumino/widgets';
 import { Signal } from '@lumino/signaling';
