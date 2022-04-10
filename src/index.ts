@@ -10,6 +10,7 @@ import { BlocklyEditorFactory } from './factory';
 import { IBlocklyManager } from './token';
 import { BlocklyEditor } from './widget';
 
+import {blockly_icon} from './icons';
 /**
  * The name of the factory that creates the editor widgets.
  */
@@ -69,12 +70,17 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
 
     // Add the widget to the tracker when it's created
     widgetFactory.widgetCreated.connect((sender, widget) => {
+      // Adding the Blockly icon next to the file name.
+      widget.title.icon = blockly_icon; 
+
       // Notify the instance tracker if restore data needs to update.
       widget.context.pathChanged.connect(() => {
         tracker.save(widget);
       });
       tracker.add(widget);
     });
+
+
     // Registering the widget factory
     app.docRegistry.addWidgetFactory(widgetFactory);
 
