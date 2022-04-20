@@ -17,7 +17,7 @@ jobs:
       uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
 
     - name: Install dependencies
-      run: python -m pip install -U check-manifest jupyterlab --pre
+      run: python -m pip install -U check-manifest jupyterlab
 
     - name: Build the extension
       run: |
@@ -65,6 +65,6 @@ jobs:
         sudo rm -rf $(which node)
         sudo rm -rf $(which node)
         pip install myextension.tar.gz
-        pip install jupyterlab --pre
+        pip install jupyterlab
         jupyter labextension list 2>&1 | grep -ie "jupyterlab-blockly.*OK"
         python -m jupyterlab.browser_check --no-browser-test
