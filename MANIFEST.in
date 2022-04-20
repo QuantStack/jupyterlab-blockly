@@ -8,6 +8,7 @@ include ts*.json
 include yarn.lock
 
 graft jupyterlab_blockly/labextension
+recursive-include patches *.patch
 
 # Javascript files
 graft src
