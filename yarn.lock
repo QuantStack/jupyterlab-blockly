@@ -106,7 +106,7 @@
   resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-3.3.1.tgz#b50a781709c81e10701004214340f25475a171a0"
   integrity sha512-zMM9Ds+SawiUkakS7y94Ymqx+S0ORzpG3frZirN3l+UlXUmSUR7hF4wxCVqW+ei94JzV5kt0uXBcoOEAuiydrw==
 
-"@jupyterlab/application@^3":
+"@jupyterlab/application@^3.3":
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/@jupyterlab/application/-/application-3.3.4.tgz#1efb405392c95f38c041a53eab45c3493f2641fc"
   integrity sha512-PNspxKOhdAF7XeKpukpN9hMKFjHEvS5exb4/b8nWAacKygKrgGBbCK5tQLNNa3OUf20RtVBl35Xj3pVSjukEAw==
@@ -132,7 +132,7 @@
     "@lumino/signaling" "^1.4.3"
     "@lumino/widgets" "^1.19.0"
 
-"@jupyterlab/apputils@^3", "@jupyterlab/apputils@^3.3.4":
+"@jupyterlab/apputils@^3.3", "@jupyterlab/apputils@^3.3.4":
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/@jupyterlab/apputils/-/apputils-3.3.4.tgz#79381f239a305bdd7c8495e032682d07ec552e95"
   integrity sha512-hP10GHURR2uPTYf/hQae81UlSnLt5gESvR1MdKGslmwhVY6VrmxwrZIossUtyQQSsAGWLvpbga9x07Xza29Rqg==
@@ -161,7 +161,7 @@
     sanitize-html "~2.5.3"
     url "^0.11.0"
 
-"@jupyterlab/builder@^3":
+"@jupyterlab/builder@^3.3":
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/@jupyterlab/builder/-/builder-3.3.4.tgz#8899e317075a207fa336bc66ca8dff9a791e386f"
   integrity sha512-jdyo1RIGunYJEqGQXIxX/+lMcNB22zXzp3yJAuVoWZX1HrhPyOEdvPMLvppCBn7v30HREo2Ubqwvdwjd3fOGIg==
@@ -292,7 +292,7 @@
     y-websocket "^1.3.15"
     yjs "^13.5.17"
 
-"@jupyterlab/docregistry@^3", "@jupyterlab/docregistry@^3.3.4":
+"@jupyterlab/docregistry@^3.3", "@jupyterlab/docregistry@^3.3.4":
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/@jupyterlab/docregistry/-/docregistry-3.3.4.tgz#3f27c095204e48a3210d624c1e8756ee4fc18826"
   integrity sha512-Iw4wl7qGUEqqaBcMUQcw0s2KNFaMTpfN845u2rRGzBZiIxpZLKCmggn0iFln7PEZ/8bo1iIoofmJd5MKzmwKww==
@@ -335,7 +335,7 @@
     "@lumino/messaging" "^1.4.3"
     "@lumino/signaling" "^1.4.3"
 
-"@jupyterlab/outputarea@^3":
+"@jupyterlab/outputarea@^3.3":
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/@jupyterlab/outputarea/-/outputarea-3.3.4.tgz#bfa61d7468f6b975323077b470842024edff4301"
   integrity sha512-n6wEl92MJTa2uKbzZDp/2q0UsfBm8xTWJip7AqkH/ycgufpb9MS8ASsguS7GeOke93uawmWH54Jhxl1Zrp4QSw==
@@ -364,7 +364,7 @@
     "@lumino/coreutils" "^1.5.3"
     "@lumino/widgets" "^1.19.0"
 
-"@jupyterlab/rendermime@^3", "@jupyterlab/rendermime@^3.3.4":
+"@jupyterlab/rendermime@^3.3", "@jupyterlab/rendermime@^3.3.4":
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/@jupyterlab/rendermime/-/rendermime-3.3.4.tgz#dc6ed06cc4fe0f2a92055d68edfd9b86d0afbdf0"
   integrity sha512-kq9LPB/XgfoK/eO+NIoI9qTbiCcy8w+2lvrICVELrKCUfs9cUGD5axsk1wH6xY6f5fLuDzjlCEySSXAxIka3pA==
