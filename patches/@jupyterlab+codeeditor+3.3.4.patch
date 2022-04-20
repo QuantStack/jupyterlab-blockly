@@ -1,0 +1,13 @@
+diff --git a/node_modules/@jupyterlab/codeeditor/lib/editor.d.ts b/node_modules/@jupyterlab/codeeditor/lib/editor.d.ts
+index ffe8d1f..d63b2f8 100644
+--- a/node_modules/@jupyterlab/codeeditor/lib/editor.d.ts
++++ b/node_modules/@jupyterlab/codeeditor/lib/editor.d.ts
+@@ -44,7 +44,7 @@ export declare namespace CodeEditor {
+     /**
+      * An interface describing editor state coordinates.
+      */
+-    interface ICoordinate extends JSONObject, ClientRect {
++    interface ICoordinate extends JSONObject {
+     }
+     /**
+      * A range.
