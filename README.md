@@ -20,10 +20,17 @@ Repo: https://github.com/google/blockly
 To install the extension, execute:
 
 ```bash
-micromamba create -n blockly -c conda-forge python
+micromamba create -n blockly -c conda-forge python ipykernel xeus-python xeus-lua
 micromamba activate blockly
 pip install jupyterlab_blockly
 ```
+
+#### Kernels
+* ipykernel
+* xeus-python
+* xeus-lua
+* [JavaScript](https://github.com/n-riesco/ijavascript#installation)
+* [JavaScript](https://github.com/yunabe/tslab)
 
 ## Uninstall
 

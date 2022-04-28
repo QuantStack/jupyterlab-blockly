@@ -3,6 +3,7 @@ import {
   JupyterFrontEndPlugin,
   ILayoutRestorer
 } from '@jupyterlab/application';
+import { jsonIcon } from '@jupyterlab/ui-components';
 import { WidgetTracker } from '@jupyterlab/apputils';
 import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
 import { ICommandPalette } from '@jupyterlab/apputils';
@@ -12,7 +13,7 @@ import { ITranslator } from '@jupyterlab/translation';
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
 
 import { BlocklyEditorFactory } from './factory';
-import { IBlocklyManager } from './token';
+import { IBlocklyRegisty } from './token';
 import { BlocklyEditor } from './widget';
 
 import { blockly_icon } from './icons';
@@ -36,7 +37,7 @@ const PLUGIN_ID = '@jupyterlab/translation-extension:plugin';
 /**
  * Initialization data for the jupyterlab-blocky extension.
  */
-const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
+const plugin: JupyterFrontEndPlugin<IBlocklyRegisty> = {
   id: 'jupyterlab-blocky:plugin',
   autoStart: true,
   requires: [
@@ -47,7 +48,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
     ITranslator
   ],
   optional: [ILauncher, ICommandPalette],
-  provides: IBlocklyManager,
+  provides: IBlocklyRegisty,
   activate: (
     app: JupyterFrontEnd,
     restorer: ILayoutRestorer,
@@ -57,7 +58,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
     translator: ITranslator,
     launcher: ILauncher | null,
     palette: ICommandPalette | null
-  ): IBlocklyManager => {
+  ): IBlocklyRegisty => {
     console.log('JupyterLab extension jupyterlab-blocky is activated!');
 
     // Namespace for the tracker
@@ -84,8 +85,8 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
     const widgetFactory = new BlocklyEditorFactory({
       name: FACTORY,
       modelName: 'text',
-      fileTypes: ['json'],
-      defaultFor: ['json'],
+      fileTypes: ['blockly'],
+      defaultFor: ['blockly'],
 
       // Kernel options, in this case we need to execute the code generated
       // in the blockly editor. The best way would be to use kernels, for
@@ -114,6 +115,17 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
       });
       tracker.add(widget);
     });
+    // Registering the file type
+    app.docRegistry.addFileType({
+      name: 'blockly',
+      displayName: 'Blockly',
+      contentType: 'file',
+      fileFormat: 'json',
+      extensions: ['.jpblockly'],
+      mimeTypes: ['application/json'],
+      icon: jsonIcon,
+      iconLabel: 'JupyterLab-Blockly'
+    });
     // Registering the widget factory
     app.docRegistry.addWidgetFactory(widgetFactory);
 
@@ -140,7 +152,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
       console.log(`Current Language : '${language}'`);
 
       // Transmitting the current language to the manager.
-      widgetFactory.manager.setlanguage(language);
+      widgetFactory.registry.setlanguage(language);
     });
 
     commands.addCommand(command, {
@@ -187,7 +199,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
       });
     }
 
-    return widgetFactory.manager;
+    return widgetFactory.registry;
   }
 };
 

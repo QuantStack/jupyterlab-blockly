@@ -3,22 +3,21 @@ import {
   DocumentWidget,
   DocumentModel
 } from '@jupyterlab/docregistry';
-import { ToolbarButton } from '@jupyterlab/apputils';
 import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
 import { runIcon } from '@jupyterlab/ui-components';
-// import { ITranslator } from '@jupyterlab/translation';
 
 import { Panel } from '@lumino/widgets';
 import { Signal } from '@lumino/signaling';
 
 import { BlocklyLayout } from './layout';
 import { BlocklyManager } from './manager';
+import { BlocklyButton, SelectGenerator, Spacer } from './toolbar';
 
 /**
  * DocumentWidget: widget that represents the view or editor for a file type.
  */
 export class BlocklyEditor extends DocumentWidget<BlocklyPanel, DocumentModel> {
-  constructor(options: DocumentWidget.IOptions<BlocklyPanel, DocumentModel>) {
+  constructor(options: BlocklyEditor.IOptions) {
     super(options);
 
     // Loading the ITranslator
@@ -26,19 +25,23 @@ export class BlocklyEditor extends DocumentWidget<BlocklyPanel, DocumentModel> {
 
     // Create and add a button to the toolbar to execute
     // the code.
-    const runCode = () => {
-      (this.content.layout as BlocklyLayout).run();
-    };
-    const button = new ToolbarButton({
+    const button = new BlocklyButton({
       label: '',
       icon: runIcon,
-      className: 'jp-blockly-button',
-      onClick: runCode,
+      className: 'jp-blockly-runButton',
+      onClick: () => (this.content.layout as BlocklyLayout).run(),
       tooltip: 'Run Code'
     });
-    button.addClass('jp-blockly-runButton');
     this.toolbar.addItem('run', button);
-    // button.title.label = trans.__('Run Code');
+    this.toolbar.addItem('spacer', new Spacer());
+    this.toolbar.addItem(
+      'select',
+      new SelectGenerator({
+        label: 'Select',
+        tooltip: 'Select kernel',
+        manager: options.manager
+      })
+    );
   }
 
   /**
@@ -47,6 +50,13 @@ export class BlocklyEditor extends DocumentWidget<BlocklyPanel, DocumentModel> {
   dispose(): void {
     this.content.dispose();
     super.dispose();
+  }
+}
+
+export namespace BlocklyEditor {
+  export interface IOptions
+    extends DocumentWidget.IOptions<BlocklyPanel, DocumentModel> {
+    manager: BlocklyManager;
   }
 }
 
@@ -64,9 +74,7 @@ export class BlocklyPanel extends Panel {
   constructor(
     context: DocumentRegistry.IContext<DocumentModel>,
     manager: BlocklyManager,
-    rendermime: IRenderMimeRegistry,
-    language: string
-    // translator: ITranslator
+    rendermime: IRenderMimeRegistry
   ) {
     super({
       layout: new BlocklyLayout(manager, context.sessionContext, rendermime)

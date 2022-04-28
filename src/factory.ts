@@ -4,9 +4,9 @@ import {
   DocumentModel
 } from '@jupyterlab/docregistry';
 import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
-// import { ITranslator } from '@jupyterlab/translation';
 
 import { BlocklyEditor, BlocklyPanel } from './widget';
+import { BlocklyRegistry } from './registry';
 import { BlocklyManager } from './manager';
 
 /**
@@ -16,10 +16,8 @@ export class BlocklyEditorFactory extends ABCWidgetFactory<
   BlocklyEditor,
   DocumentModel
 > {
-  private _manager: BlocklyManager;
+  private _registry: BlocklyRegistry;
   private _rendermime: IRenderMimeRegistry;
-  private _language: string;
-  // private _translator: ITranslator;
 
   /**
    * Constructor of BlocklyEditorFactory.
@@ -28,14 +26,12 @@ export class BlocklyEditorFactory extends ABCWidgetFactory<
    */
   constructor(options: BlocklyEditorFactory.IOptions) {
     super(options);
-    this._manager = new BlocklyManager();
+    this._registry = new BlocklyRegistry();
     this._rendermime = options.rendermime;
-    this._language = this._manager.language;
-    // this._translator = options.translator;
   }
 
-  get manager(): BlocklyManager {
-    return this._manager;
+  get registry(): BlocklyRegistry {
+    return this._registry;
   }
 
   /**
@@ -47,15 +43,9 @@ export class BlocklyEditorFactory extends ABCWidgetFactory<
   protected createNewWidget(
     context: DocumentRegistry.IContext<DocumentModel>
   ): BlocklyEditor {
-    return new BlocklyEditor({
-      context,
-      content: new BlocklyPanel(
-        context,
-        this._manager,
-        this._rendermime,
-        this._language
-      )
-    });
+    const manager = new BlocklyManager(this._registry, context.sessionContext);
+    const content = new BlocklyPanel(context, manager, this._rendermime);
+    return new BlocklyEditor({ context, content, manager });
   }
 }
 

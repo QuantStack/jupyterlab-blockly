@@ -1,7 +1,6 @@
 import { SimplifiedOutputArea, OutputAreaModel } from '@jupyterlab/outputarea';
 import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
-import { ISessionContext } from '@jupyterlab/apputils';
-// import { ITranslator } from '@jupyterlab/translation';
+import { ISessionContext, showErrorMessage } from '@jupyterlab/apputils';
 
 import { Message } from '@lumino/messaging';
 import { PartialJSONValue } from '@lumino/coreutils';
@@ -22,7 +21,6 @@ export class BlocklyLayout extends PanelLayout {
   private _manager: BlocklyManager;
   private _workspace: Blockly.WorkspaceSvg;
   private _sessionContext: ISessionContext;
-  // private _translator: ITranslator;
   private _outputArea: SimplifiedOutputArea;
 
   /**
@@ -33,12 +31,10 @@ export class BlocklyLayout extends PanelLayout {
     manager: BlocklyManager,
     sessionContext: ISessionContext,
     rendermime: IRenderMimeRegistry
-    // translator: ITranslator
   ) {
     super();
     this._manager = manager;
     this._sessionContext = sessionContext;
-    // this._translator = translator;
 
     // Creating the container for the Blockly editor
     // and the output area to render the execution replies.
@@ -106,12 +102,22 @@ export class BlocklyLayout extends PanelLayout {
 
     // Execute the code using the kernel, by using a static method from the
     // same class to make an execution request.
-    SimplifiedOutputArea.execute(code, this._outputArea, this._sessionContext)
-      .then(resp => {
-        this.addWidget(this._outputArea);
-        this._resizeWorkspace();
-      })
-      .catch(e => console.error(e));
+    if (this._sessionContext.hasNoKernel) {
+      // Check whether there is a kernel
+      showErrorMessage(
+        'Select a valid kernel',
+        `There is not a valid kernel selected, select one from the dropdown menu in the toolbar.
+        If there isn't a valid kernel please install 'xeus-python' from Pypi.org or using mamba.
+        `
+      );
+    } else {
+      SimplifiedOutputArea.execute(code, this._outputArea, this._sessionContext)
+        .then(resp => {
+          this.addWidget(this._outputArea);
+          this._resizeWorkspace();
+        })
+        .catch(e => console.error(e));
+    }
   }
 
   /**
@@ -144,13 +150,6 @@ export class BlocklyLayout extends PanelLayout {
       toolbox: this._manager.toolbox,
       theme: THEME
     });
-
-    // let categories: string;
-
-    // Loading the ITranslator
-    // const trans = this._translator.load('jupyterlab-blockly');
-
-    // categories = trans.__('Category');
   }
 
   private _resizeWorkspace(): void {
