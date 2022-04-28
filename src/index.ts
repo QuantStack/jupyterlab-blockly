@@ -8,6 +8,7 @@ import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
 import { ICommandPalette } from '@jupyterlab/apputils';
 import { IFileBrowserFactory } from '@jupyterlab/filebrowser';
 import { ILauncher } from '@jupyterlab/launcher';
+import { ITranslator } from '@jupyterlab/translation';
 
 import { BlocklyEditorFactory } from './factory';
 import { IBlocklyManager } from './token';
@@ -32,7 +33,7 @@ namespace CommandIDs {
 const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
   id: 'jupyterlab-blocky:plugin',
   autoStart: true,
-  requires: [ILayoutRestorer, IRenderMimeRegistry, IFileBrowserFactory],
+  requires: [ILayoutRestorer, IRenderMimeRegistry, IFileBrowserFactory, ITranslator],
   optional: [ILauncher, ICommandPalette],
   provides: IBlocklyManager,
   activate: (
@@ -41,7 +42,8 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
     rendermime: IRenderMimeRegistry,
     browserFactory: IFileBrowserFactory,
     launcher: ILauncher | null,
-    palette: ICommandPalette | null
+    palette: ICommandPalette | null,
+    language: ITranslator
   ): IBlocklyManager => {
     console.log('JupyterLab extension jupyterlab-blocky is activated!');
 
@@ -50,6 +52,8 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
 
     // Creating the tracker for the document
     const tracker = new WidgetTracker<BlocklyEditor>({ namespace });
+
+    //const trans = translator.load('jupyterlab-blockly');
 
     // Handle state restoration.
     if (restorer) {
@@ -82,7 +86,11 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
 
       // The rendermime instance, necessary to render the outputs
       // after a code execution.
-      rendermime: rendermime
+      rendermime: rendermime,
+
+      // The translator instance, used for changing the language of Blockly,
+      // in accordance to the jupyterlab one.
+      translator: language
     });
 
     // Add the widget to the tracker when it's created

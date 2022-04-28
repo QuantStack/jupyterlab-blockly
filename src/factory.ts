@@ -4,6 +4,7 @@ import {
   DocumentModel
 } from '@jupyterlab/docregistry';
 import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
+import { ITranslator } from '@jupyterlab/translation';
 
 import { BlocklyEditor, BlocklyPanel } from './widget';
 import { BlocklyManager } from './manager';
@@ -17,6 +18,7 @@ export class BlocklyEditorFactory extends ABCWidgetFactory<
 > {
   private _manager: BlocklyManager;
   private _rendermime: IRenderMimeRegistry;
+  private _language: ITranslator;
 
   /**
    * Constructor of BlocklyEditorFactory.
@@ -27,6 +29,7 @@ export class BlocklyEditorFactory extends ABCWidgetFactory<
     super(options);
     this._manager = new BlocklyManager();
     this._rendermime = options.rendermime;
+    this._language = options.translator;
   }
 
   get manager(): BlocklyManager {
@@ -44,7 +47,7 @@ export class BlocklyEditorFactory extends ABCWidgetFactory<
   ): BlocklyEditor {
     return new BlocklyEditor({
       context,
-      content: new BlocklyPanel(context, this._manager, this._rendermime)
+      content: new BlocklyPanel(context, this._manager, this._rendermime, this._language)
     });
   }
 }

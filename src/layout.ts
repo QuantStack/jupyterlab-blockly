@@ -1,6 +1,7 @@
 import { SimplifiedOutputArea, OutputAreaModel } from '@jupyterlab/outputarea';
 import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
 import { ISessionContext } from '@jupyterlab/apputils';
+import { ITranslator } from '@jupyterlab/translation';
 
 import { Message } from '@lumino/messaging';
 import { PartialJSONValue } from '@lumino/coreutils';
@@ -21,6 +22,7 @@ export class BlocklyLayout extends PanelLayout {
   private _workspace: Blockly.WorkspaceSvg;
   private _sessionContext: ISessionContext;
   private _outputArea: SimplifiedOutputArea;
+  private _language: ITranslator;
 
   /**
    * Construct a `BlocklyLayout`.
@@ -29,11 +31,13 @@ export class BlocklyLayout extends PanelLayout {
   constructor(
     manager: BlocklyManager,
     sessionContext: ISessionContext,
-    rendermime: IRenderMimeRegistry
+    rendermime: IRenderMimeRegistry,
+    language: ITranslator
   ) {
     super();
     this._manager = manager;
     this._sessionContext = sessionContext;
+    this._language = language;
 
     // Creating the container for the Blockly editor
     // and the output area to render the execution replies.
@@ -140,6 +144,13 @@ export class BlocklyLayout extends PanelLayout {
   }
 
   private _resizeWorkspace(): void {
+    // this._language.load('jupyterlab');
+    // LOGIC for listening to change of language in Juypter Lab.
+    // current_language = 
+
+    // LOGIC for changing the language in Blockly.
+    //this._manager.language(current_language);
+    
     //Resize logic.
     const rect = this.parent.node.getBoundingClientRect();
     const { height } = this._outputArea.node.getBoundingClientRect();
