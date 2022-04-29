@@ -48,6 +48,8 @@
     "@jupyterlab/application": "^4.0.0-alpha.7",
     "@jupyterlab/apputils": "^4.0.0-alpha.7",
     "@jupyterlab/docregistry": "^4.0.0-alpha.7",
+    "@jupyterlab/filebrowser": "^3.3.4",
+    "@jupyterlab/launcher": "^3.3.4",
     "@jupyterlab/outputarea": "^4.0.0-alpha.7",
     "@jupyterlab/rendermime": "^4.0.0-alpha.7",
     "@lumino/algorithm": "^1.9.1",
