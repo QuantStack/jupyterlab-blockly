@@ -49,6 +49,8 @@
     "@jupyterlab/application": "^3.3",
     "@jupyterlab/apputils": "^3.3",
     "@jupyterlab/docregistry": "^3.3",
+    "@jupyterlab/filebrowser": "^3.3",
+    "@jupyterlab/launcher": "^3.3",
     "@jupyterlab/outputarea": "^3.3",
     "@jupyterlab/rendermime": "^3.3",
     "@lumino/algorithm": "^1.9.1",
