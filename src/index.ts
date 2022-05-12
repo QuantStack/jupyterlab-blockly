@@ -13,7 +13,7 @@ import { BlocklyEditorFactory } from './factory';
 import { IBlocklyManager } from './token';
 import { BlocklyEditor } from './widget';
 
-import {blockly_icon} from './icons';
+import { blockly_icon } from './icons';
 
 /**
  * The name of the factory that creates the editor widgets.
@@ -88,7 +88,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
     // Add the widget to the tracker when it's created
     widgetFactory.widgetCreated.connect((sender, widget) => {
       // Adding the Blockly icon for the widget so it appears next to the file name.
-      widget.title.icon = blockly_icon; 
+      widget.title.icon = blockly_icon 
 
       // Notify the instance tracker if restore data needs to update.
       widget.context.pathChanged.connect(() => {
@@ -100,10 +100,11 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
     app.docRegistry.addWidgetFactory(widgetFactory);
 
     commands.addCommand(command, {
-      label: (args) => (args['isPalette'] ? 'New Blockly Editor' : 'Blockly Editor'),
+      label: args => 
+      args['isPalette'] ? 'New Blockly Editor' : 'Blockly Editor',
       caption: 'Create a new Blockly Editor',
-      icon: (args) => (args['isPalette'] ? null : blockly_icon),
-      execute: async (args) => {
+      icon: args => args['isPalette'] ? null : blockly_icon,
+      execute: async args => {
         // Get the directory in which the Blockly file must be created;
         // otherwise take the current filebrowser directory
         const cwd =
@@ -113,15 +114,15 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
         const model = await commands.execute('docmanager:new-untitled', {
           path: cwd,
           type: 'file',
-          ext: '.json',
+          ext: '.json'
         });
 
         // Open the newly created file with the 'Editor'
         return commands.execute('docmanager:open', {
           path: model.path,
-          factory: FACTORY,
+          factory: FACTORY
         });
-      },
+      }
     });
 
     // Add the command to the launcher
@@ -129,7 +130,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
       launcher.add({
         command,
         category: 'Other',
-        rank: 1,
+        rank: 1
       });
     }
 
@@ -138,7 +139,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
       palette.addItem({
         command,
         args: { isPalette: true },
-        category: PALETTE_CATEGORY,
+        category: PALETTE_CATEGORY
       });
     }
 
