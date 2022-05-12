@@ -88,7 +88,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
     // Add the widget to the tracker when it's created
     widgetFactory.widgetCreated.connect((sender, widget) => {
       // Adding the Blockly icon for the widget so it appears next to the file name.
-      widget.title.icon = blockly_icon 
+      widget.title.icon = blockly_icon; 
 
       // Notify the instance tracker if restore data needs to update.
       widget.context.pathChanged.connect(() => {
@@ -100,10 +100,9 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
     app.docRegistry.addWidgetFactory(widgetFactory);
 
     commands.addCommand(command, {
-      label: args => 
-      args['isPalette'] ? 'New Blockly Editor' : 'Blockly Editor',
+      label: args => (args['isPalette'] ? 'New Blockly Editor' : 'Blockly Editor'),
       caption: 'Create a new Blockly Editor',
-      icon: args => args['isPalette'] ? null : blockly_icon,
+      icon: args => (args['isPalette'] ? null : blockly_icon),
       execute: async args => {
         // Get the directory in which the Blockly file must be created;
         // otherwise take the current filebrowser directory
