@@ -6,7 +6,7 @@ import {
 import { ToolbarButton } from '@jupyterlab/apputils';
 import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
 import { runIcon } from '@jupyterlab/ui-components';
-import { ITranslator } from '@jupyterlab/translation';
+// import { ITranslator } from '@jupyterlab/translation';
 
 import { Panel } from '@lumino/widgets';
 import { Signal } from '@lumino/signaling';
@@ -61,10 +61,10 @@ export class BlocklyPanel extends Panel {
     context: DocumentRegistry.IContext<DocumentModel>,
     manager: BlocklyManager,
     rendermime: IRenderMimeRegistry,
-    language: ITranslator
+    language: String
   ) {
     super({
-      layout: new BlocklyLayout(manager, context.sessionContext, rendermime, language)
+      layout: new BlocklyLayout(manager, context.sessionContext, rendermime)
     });
     this.addClass('jp-BlocklyPanel');
     this._context = context;

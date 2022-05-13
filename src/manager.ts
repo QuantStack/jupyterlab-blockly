@@ -13,7 +13,7 @@ export class BlocklyManager implements IBlocklyManager {
   private _toolbox: JSONObject;
   private _activeGenerator: Blockly.Generator;
   private _generators: Map<string, Blockly.Generator>;
-  private _language: JSONObject; // Ideally, it should be of type Blockly.Msg
+  private _language: String;
 
   /**
    * Constructor of BlocklyEditorFactory.
@@ -24,7 +24,7 @@ export class BlocklyManager implements IBlocklyManager {
     this._toolbox = TOOLBOX;
     this._activeGenerator = BlocklyPy;
     this._generators = new Map<string, Blockly.Generator>();
-    this._language = En;
+    this._language = En; // just for now
   }
 
   get toolbox(): JSONObject {
@@ -52,8 +52,6 @@ export class BlocklyManager implements IBlocklyManager {
   }
 
   language(language: JSONObject) : void{
-    // issue with Blockly.setLocale in Typescript : https://github.com/google/blockly/issues/5818
-    // work-arund for it :
     // @ts-ignore
     Blockly.setLocale(this._language);
   }
