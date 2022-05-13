@@ -39,6 +39,10 @@ export class BlocklyLayout extends PanelLayout {
     this._sessionContext = sessionContext;
     // this._language = language;
 
+    this._manager.changed.connect(() => {
+      // something
+    }, this);
+
     // Creating the container for the Blockly editor
     // and the output area to render the execution replies.
     this._host = document.createElement('div');
@@ -68,6 +72,8 @@ export class BlocklyLayout extends PanelLayout {
    * Dispose of the resources held by the widget.
    */
   dispose(): void {
+    this._manager.changed.disconnect(this._resizeWorkspace, this);
+    Signal.clearData(this);
     this._workspace.dispose();
     super.dispose();
   }
