@@ -17,6 +17,6 @@
     "target": "es2017",
     "types": []
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "style/icons"],
   "exclude": ["node_modules"]
 }

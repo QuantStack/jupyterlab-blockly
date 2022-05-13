@@ -54,9 +54,10 @@ export class BlocklyLayout extends PanelLayout {
   }
 
   set workspace(workspace: PartialJSONValue) {
+    const data = workspace === null ? { variables: [] } : workspace;
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    Blockly.serialization.workspaces.load(workspace, this._workspace);
+    Blockly.serialization.workspaces.load(data, this._workspace);
   }
 
   /**

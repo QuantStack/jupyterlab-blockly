@@ -13,7 +13,7 @@ Repo: https://github.com/google/blockly
 
 ## Requirements
 
-* JupyterLab >= 4.0.0a0
+* JupyterLab == 3.4
 
 ## Install
 
@@ -45,7 +45,7 @@ The `jlpm` command is JupyterLab's pinned version of
 `yarn` or `npm` in lieu of `jlpm` below.
 
 ```bash
-micromamba create -n blockly -c conda-forge python nodejs yarn jupyterlab==3.3 jupyter-packaging
+micromamba create -n blockly -c conda-forge python nodejs yarn jupyterlab==3.4 jupyter-packaging
 micromamba activate blockly
 # Clone the repo to your local environment
 # Change directory to the jupyterlab_blockly directory
