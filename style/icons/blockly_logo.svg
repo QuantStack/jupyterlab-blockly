@@ -24,7 +24,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title>logo-only</dc:title>
+        <dc:title>blockly-logo</dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -54,7 +54,7 @@
        id="style900">.cls-1{fill:#4285f4;}.cls-2{fill:#c8d1db;}</style>
   </defs>
   <title
-     id="title904">logo-only</title>
+     id="title904">blockly-logo</title>
   <g
      id="g1013"
      transform="translate(23.500002,-7.9121105)"
