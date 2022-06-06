@@ -48,7 +48,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
     rendermime: IRenderMimeRegistry,
     browserFactory: IFileBrowserFactory,
     settings: ISettingRegistry,
-    language: ITranslator,
+    translator: ITranslator,
     launcher: ILauncher | null,
     palette: ICommandPalette | null
   ): IBlocklyManager => {
@@ -59,31 +59,6 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
 
     // Creating the tracker for the document
     const tracker = new WidgetTracker<BlocklyEditor>({ namespace });
-
-    function getSetting(setting: ISettingRegistry.ISettings): string {
-      // Read the settings and convert to the correct type
-      let currentLocale: string = setting.get('locale').composite as string;
-      return currentLocale;
-    }
-
-    // Wait for the application to be restored and
-    // for the settings for this plugin to be loaded
-    settings
-    .load(PLUGIN_ID)
-    .then(setting => {
-      // Read the settings
-      let currentLocale = getSetting(setting);
-
-      // Listen for our plugin setting changes using Signal
-     setting.changed.connect(getSetting);
-
-      // Get new language and call the function that modifies the language name accordingly.
-      // Also, make the transformation to have the name of the language package as in Blockly.
-      let language = currentLocale[currentLocale.length - 2].toUpperCase() + currentLocale[currentLocale.length - 1].toLowerCase();
-      console.log(`Current Language : '${language}'`);
-
-      // LOGIC to transmit language as a paramtere of type string.
-    });
       
     // Handle state restoration.
     if (restorer) {
@@ -117,6 +92,8 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
       // The rendermime instance, necessary to render the outputs
       // after a code execution.
       rendermime: rendermime,
+
+      translator: translator
     });
 
     // Add the widget to the tracker when it's created
@@ -176,6 +153,32 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
         category: PALETTE_CATEGORY
       });
     }
+
+    function getSetting(setting: ISettingRegistry.ISettings): string {
+      // Read the settings and convert to the correct type
+      let currentLocale: string = setting.get('locale').composite as string;
+      return currentLocale;
+    }
+
+    // Wait for the application to be restored and
+    // for the settings for this plugin to be loaded
+    settings
+    .load(PLUGIN_ID)
+    .then(setting => {
+      // Read the settings
+      let currentLocale = getSetting(setting);
+
+      // Listen for our plugin setting changes using Signal
+     setting.changed.connect(getSetting);
+
+      // Get new language and call the function that modifies the language name accordingly.
+      // Also, make the transformation to have the name of the language package as in Blockly.
+      let language = currentLocale[currentLocale.length - 2].toUpperCase() + currentLocale[currentLocale.length - 1].toLowerCase();
+      console.log(`Current Language : '${language}'`);
+
+      // Transmitting the current language to the manager.
+      widgetFactory.manager.setlanguage(language);
+    });
 
     return widgetFactory.manager;
   }

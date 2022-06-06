@@ -7,6 +7,7 @@ import { Message } from '@lumino/messaging';
 import { PartialJSONValue } from '@lumino/coreutils';
 import { PanelLayout, Widget } from '@lumino/widgets';
 import { IIterator, ArrayIterator } from '@lumino/algorithm';
+import { Signal } from '@lumino/signaling';
 
 import * as Blockly from 'blockly';
 
@@ -21,8 +22,8 @@ export class BlocklyLayout extends PanelLayout {
   private _manager: BlocklyManager;
   private _workspace: Blockly.WorkspaceSvg;
   private _sessionContext: ISessionContext;
+  // private _translator: ITranslator;
   private _outputArea: SimplifiedOutputArea;
-  // private _language: String;
 
   /**
    * Construct a `BlocklyLayout`.
@@ -32,16 +33,12 @@ export class BlocklyLayout extends PanelLayout {
     manager: BlocklyManager,
     sessionContext: ISessionContext,
     rendermime: IRenderMimeRegistry,
-    // language: String
+    // translator: ITranslator
   ) {
     super();
     this._manager = manager;
     this._sessionContext = sessionContext;
-    // this._language = language;
-
-    this._manager.changed.connect(() => {
-      // something
-    }, this);
+    // this._translator = translator;
 
     // Creating the container for the Blockly editor
     // and the output area to render the execution replies.
@@ -147,15 +144,16 @@ export class BlocklyLayout extends PanelLayout {
       toolbox: this._manager.toolbox,
       theme: THEME
     });
+
+    // let categories: string;
+
+    // Loading the ITranslator
+    // const trans = this._translator.load('jupyterlab');
+
+    // categories = trans.__('Category');
   }
 
-  private _resizeWorkspace(): void {
-    // LOGIC for changing the language in Blockly.
-    // if (language == 'En') {
-    //   // @ts-ignore
-    // Blockly.setLocale(En);
-    // }   
-    
+  private _resizeWorkspace(): void {   
     //Resize logic.
     const rect = this.parent.node.getBoundingClientRect();
     const { height } = this._outputArea.node.getBoundingClientRect();

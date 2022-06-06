@@ -21,6 +21,9 @@ export class BlocklyEditor extends DocumentWidget<BlocklyPanel, DocumentModel> {
   constructor(options: DocumentWidget.IOptions<BlocklyPanel, DocumentModel>) {
     super(options);
 
+    // Loading the ITranslator
+    // const trans = this.translator.load('jupyterlab');
+
     // Create and add a button to the toolbar to execute
     // the code.
     const runCode = () => {
@@ -35,6 +38,7 @@ export class BlocklyEditor extends DocumentWidget<BlocklyPanel, DocumentModel> {
     });
     button.addClass('jp-blockly-runButton');
     this.toolbar.addItem('run', button);
+    // button.title.label = trans.__('Run Code');
   }
 
   /**
@@ -61,7 +65,8 @@ export class BlocklyPanel extends Panel {
     context: DocumentRegistry.IContext<DocumentModel>,
     manager: BlocklyManager,
     rendermime: IRenderMimeRegistry,
-    language: String
+    language: String,
+    // translator: ITranslator
   ) {
     super({
       layout: new BlocklyLayout(manager, context.sessionContext, rendermime)

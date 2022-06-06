@@ -13,12 +13,13 @@ import { BlocklyManager } from './manager';
  * A widget factory to create new instances of BlocklyEditor.
  */
 export class BlocklyEditorFactory extends ABCWidgetFactory<
-  BlocklyEditor,
-  DocumentModel
-> {
+BlocklyEditor,
+DocumentModel >
+{
   private _manager: BlocklyManager;
   private _rendermime: IRenderMimeRegistry;
-  private _language: String;
+  private _language: string;
+  // private _translator: ITranslator;
 
   /**
    * Constructor of BlocklyEditorFactory.
@@ -29,7 +30,8 @@ export class BlocklyEditorFactory extends ABCWidgetFactory<
     super(options);
     this._manager = new BlocklyManager();
     this._rendermime = options.rendermime;
-    // this._language = language;
+    this._language = this._manager.language;
+    // this._translator = options.translator;
   }
 
   get manager(): BlocklyManager {
