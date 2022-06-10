@@ -148,7 +148,7 @@ export class BlocklyLayout extends PanelLayout {
     // let categories: string;
 
     // Loading the ITranslator
-    // const trans = this._translator.load('jupyterlab');
+    // const trans = this._translator.load('jupyterlab-blockly');
 
     // categories = trans.__('Category');
   }

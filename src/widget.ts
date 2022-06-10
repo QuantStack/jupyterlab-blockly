@@ -30,7 +30,7 @@ export class BlocklyEditor extends DocumentWidget<BlocklyPanel, DocumentModel> {
       (this.content.layout as BlocklyLayout).run();
     };
     const button = new ToolbarButton({
-      label: 'Run Code',
+      label: '',
       icon: runIcon,
       className: 'jp-blockly-button',
       onClick: runCode,
