@@ -44,7 +44,8 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
     IRenderMimeRegistry,
     IFileBrowserFactory,
     ISettingRegistry,
-    ITranslator],
+    ITranslator
+  ],
   optional: [ILauncher, ICommandPalette],
   provides: IBlocklyManager,
   activate: (
@@ -123,8 +124,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
 
     // Wait for the application to be restored and
     // for the settings for this plugin to be loaded
-    settings.load(PLUGIN_ID)
-    .then(setting => {
+    settings.load(PLUGIN_ID).then(setting => {
       // Read the settings
       const currentLocale = getSetting(setting);
 
@@ -133,9 +133,9 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
 
       // Get new language and call the function that modifies the language name accordingly.
       // Also, make the transformation to have the name of the language package as in Blockly.
-      const language = 
-      currentLocale[currentLocale.length - 2].toUpperCase() +
-      currentLocale[currentLocale.length - 1].toLowerCase();
+      const language =
+        currentLocale[currentLocale.length - 2].toUpperCase() +
+        currentLocale[currentLocale.length - 1].toLowerCase();
       console.log(`Current Language : '${language}'`);
 
       // Transmitting the current language to the manager.

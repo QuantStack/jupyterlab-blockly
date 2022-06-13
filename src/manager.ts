@@ -66,8 +66,6 @@ export class BlocklyManager implements IBlocklyManager {
   }
 
   setlanguage(language: string): void {
-    this.language = language; 
-
     this.language = language;
     Private.importLanguageModule(language);
   }
