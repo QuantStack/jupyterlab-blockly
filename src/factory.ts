@@ -54,7 +54,7 @@ export class BlocklyEditorFactory extends ABCWidgetFactory<
         this._manager,
         this._rendermime,
         this._language
-        )
+      )
     });
   }
 }

@@ -71,6 +71,9 @@ export class BlocklyManager implements IBlocklyManager {
   }
 }
 
+// Dynamically importing the language modules needed for each respective 
+// user, in order to change the Blockly language in accordance to the
+// JL one.
 namespace Private {
   export async function importLanguageModule(language: string) {
     let module: Promise<any>;
@@ -171,6 +174,7 @@ namespace Private {
         break;
     }
 
+    // Setting the current language in Blockly.
     module.then(lang => {
       // @ts-ignore
       Blockly.setLocale(lang);

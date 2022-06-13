@@ -99,6 +99,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
       // after a code execution.
       rendermime: rendermime,
 
+      // The translator instance, used for the internalization of the plugin.
       translator: translator
     });
 
