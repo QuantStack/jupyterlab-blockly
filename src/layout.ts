@@ -32,7 +32,7 @@ export class BlocklyLayout extends PanelLayout {
   constructor(
     manager: BlocklyManager,
     sessionContext: ISessionContext,
-    rendermime: IRenderMimeRegistry,
+    rendermime: IRenderMimeRegistry
     // translator: ITranslator
   ) {
     super();
@@ -153,7 +153,7 @@ export class BlocklyLayout extends PanelLayout {
     // categories = trans.__('Category');
   }
 
-  private _resizeWorkspace(): void {   
+  private _resizeWorkspace(): void {
     //Resize logic.
     const rect = this.parent.node.getBoundingClientRect();
     const { height } = this._outputArea.node.getBoundingClientRect();

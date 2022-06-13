@@ -13,9 +13,9 @@ import { BlocklyManager } from './manager';
  * A widget factory to create new instances of BlocklyEditor.
  */
 export class BlocklyEditorFactory extends ABCWidgetFactory<
-BlocklyEditor,
-DocumentModel >
-{
+  BlocklyEditor,
+  DocumentModel
+> {
   private _manager: BlocklyManager;
   private _rendermime: IRenderMimeRegistry;
   private _language: string;
@@ -49,7 +49,11 @@ DocumentModel >
   ): BlocklyEditor {
     return new BlocklyEditor({
       context,
-      content: new BlocklyPanel(context, this._manager, this._rendermime, this._language)
+      content: new BlocklyPanel(
+        context,
+        this._manager,
+        this._rendermime,
+        this._language)
     });
   }
 }

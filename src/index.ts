@@ -31,7 +31,7 @@ namespace CommandIDs {
 /**
  * The id of the translation plugin.
  */
- const PLUGIN_ID = '@jupyterlab/translation-extension:plugin';
+const PLUGIN_ID = '@jupyterlab/translation-extension:plugin';
 
 /**
  * Initialization data for the jupyterlab-blocky extension.
@@ -39,7 +39,12 @@ namespace CommandIDs {
 const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
   id: 'jupyterlab-blocky:plugin',
   autoStart: true,
-  requires: [ILayoutRestorer, IRenderMimeRegistry, IFileBrowserFactory, ISettingRegistry, ITranslator],
+  requires: [
+    ILayoutRestorer,
+    IRenderMimeRegistry,
+    IFileBrowserFactory,
+    ISettingRegistry,
+    ITranslator],
   optional: [ILauncher, ICommandPalette],
   provides: IBlocklyManager,
   activate: (
@@ -59,7 +64,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
 
     // Creating the tracker for the document
     const tracker = new WidgetTracker<BlocklyEditor>({ namespace });
-      
+
     // Handle state restoration.
     if (restorer) {
       // When restoring the app, if the document was open, reopen it
@@ -112,24 +117,25 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
 
     function getSetting(setting: ISettingRegistry.ISettings): string {
       // Read the settings and convert to the correct type
-      let currentLocale: string = setting.get('locale').composite as string;
+      const currentLocale: string = setting.get('locale').composite as string;
       return currentLocale;
     }
 
     // Wait for the application to be restored and
     // for the settings for this plugin to be loaded
-    settings
-    .load(PLUGIN_ID)
+    settings.load(PLUGIN_ID)
     .then(setting => {
       // Read the settings
-      let currentLocale = getSetting(setting);
+      const currentLocale = getSetting(setting);
 
       // Listen for our plugin setting changes using Signal
-     setting.changed.connect(getSetting);
+      setting.changed.connect(getSetting);
 
       // Get new language and call the function that modifies the language name accordingly.
       // Also, make the transformation to have the name of the language package as in Blockly.
-      let language = currentLocale[currentLocale.length - 2].toUpperCase() + currentLocale[currentLocale.length - 1].toLowerCase();
+      const language = 
+      currentLocale[currentLocale.length - 2].toUpperCase() +
+      currentLocale[currentLocale.length - 1].toLowerCase();
       console.log(`Current Language : '${language}'`);
 
       // Transmitting the current language to the manager.

@@ -26,7 +26,6 @@ export class BlocklyManager implements IBlocklyManager {
     this._activeGenerator = BlocklyPy;
     this._generators = new Map<string, Blockly.Generator>();
     this._language = 'En'; // By default we choose English.
-    
     this._changed = new Signal<BlocklyManager, void>(this);
   }
 
@@ -87,7 +86,7 @@ namespace Private {
       case 'Fr':
         module = import('blockly/msg/fr');
         break;
-      case ('Sa' || 'Ar'):
+      case 'Sa' || 'Ar':
         module = import('blockly/msg/ar');
         break;
       case 'Cz':
@@ -180,4 +179,3 @@ namespace Private {
     });
   }
 }
-

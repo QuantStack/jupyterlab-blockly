@@ -65,7 +65,7 @@ export class BlocklyPanel extends Panel {
     context: DocumentRegistry.IContext<DocumentModel>,
     manager: BlocklyManager,
     rendermime: IRenderMimeRegistry,
-    language: String,
+    language: string
     // translator: ITranslator
   ) {
     super({
