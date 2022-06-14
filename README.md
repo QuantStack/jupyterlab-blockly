@@ -5,32 +5,33 @@
 Blockly extension for JupyterLab.
 
 ## Blockly
+
 Blockly is a library from Google for building beginner-friendly block-based programming languages.
 
 Docs: https://developers.google.com/blockly/guides/overview
 Repo: https://github.com/google/blockly
 
-
 ## Requirements
 
-* JupyterLab == 3.4
+- JupyterLab == 3.4
 
 ## Install
 
 To install the extension, execute:
 
 ```bash
-micromamba create -n blockly -c conda-forge python ipykernel xeus-python xeus-lua
+micromamba create -n blockly -c conda-forge python jupyterlab==3.4 ipykernel xeus-python xeus-lua jupyterlab-language-pack-es-ES jupyterlab-language-pack-fr-FR
 micromamba activate blockly
 pip install jupyterlab_blockly
 ```
 
 #### Kernels
-* ipykernel
-* xeus-python
-* xeus-lua
-* [JavaScript](https://github.com/n-riesco/ijavascript#installation)
-* [JavaScript](https://github.com/yunabe/tslab)
+
+- ipykernel
+- xeus-python
+- xeus-lua
+- [JavaScript](https://github.com/n-riesco/ijavascript#installation)
+- [JavaScript](https://github.com/yunabe/tslab)
 
 ## Uninstall
 
@@ -39,7 +40,6 @@ To remove the extension, execute:
 ```bash
 pip uninstall jupyterlab_blockly
 ```
-
 
 ## Contributing
 
@@ -52,12 +52,14 @@ The `jlpm` command is JupyterLab's pinned version of
 `yarn` or `npm` in lieu of `jlpm` below.
 
 ```bash
-micromamba create -n blockly -c conda-forge python nodejs yarn jupyterlab==3.4 jupyter-packaging
+micromamba create -n blockly -c conda-forge python nodejs pre-commit yarn jupyterlab==3.4 jupyter-packaging jupyterlab-language-pack-es-ES jupyterlab-language-pack-fr-FR ipykernel xeus-python xeus-lua
 micromamba activate blockly
 # Clone the repo to your local environment
 # Change directory to the jupyterlab_blockly directory
 # Install package in development mode
 pip install -e .
+# Installing pre-commit to run command when adding commits
+pre-commit install
 # Link your development version of the extension with JupyterLab
 jupyter labextension develop . --overwrite
 # Rebuild extension Typescript source after making changes

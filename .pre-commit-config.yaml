@@ -1,0 +1,11 @@
+repos:
+  - repo: local
+    hooks:
+      - id: prettier
+        name: prettier
+        entry: 'npm run prettier'
+        language: node
+      - id: eslint
+        name: eslint
+        entry: 'npm run eslint'
+        language: node

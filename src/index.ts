@@ -6,6 +6,7 @@ import {
 import { jsonIcon } from '@jupyterlab/ui-components';
 import { WidgetTracker } from '@jupyterlab/apputils';
 import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
+import { IEditorServices } from '@jupyterlab/codeeditor';
 import { ICommandPalette } from '@jupyterlab/apputils';
 import { IFileBrowserFactory } from '@jupyterlab/filebrowser';
 import { ILauncher } from '@jupyterlab/launcher';
@@ -43,6 +44,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyRegisty> = {
   requires: [
     ILayoutRestorer,
     IRenderMimeRegistry,
+    IEditorServices,
     IFileBrowserFactory,
     ISettingRegistry,
     ITranslator
@@ -53,6 +55,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyRegisty> = {
     app: JupyterFrontEnd,
     restorer: ILayoutRestorer,
     rendermime: IRenderMimeRegistry,
+    editorServices: IEditorServices,
     browserFactory: IFileBrowserFactory,
     settings: ISettingRegistry,
     translator: ITranslator,
@@ -97,8 +100,10 @@ const plugin: JupyterFrontEndPlugin<IBlocklyRegisty> = {
       shutdownOnClose: true,
 
       // The rendermime instance, necessary to render the outputs
-      // after a code execution.
+      // after a code execution. And the mimeType service to get the
+      // mimeType from the kernel language
       rendermime: rendermime,
+      mimetypeService: editorServices.mimeTypeService,
 
       // The translator instance, used for the internalization of the plugin.
       translator: translator

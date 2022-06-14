@@ -1,4 +1,5 @@
 import { ISessionContext } from '@jupyterlab/apputils';
+import { IEditorMimeTypeService } from '@jupyterlab/codeeditor';
 import { KernelSpec, KernelConnection } from '@jupyterlab/services';
 import { IChangedArgs } from '@jupyterlab/coreutils';
 
@@ -20,14 +21,20 @@ export class BlocklyManager {
   private _registry: BlocklyRegistry;
   private _selectedKernel: KernelSpec.ISpecModel;
   private _sessionContext: ISessionContext;
+  private _mimetypeService: IEditorMimeTypeService;
   private _changed: Signal<this, BlocklyManager.Change>;
 
   /**
    * Constructor of BlocklyManager.
    */
-  constructor(registry: BlocklyRegistry, sessionContext: ISessionContext) {
+  constructor(
+    registry: BlocklyRegistry,
+    sessionContext: ISessionContext,
+    mimetypeService: IEditorMimeTypeService
+  ) {
     this._registry = registry;
     this._sessionContext = sessionContext;
+    this._mimetypeService = mimetypeService;
 
     this._toolbox = this._registry.toolboxes.get('default');
     this._generator = this._registry.generators.get('python');
@@ -41,6 +48,22 @@ export class BlocklyManager {
    */
   get toolbox(): JSONObject {
     return this._toolbox;
+  }
+
+  /**
+   * Returns the mimeType for the selected kernel.
+   *
+   * Note: We need the mimeType for the syntax highlighting
+   * when rendering the code.
+   */
+  get mimeType(): string {
+    if (this._selectedKernel) {
+      return this._mimetypeService.getMimeTypeByLanguage({
+        name: this._selectedKernel.language
+      });
+    } else {
+      return 'text/plain';
+    }
   }
 
   /**
