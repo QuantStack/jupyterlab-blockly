@@ -6,6 +6,7 @@ import {
 import { ToolbarButton } from '@jupyterlab/apputils';
 import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
 import { runIcon } from '@jupyterlab/ui-components';
+// import { ITranslator } from '@jupyterlab/translation';
 
 import { Panel } from '@lumino/widgets';
 import { Signal } from '@lumino/signaling';
@@ -20,13 +21,16 @@ export class BlocklyEditor extends DocumentWidget<BlocklyPanel, DocumentModel> {
   constructor(options: DocumentWidget.IOptions<BlocklyPanel, DocumentModel>) {
     super(options);
 
+    // Loading the ITranslator
+    // const trans = this.translator.load('jupyterlab');
+
     // Create and add a button to the toolbar to execute
     // the code.
     const runCode = () => {
       (this.content.layout as BlocklyLayout).run();
     };
     const button = new ToolbarButton({
-      label: 'Run Code',
+      label: '',
       icon: runIcon,
       className: 'jp-blockly-button',
       onClick: runCode,
@@ -34,6 +38,7 @@ export class BlocklyEditor extends DocumentWidget<BlocklyPanel, DocumentModel> {
     });
     button.addClass('jp-blockly-runButton');
     this.toolbar.addItem('run', button);
+    // button.title.label = trans.__('Run Code');
   }
 
   /**
@@ -59,7 +64,9 @@ export class BlocklyPanel extends Panel {
   constructor(
     context: DocumentRegistry.IContext<DocumentModel>,
     manager: BlocklyManager,
-    rendermime: IRenderMimeRegistry
+    rendermime: IRenderMimeRegistry,
+    language: string
+    // translator: ITranslator
   ) {
     super({
       layout: new BlocklyLayout(manager, context.sessionContext, rendermime)

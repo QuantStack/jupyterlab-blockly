@@ -1,11 +1,13 @@
 import { SimplifiedOutputArea, OutputAreaModel } from '@jupyterlab/outputarea';
 import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
 import { ISessionContext } from '@jupyterlab/apputils';
+// import { ITranslator } from '@jupyterlab/translation';
 
 import { Message } from '@lumino/messaging';
 import { PartialJSONValue } from '@lumino/coreutils';
 import { PanelLayout, Widget } from '@lumino/widgets';
 import { IIterator, ArrayIterator } from '@lumino/algorithm';
+import { Signal } from '@lumino/signaling';
 
 import * as Blockly from 'blockly';
 
@@ -20,6 +22,7 @@ export class BlocklyLayout extends PanelLayout {
   private _manager: BlocklyManager;
   private _workspace: Blockly.WorkspaceSvg;
   private _sessionContext: ISessionContext;
+  // private _translator: ITranslator;
   private _outputArea: SimplifiedOutputArea;
 
   /**
@@ -30,10 +33,12 @@ export class BlocklyLayout extends PanelLayout {
     manager: BlocklyManager,
     sessionContext: ISessionContext,
     rendermime: IRenderMimeRegistry
+    // translator: ITranslator
   ) {
     super();
     this._manager = manager;
     this._sessionContext = sessionContext;
+    // this._translator = translator;
 
     // Creating the container for the Blockly editor
     // and the output area to render the execution replies.
@@ -64,6 +69,8 @@ export class BlocklyLayout extends PanelLayout {
    * Dispose of the resources held by the widget.
    */
   dispose(): void {
+    this._manager.changed.disconnect(this._resizeWorkspace, this);
+    Signal.clearData(this);
     this._workspace.dispose();
     super.dispose();
   }
@@ -137,6 +144,13 @@ export class BlocklyLayout extends PanelLayout {
       toolbox: this._manager.toolbox,
       theme: THEME
     });
+
+    // let categories: string;
+
+    // Loading the ITranslator
+    // const trans = this._translator.load('jupyterlab-blockly');
+
+    // categories = trans.__('Category');
   }
 
   private _resizeWorkspace(): void {

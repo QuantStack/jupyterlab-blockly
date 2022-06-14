@@ -8,6 +8,8 @@ import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
 import { ICommandPalette } from '@jupyterlab/apputils';
 import { IFileBrowserFactory } from '@jupyterlab/filebrowser';
 import { ILauncher } from '@jupyterlab/launcher';
+import { ITranslator } from '@jupyterlab/translation';
+import { ISettingRegistry } from '@jupyterlab/settingregistry';
 
 import { BlocklyEditorFactory } from './factory';
 import { IBlocklyManager } from './token';
@@ -27,12 +29,23 @@ namespace CommandIDs {
 }
 
 /**
+ * The id of the translation plugin.
+ */
+const PLUGIN_ID = '@jupyterlab/translation-extension:plugin';
+
+/**
  * Initialization data for the jupyterlab-blocky extension.
  */
 const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
   id: 'jupyterlab-blocky:plugin',
   autoStart: true,
-  requires: [ILayoutRestorer, IRenderMimeRegistry, IFileBrowserFactory],
+  requires: [
+    ILayoutRestorer,
+    IRenderMimeRegistry,
+    IFileBrowserFactory,
+    ISettingRegistry,
+    ITranslator
+  ],
   optional: [ILauncher, ICommandPalette],
   provides: IBlocklyManager,
   activate: (
@@ -40,6 +53,8 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
     restorer: ILayoutRestorer,
     rendermime: IRenderMimeRegistry,
     browserFactory: IFileBrowserFactory,
+    settings: ISettingRegistry,
+    translator: ITranslator,
     launcher: ILauncher | null,
     palette: ICommandPalette | null
   ): IBlocklyManager => {
@@ -82,7 +97,10 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
 
       // The rendermime instance, necessary to render the outputs
       // after a code execution.
-      rendermime: rendermime
+      rendermime: rendermime,
+
+      // The translator instance, used for the internalization of the plugin.
+      translator: translator
     });
 
     // Add the widget to the tracker when it's created
@@ -98,6 +116,32 @@ const plugin: JupyterFrontEndPlugin<IBlocklyManager> = {
     });
     // Registering the widget factory
     app.docRegistry.addWidgetFactory(widgetFactory);
+
+    function getSetting(setting: ISettingRegistry.ISettings): string {
+      // Read the settings and convert to the correct type
+      const currentLocale: string = setting.get('locale').composite as string;
+      return currentLocale;
+    }
+
+    // Wait for the application to be restored and
+    // for the settings for this plugin to be loaded
+    settings.load(PLUGIN_ID).then(setting => {
+      // Read the settings
+      const currentLocale = getSetting(setting);
+
+      // Listen for our plugin setting changes using Signal
+      setting.changed.connect(getSetting);
+
+      // Get new language and call the function that modifies the language name accordingly.
+      // Also, make the transformation to have the name of the language package as in Blockly.
+      const language =
+        currentLocale[currentLocale.length - 2].toUpperCase() +
+        currentLocale[currentLocale.length - 1].toLowerCase();
+      console.log(`Current Language : '${language}'`);
+
+      // Transmitting the current language to the manager.
+      widgetFactory.manager.setlanguage(language);
+    });
 
     commands.addCommand(command, {
       label: args =>
