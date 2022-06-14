@@ -71,7 +71,7 @@ export class BlocklyManager implements IBlocklyManager {
   }
 }
 
-// Dynamically importing the language modules needed for each respective 
+// Dynamically importing the language modules needed for each respective
 // user, in order to change the Blockly language in accordance to the
 // JL one.
 namespace Private {
@@ -176,6 +176,7 @@ namespace Private {
 
     // Setting the current language in Blockly.
     module.then(lang => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       Blockly.setLocale(lang);
     });
