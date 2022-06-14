@@ -1,7 +1,6 @@
-import { SimplifiedOutputArea, OutputAreaModel } from '@jupyterlab/outputarea';
 import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
-import { ISessionContext } from '@jupyterlab/apputils';
-// import { ITranslator } from '@jupyterlab/translation';
+import { ISessionContext, showErrorMessage } from '@jupyterlab/apputils';
+import { CodeCell, CodeCellModel } from '@jupyterlab/cells';
 
 import { Message } from '@lumino/messaging';
 import { PartialJSONValue } from '@lumino/coreutils';
@@ -22,8 +21,7 @@ export class BlocklyLayout extends PanelLayout {
   private _manager: BlocklyManager;
   private _workspace: Blockly.WorkspaceSvg;
   private _sessionContext: ISessionContext;
-  // private _translator: ITranslator;
-  private _outputArea: SimplifiedOutputArea;
+  private _cell: CodeCell;
 
   /**
    * Construct a `BlocklyLayout`.
@@ -33,23 +31,27 @@ export class BlocklyLayout extends PanelLayout {
     manager: BlocklyManager,
     sessionContext: ISessionContext,
     rendermime: IRenderMimeRegistry
-    // translator: ITranslator
   ) {
     super();
     this._manager = manager;
     this._sessionContext = sessionContext;
-    // this._translator = translator;
 
     // Creating the container for the Blockly editor
     // and the output area to render the execution replies.
     this._host = document.createElement('div');
 
-    // Creating a SimplifiedOutputArea widget to render the
+    // Creating a CodeCell widget to render the code and
     // outputs from the execution reply.
-    this._outputArea = new SimplifiedOutputArea({
-      model: new OutputAreaModel({ trusted: true }),
+    this._cell = new CodeCell({
+      model: new CodeCellModel({}),
       rendermime
     });
+    // Trust the outputs and set the mimeType for the code
+    this._cell.readOnly = true;
+    this._cell.model.trusted = true;
+    this._cell.model.mimeType = this._manager.mimeType;
+
+    this._manager.changed.connect(this._onManagerChanged, this);
   }
 
   get workspace(): PartialJSONValue {
@@ -103,15 +105,25 @@ export class BlocklyLayout extends PanelLayout {
   run(): void {
     // Serializing our workspace into the chosen language generator.
     const code = this._manager.generator.workspaceToCode(this._workspace);
+    this._cell.model.sharedModel.setSource(code);
+    this.addWidget(this._cell);
+    this._resizeWorkspace();
 
     // Execute the code using the kernel, by using a static method from the
     // same class to make an execution request.
-    SimplifiedOutputArea.execute(code, this._outputArea, this._sessionContext)
-      .then(resp => {
-        this.addWidget(this._outputArea);
-        this._resizeWorkspace();
-      })
-      .catch(e => console.error(e));
+    if (this._sessionContext.hasNoKernel) {
+      // Check whether there is a kernel
+      showErrorMessage(
+        'Select a valid kernel',
+        `There is not a valid kernel selected, select one from the dropdown menu in the toolbar.
+        If there isn't a valid kernel please install 'xeus-python' from Pypi.org or using mamba.
+        `
+      );
+    } else {
+      CodeCell.execute(this._cell, this._sessionContext)
+        .then(() => this._resizeWorkspace())
+        .catch(e => console.error(e));
+    }
   }
 
   /**
@@ -144,31 +156,35 @@ export class BlocklyLayout extends PanelLayout {
       toolbox: this._manager.toolbox,
       theme: THEME
     });
-
-    // let categories: string;
-
-    // Loading the ITranslator
-    // const trans = this._translator.load('jupyterlab-blockly');
-
-    // categories = trans.__('Category');
   }
 
   private _resizeWorkspace(): void {
     //Resize logic.
     const rect = this.parent.node.getBoundingClientRect();
-    const { height } = this._outputArea.node.getBoundingClientRect();
-    this._host.style.width = rect.width + 'px';
+    const { height } = this._cell.node.getBoundingClientRect();
     const margin = rect.height / 3;
 
     if (height > margin) {
       this._host.style.height = rect.height - margin + 'px';
-      this._outputArea.node.style.height = margin + 'px';
-      this._outputArea.node.style.overflowY = 'scroll';
+      this._cell.node.style.height = margin + 'px';
+      this._cell.node.style.overflowY = 'scroll';
     } else {
       this._host.style.height = rect.height - height + 'px';
-      this._outputArea.node.style.overflowY = 'hidden';
+      this._cell.node.style.overflowY = 'scroll';
     }
 
     Blockly.svgResize(this._workspace);
+  }
+
+  private _onManagerChanged(
+    sender: BlocklyManager,
+    change: BlocklyManager.Change
+  ) {
+    if (change === 'kernel') {
+      // Serializing our workspace into the chosen language generator.
+      const code = this._manager.generator.workspaceToCode(this._workspace);
+      this._cell.model.sharedModel.setSource(code);
+      this._cell.model.mimeType = this._manager.mimeType;
+    }
   }
 }
