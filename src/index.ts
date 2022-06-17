@@ -175,7 +175,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyRegisty> = {
         const model = await commands.execute('docmanager:new-untitled', {
           path: cwd,
           type: 'file',
-          ext: '.json'
+          ext: '.jpblockly'
         });
 
         // Open the newly created file with the 'Editor'
