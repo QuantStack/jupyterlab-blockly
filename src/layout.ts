@@ -186,5 +186,8 @@ export class BlocklyLayout extends PanelLayout {
       this._cell.model.sharedModel.setSource(code);
       this._cell.model.mimeType = this._manager.mimeType;
     }
+    if (change === 'toolbox') {
+      this._workspace.updateToolbox(this._manager.toolbox as any);
+    }
   }
 }

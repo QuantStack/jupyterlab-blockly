@@ -16,7 +16,7 @@ import { BlocklyRegistry } from './registry';
  * user wants to use on a specific document.
  */
 export class BlocklyManager {
-  private _toolbox: JSONObject;
+  private _toolbox: string;
   private _generator: Blockly.Generator;
   private _registry: BlocklyRegistry;
   private _selectedKernel: KernelSpec.ISpecModel;
@@ -36,7 +36,7 @@ export class BlocklyManager {
     this._sessionContext = sessionContext;
     this._mimetypeService = mimetypeService;
 
-    this._toolbox = this._registry.toolboxes.get('default');
+    this._toolbox = 'default';
     this._generator = this._registry.generators.get('python');
 
     this._changed = new Signal<this, BlocklyManager.Change>(this);
@@ -47,7 +47,7 @@ export class BlocklyManager {
    * Returns the selected toolbox.
    */
   get toolbox(): JSONObject {
-    return this._toolbox;
+    return this._registry.toolboxes.get(this._toolbox);
   }
 
   /**
@@ -95,12 +95,38 @@ export class BlocklyManager {
   }
 
   /**
+   * Get the selected toolbox's name.
+   *
+   * @returns The name of the toolbox.
+   */
+  getToolbox() {
+    return this._toolbox;
+  }
+
+  /**
    * Set the selected toolbox.
    *
    * @argument name The name of the toolbox.
    */
   setToolbox(name: string) {
-    this._toolbox = this._registry.toolboxes.get(name);
+    if (this._toolbox !== name) {
+      const toolbox = this._registry.toolboxes.get(name);
+      this._toolbox = toolbox ? name : 'default';
+      this._changed.emit('toolbox');
+    }
+  }
+
+  /**
+   * List the available toolboxes.
+   *
+   * @returns the list of available toolboxes for Blockly
+   */
+  listToolboxes(): { label: string; value: string }[] {
+    const list: { label: string; value: string }[] = [];
+    this._registry.toolboxes.forEach((toolbox, name) => {
+      list.push({ label: name, value: name });
+    });
+    return list;
   }
 
   /**
@@ -113,7 +139,7 @@ export class BlocklyManager {
   }
 
   /**
-   * Set the selected toolbox.
+   * List the available kernels.
    *
    * @returns the list of available kernels for Blockly
    */

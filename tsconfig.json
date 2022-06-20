@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "composite": true,
+    "allowJs": true,
     "declaration": true,
     "esModuleInterop": true,
     "incremental": true,
@@ -17,6 +18,6 @@
     "target": "es2017",
     "types": []
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "style/icons"],
+  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.tsx", "style/icons"],
   "exclude": ["node_modules"]
 }
