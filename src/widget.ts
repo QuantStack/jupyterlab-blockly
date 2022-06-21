@@ -11,7 +11,12 @@ import { Signal } from '@lumino/signaling';
 
 import { BlocklyLayout } from './layout';
 import { BlocklyManager } from './manager';
-import { BlocklyButton, SelectGenerator, Spacer } from './toolbar';
+import {
+  BlocklyButton,
+  SelectGenerator,
+  SelectToolbox,
+  Spacer
+} from './toolbar';
 
 /**
  * DocumentWidget: widget that represents the view or editor for a file type.
@@ -35,9 +40,17 @@ export class BlocklyEditor extends DocumentWidget<BlocklyPanel, DocumentModel> {
     this.toolbar.addItem('run', button);
     this.toolbar.addItem('spacer', new Spacer());
     this.toolbar.addItem(
-      'select',
+      'toolbox',
+      new SelectToolbox({
+        label: 'Toolbox',
+        tooltip: 'Select tollbox',
+        manager: options.manager
+      })
+    );
+    this.toolbar.addItem(
+      'generator',
       new SelectGenerator({
-        label: 'Select',
+        label: 'Kernel',
         tooltip: 'Select kernel',
         manager: options.manager
       })
