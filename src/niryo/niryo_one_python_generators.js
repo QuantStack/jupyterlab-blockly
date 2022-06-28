@@ -1924,6 +1924,170 @@ const TOOLBOX = {
         {
           kind: 'BLOCK',
           type: 'niryo_one_move_joints'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_move_pose'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_shift_pose'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_set_arm_max_speed'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_calibrate_auto'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_calibrate_manual'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_activate_learning_mode'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_joint'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_move_joint_from_joint'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_move_pose_from_pose'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_pose'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_move_pose_from_pose'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_pick_from_pose'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_place_from_pose'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_gpio_select'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_set_pin_mode'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_digital_write'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_digital_read'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_gpio_state'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_sw_select'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_set_12v_switch'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_tool_select'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_change_tool'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_detach_tool'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_open_gripper'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_close_gripper'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_pull_air_vacuum_pump'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_push_air_vacuum_pump'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_setup_electromagnet'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_activate_electromagnet'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_deactivate_electromagnet'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_sleep'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_comment'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_break_point'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_vision_color'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_vision_shape'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_vision_pick'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_vision_is_object_detected'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_conveyor_models'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_conveyor_use'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_conveyor_control'
+        },
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_conveyor_stop'
         }
       ]
     }
