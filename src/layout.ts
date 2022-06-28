@@ -105,10 +105,12 @@ export class BlocklyLayout extends PanelLayout {
   run(): void {
     // Serializing our workspace into the chosen language generator.
     let code = this._manager.generator.workspaceToCode(this._workspace);
-    code =
-      'from pyniryo import *\nn = NiryoRobot("127.0.0.1")\n' +
-      code +
-      'n.close_connection()';
+    if (this._manager.getToolbox() === 'niryo') {
+      code =
+        'from pyniryo import *\nn = NiryoRobot("127.0.0.1")\n' +
+        code +
+        'n.close_connection()';
+    }
     this._cell.model.sharedModel.setSource(code);
     this.addWidget(this._cell);
     this._resizeWorkspace();
