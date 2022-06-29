@@ -59,7 +59,26 @@ const g_shape_values = {
  */
 
 // Movement
-
+Blockly.Blocks['niryo_one_connect'] = {
+  init: function () {
+    this.appendDummyInput().appendField('IP Address');
+    this.appendDummyInput()
+      .appendField(new Blockly.FieldNumber(10, 0, 255, 0), 'ip_0')
+      .appendField('.')
+      .appendField(new Blockly.FieldNumber(10, 0, 255, 0), 'ip_1')
+      .appendField('.')
+      .appendField(new Blockly.FieldNumber(10, 0, 255, 0), 'ip_2')
+      .appendField('.')
+      .appendField(new Blockly.FieldNumber(10, 0, 255, 0), 'ip_3');
+    this.appendStatementInput('DO');
+    this.setInputsInline(true);
+    this.setPreviousStatement(false, null);
+    this.setNextStatement(false, null);
+    this.setColour(function_color);
+    this.setTooltip('Connect to the robot and disconnects after the execution');
+    this.setHelpUrl('');
+  }
+};
 Blockly.Blocks['niryo_one_move_joints'] = {
   init: function () {
     this.appendDummyInput().appendField('Move Joints');
@@ -861,7 +880,34 @@ Blockly.Blocks['niryo_one_conveyor_stop'] = {
  * Generators
  */
 
-// Movement
+const connexion = `
+from contextlib import contextmanager
+from pyniryo import *
+
+@contextmanager
+def niryo_connect(ip):
+  n = NiryoRobot(ip)
+  try:
+    yield n
+  except:
+    n.close_connection() 
+    raise
+  else:
+    n.close_connection()
+`;
+
+Blockly.Python['niryo_one_connect'] = function (block) {
+  var ip_0 = block.getFieldValue('ip_0');
+  var ip_1 = block.getFieldValue('ip_1');
+  var ip_2 = block.getFieldValue('ip_2');
+  var ip_3 = block.getFieldValue('ip_3');
+
+  let branch = Blockly.Python.statementToCode(block, 'DO');
+  var ip = ip_0 + '.' + ip_1 + '.' + ip_2 + '.' + ip_3;
+
+  var code = connexion + '\nwith niryo_connect("' + ip + '") as n:\n' + branch;
+  return code;
+};
 
 Blockly.Python['niryo_one_move_joints'] = function (block) {
   var number_joints_1 = block.getFieldValue('JOINTS_1');
@@ -1921,6 +1967,10 @@ const TOOLBOX = {
       colour: '210',
       name: 'Niryo',
       contents: [
+        {
+          kind: 'BLOCK',
+          type: 'niryo_one_connect'
+        },
         {
           kind: 'BLOCK',
           type: 'niryo_one_move_joints'
