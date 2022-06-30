@@ -2,6 +2,28 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.1.0a2
+
+([Full Changelog](https://github.com/QuantStack/jupyterlab-blockly/compare/v0.1.0a1...0be9b91f8f17c15404ec3fbd8f39404711a225d0))
+
+### Enhancements made
+
+- Adds a dropdown to select a toolbox [#24](https://github.com/QuantStack/jupyterlab-blockly/pull/24) ([@hbcarlos](https://github.com/hbcarlos))
+
+### Other merged PRs
+
+- Remove the Niryo One plugin [#28](https://github.com/QuantStack/jupyterlab-blockly/pull/28) ([@DenisaCG](https://github.com/DenisaCG))
+- Niryo One in Blockly [#25](https://github.com/QuantStack/jupyterlab-blockly/pull/25) ([@DenisaCG](https://github.com/DenisaCG))
+- fix for launcher file extension to open '.jpblockly' file [#23](https://github.com/QuantStack/jupyterlab-blockly/pull/23) ([@DenisaCG](https://github.com/DenisaCG))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/QuantStack/jupyterlab-blockly/graphs/contributors?from=2022-06-15&to=2022-06-30&type=c))
+
+[@DenisaCG](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3ADenisaCG+updated%3A2022-06-15..2022-06-30&type=Issues) | [@github-actions](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Agithub-actions+updated%3A2022-06-15..2022-06-30&type=Issues) | [@hbcarlos](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Ahbcarlos+updated%3A2022-06-15..2022-06-30&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.1.0a1
 
 ([Full Changelog](https://github.com/QuantStack/jupyterlab-blockly/compare/v0.1.0a0...76fe431fa9e8c24ce81d917969882b74ac671fce))
@@ -26,8 +48,6 @@
 ([GitHub contributors page for this release](https://github.com/QuantStack/jupyterlab-blockly/graphs/contributors?from=2022-04-11&to=2022-06-15&type=c))
 
 [@DenisaCG](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3ADenisaCG+updated%3A2022-04-11..2022-06-15&type=Issues) | [@hbcarlos](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Ahbcarlos+updated%3A2022-04-11..2022-06-15&type=Issues) | [@wolfv](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Awolfv+updated%3A2022-04-11..2022-06-15&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.1.0a0
 
