@@ -208,19 +208,4 @@ const plugin: JupyterFrontEndPlugin<IBlocklyRegisty> = {
   }
 };
 
-import BlocklyNiryo from './niryo/niryo_one_python_generators';
-
-/**
- * Initialization data for the jupyterlab-blocky extension.
- */
-const niryo: JupyterFrontEndPlugin<void> = {
-  id: 'jupyterlab-blocky:niryo',
-  autoStart: true,
-  requires: [IBlocklyRegisty],
-  activate: (app: JupyterFrontEnd, blockly: IBlocklyRegisty): void => {
-    console.log('JupyterLab extension jupyterlab-blocky-niryo is activated!');
-    blockly.registerToolbox('niryo', BlocklyNiryo.Toolbox);
-  }
-};
-
-export default [plugin, niryo];
+export default plugin;
