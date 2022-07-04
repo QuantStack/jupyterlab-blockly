@@ -102,9 +102,44 @@ export class BlocklyLayout extends PanelLayout {
     return;
   }
 
+  /**
+   * Return the extra coded (if it exists), composed of the individual
+   * data from each block in the workspace, which are defined in the
+   * toplevel_init property. (e.g. : imports needed for the block)
+   *
+   * Add extra code example:
+   * Blockly.Blocks['block_name'].toplevel_init = `import numpy`
+   */
+  getBlocksToplevelInit(): string {
+    // Initalize string which will return the extra code provided
+    // by the blocks, in the toplevel_init property.
+    let finalToplevelInit = '';
+
+    // Get all the blocks in the workspace in order.
+    const ordered = true;
+    const used_blocks = this._workspace.getAllBlocks(ordered);
+
+    // For each block in the workspace, check if theres is a toplevel_init,
+    // if there is, add it to the final string.
+    for (const block in used_blocks) {
+      const current_block = used_blocks[block].type;
+      if (Blockly.Blocks[current_block].toplevel_init) {
+        // console.log(Blockly.Blocks[current_block].toplevel_init);
+        // Attach it to the final string.
+        const string = Blockly.Blocks[current_block].toplevel_init;
+        finalToplevelInit = finalToplevelInit + string;
+      }
+    }
+    // console.log(finalToplevelInit);
+    return finalToplevelInit;
+  }
+
   run(): void {
+    // Get extra coded from the blocks in the workspace.
+    const extra_init = this.getBlocksToplevelInit();
     // Serializing our workspace into the chosen language generator.
-    const code = this._manager.generator.workspaceToCode(this._workspace);
+    const code =
+      extra_init + this._manager.generator.workspaceToCode(this._workspace);
     this._cell.model.sharedModel.setSource(code);
     this.addWidget(this._cell);
     this._resizeWorkspace();
@@ -181,8 +216,11 @@ export class BlocklyLayout extends PanelLayout {
     change: BlocklyManager.Change
   ) {
     if (change === 'kernel') {
+      // Get extra coded from the blocks in the workspace.
+      const extra_init = this.getBlocksToplevelInit();
       // Serializing our workspace into the chosen language generator.
-      const code = this._manager.generator.workspaceToCode(this._workspace);
+      const code =
+        extra_init + this._manager.generator.workspaceToCode(this._workspace);
       this._cell.model.sharedModel.setSource(code);
       this._cell.model.mimeType = this._manager.mimeType;
     }
