@@ -1,17 +1,17 @@
-**/node_modules
 **/lib
+**/node_modules
+**/style
 **/package.json
+**/tsconfig.json
 **/patches
-dist
-coverage
 **/*.d.ts
-tests
 
 .github
 binder
-jupyterlab_blockly/labextension
+jupyterlab_blockly
 docs
 examples
+node_modules
 .eslintignore
 .eslintrc.js
 .gitignore
@@ -20,10 +20,14 @@ examples
 .prettierrc
 CHANGELOG.md
 install.json
+lerna.json
 LICENSE
 MANIFEST.in
+package.json
 pyproject.toml
 README.md
 RELEASE.md
+setup.py
+tsconfig.eslint.json
 tsconfig.json
 yarn.lock

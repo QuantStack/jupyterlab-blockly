@@ -27,7 +27,7 @@ jobs:
         python -m pip install .
 
         jupyter labextension list
-        jupyter labextension list 2>&1 | grep -ie "jupyterlab-blockly.*OK"
+        jupyter labextension list 2>&1 | grep -ie "jupyterlab-blockly-extension.*OK"
         python -m jupyterlab.browser_check
 
         check-manifest -v
@@ -66,5 +66,5 @@ jobs:
         sudo rm -rf $(which node)
         pip install myextension.tar.gz
         pip install jupyterlab
-        jupyter labextension list 2>&1 | grep -ie "jupyterlab-blockly.*OK"
+        jupyter labextension list 2>&1 | grep -ie "jupyterlab-blockly-extension.*OK"
         python -m jupyterlab.browser_check --no-browser-test

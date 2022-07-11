@@ -4,18 +4,17 @@ import {
   ILayoutRestorer
 } from '@jupyterlab/application';
 import { jsonIcon } from '@jupyterlab/ui-components';
-import { WidgetTracker } from '@jupyterlab/apputils';
+import { WidgetTracker, ICommandPalette } from '@jupyterlab/apputils';
 import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
 import { IEditorServices } from '@jupyterlab/codeeditor';
-import { ICommandPalette } from '@jupyterlab/apputils';
 import { IFileBrowserFactory } from '@jupyterlab/filebrowser';
 import { ILauncher } from '@jupyterlab/launcher';
 import { ITranslator } from '@jupyterlab/translation';
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
 
-import { BlocklyEditorFactory } from './factory';
-import { IBlocklyRegisty } from './token';
-import { BlocklyEditor } from './widget';
+import { BlocklyEditorFactory } from 'jupyterlab-blockly';
+import { IBlocklyRegisty } from 'jupyterlab-blockly';
+import { BlocklyEditor } from 'jupyterlab-blockly';
 
 import { blockly_icon } from './icons';
 
