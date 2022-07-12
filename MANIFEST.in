@@ -32,6 +32,7 @@ recursive-include docs *.png
 recursive-include docs *.rst
 recursive-include docs *.txt
 recursive-include docs Makefile
+recursive-include docs *.py
 
 # Examples
 recursive-include examples *.jpblockly
