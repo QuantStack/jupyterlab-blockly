@@ -10,6 +10,8 @@ tests
 .github
 binder
 jupyterlab_blockly/labextension
+docs
+examples
 .eslintignore
 .eslintrc.js
 .gitignore
