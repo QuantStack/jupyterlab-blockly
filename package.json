@@ -1,26 +1,7 @@
 {
-  "name": "jupyterlab-blockly",
+  "name": "jupyterlab-blockly-root",
+  "version": "0.1.0",
   "private": true,
-  "version": "0.1.0-alpha.2",
-  "description": "Blockly extension for JupyterLab.",
-  "keywords": [
-    "jupyter",
-    "jupyterlab",
-    "jupyterlab-extension"
-  ],
-  "homepage": "https://github.com/quantstack/jupyterlab-blockly",
-  "bugs": {
-    "url": "https://github.com/quantstack/jupyterlab-blockly/issues"
-  },
-  "license": "BSD-3-Clause",
-  "author": {
-    "name": "quantstack",
-    "email": ""
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/quantstack/jupyterlab-blockly.git"
-  },
   "workspaces": {
     "packages": [
       "packages/*"

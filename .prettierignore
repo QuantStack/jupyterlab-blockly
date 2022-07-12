@@ -4,6 +4,7 @@
 **/package.json
 **/tsconfig.json
 **/patches
+**/scripts
 **/*.d.ts
 
 .github
@@ -12,6 +13,8 @@ jupyterlab_blockly
 docs
 examples
 node_modules
+patches
+scripts
 .eslintignore
 .eslintrc.js
 .gitignore

@@ -3,7 +3,6 @@
 **/style
 **/package.json
 **/tsconfig.json
-**/patches
 **/*.d.ts
 
 .github
@@ -12,6 +11,8 @@ jupyterlab_blockly
 docs
 examples
 node_modules
+patches
+scripts
 .eslintignore
 .eslintrc.js
 .gitignore

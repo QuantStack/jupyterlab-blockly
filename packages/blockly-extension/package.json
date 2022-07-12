@@ -71,13 +71,5 @@
   "jupyterlab": {
     "extension": true,
     "outputDir": "../../jupyterlab_blockly/labextension"
-  },
-  "jupyter-releaser": {
-    "hooks": {
-      "before-build-npm": [
-        "python -m pip install jupyterlab",
-        "jlpm"
-      ]
-    }
   }
 }
