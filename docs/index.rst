@@ -8,6 +8,8 @@ Welcome to jupyterlab-blockly's documentation!
 
 This JupyterLab extension brings block-based programming directly to your web browser. You can easily use the JupyterLab-Blockly editor and choose from a wide selections of blocks to start coding, see the output of your code and, most importantly, visualize the code transformed in the chosen classical programming language. 
 
+The extension uses `Blockly <https://developers.google.com/blockly>`_, an open source library designed by Google. 
+
 .. image:: _static/OverviewBlockly.gif
    :alt: Functionality of extension
 
@@ -25,7 +27,14 @@ This JupyterLab extension brings block-based programming directly to your web br
    blockly_editor
    kernels
    toolbox
+   jupyterlab_integration
    examples
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Expanding:
+
+   other_extensions
 
 Indices and tables
 ==================
