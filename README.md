@@ -54,10 +54,10 @@ micromamba create -n blockly -c conda-forge python nodejs pre-commit yarn jupyte
 micromamba activate blockly
 # Clone the repo to your local environment
 # Change directory to the jupyterlab_blockly directory
-# Install package in development mode
-pip install -e .
 # Installing pre-commit to run command when adding commits
 pre-commit install
+# Install package in development mode
+pip install -e .
 # Link your development version of the extension with JupyterLab
 jupyter labextension develop . --overwrite
 # Rebuild extension Typescript source after making changes

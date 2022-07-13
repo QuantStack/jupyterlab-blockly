@@ -11,11 +11,11 @@ graft jupyterlab_blockly/labextension
 recursive-include patches *.patch
 
 # Javascript files
-graft src
-graft style
+graft packages/blockly-extension
 prune **/node_modules
 prune lib
 prune binder
+prune scripts
 
 # Patterns to exclude from any directory
 global-exclude *~

@@ -2,7 +2,6 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "composite": true,
-    "allowJs": true,
     "declaration": true,
     "esModuleInterop": true,
     "incremental": true,
@@ -13,11 +12,7 @@
     "noUnusedLocals": true,
     "preserveWatchOutput": true,
     "resolveJsonModule": true,
-    "outDir": "lib",
-    "rootDir": "src",
     "target": "es2017",
     "types": []
-  },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "style/icons"],
-  "exclude": ["node_modules"]
+  }
 }

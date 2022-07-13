@@ -1,108 +1,43 @@
 {
-  "name": "jupyterlab-blockly",
-  "version": "0.1.0-alpha.2",
-  "description": "Blockly extension for JupyterLab.",
-  "keywords": [
-    "jupyter",
-    "jupyterlab",
-    "jupyterlab-extension"
-  ],
-  "homepage": "https://github.com/quantstack/jupyterlab-blockly",
-  "bugs": {
-    "url": "https://github.com/quantstack/jupyterlab-blockly/issues"
-  },
-  "license": "BSD-3-Clause",
-  "author": {
-    "name": "quantstack",
-    "email": ""
-  },
-  "files": [
-    "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
-    "style/**/*.{css,js,eot,gif,html,jpg,json,png,svg,woff2,ttf}"
-  ],
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "style": "style/index.css",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/quantstack/jupyterlab-blockly.git"
+  "name": "jupyterlab-blockly-root",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
   },
   "scripts": {
-    "build": "jlpm run build:lib && jlpm run build:labextension:dev",
-    "build:prod": "jlpm run clean && jlpm run build:lib && jlpm run build:labextension",
-    "build:labextension": "jupyter labextension build .",
-    "build:labextension:dev": "jupyter labextension build --development True .",
-    "build:lib": "tsc",
-    "clean": "jlpm run clean:lib",
-    "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
-    "clean:labextension": "rimraf jupyterlab_blockly/labextension",
-    "clean:all": "jlpm run clean:lib && jlpm run clean:labextension",
+    "build": "lerna run build",
+    "build:prod": "lerna run build:prod",
+    "clean": "lerna run clean",
+    "clean:all": "lerna run clean:all",
     "eslint": "jlpm eslint:check --fix",
     "eslint:check": "eslint . --ext .ts,.tsx",
-    "install:extension": "jlpm run build",
+    "install": "lerna bootstrap",
+    "install:extension": "lerna run install:extension",
     "lint": "jlpm stylelint && jlpm prettier && jlpm eslint",
     "lint:check": "jlpm stylelint:check && jlpm prettier:check && jlpm eslint:check",
     "prettier": "jlpm prettier:base --write --list-different",
     "prettier:base": "prettier \"**/*{.ts,.tsx,.js,.jsx,.css}\"",
     "prettier:check": "jlpm prettier:base --check",
-    "watch": "run-p watch:src watch:labextension",
-    "watch:src": "tsc -w",
-    "watch:labextension": "jupyter labextension watch .",
+    "watch": "lerna run watch",
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "@jupyterlab/application": "^3.4",
-    "@jupyterlab/apputils": "^3.4",
-    "@jupyterlab/cells": "^3.4",
-    "@jupyterlab/codeeditor": "^3.4",
-    "@jupyterlab/coreutils": "^5.4",
-    "@jupyterlab/docregistry": "^3.4",
-    "@jupyterlab/filebrowser": "^3.4",
-    "@jupyterlab/launcher": "^3.4",
-    "@jupyterlab/outputarea": "^3.4",
-    "@jupyterlab/rendermime": "^3.4",
-    "@jupyterlab/services": "^6.4",
-    "@jupyterlab/ui-components": "^3.4",
-    "@lumino/algorithm": "^1.9.0",
-    "@lumino/coreutils": "^1.11.0",
-    "@lumino/messaging": "^1.10.0",
-    "@lumino/signaling": "^1.10.0",
-    "@lumino/widgets": "^1.30.0",
-    "blockly": "^7.20211209.2",
-    "patch-package": "^6.4.7",
-    "postinstall-postinstall": "^2.1.0"
-  },
-  "devDependencies": {
-    "@jupyterlab/builder": "^3.4",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",
     "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.30.0",
-    "npm-run-all": "^4.1.5",
+    "patch-package": "^6.4.7",
     "prettier": "^2.5.1",
-    "rimraf": "^3.0.2",
+    "postinstall-postinstall": "^2.1.0",
     "typescript": "~4.5.2"
   },
-  "sideEffects": [
-    "style/*.css",
-    "style/index.js"
-  ],
-  "styleModule": "style/index.js",
-  "publishConfig": {
-    "access": "public"
-  },
-  "jupyterlab": {
-    "extension": true,
-    "outputDir": "jupyterlab_blockly/labextension"
-  },
-  "jupyter-releaser": {
-    "hooks": {
-      "before-build-npm": [
-        "python -m pip install jupyterlab",
-        "jlpm"
-      ]
-    }
+  "devDependencies": {
+    "lerna": "5.1.0",
+    "yarn": "1.22.17"
   }
 }

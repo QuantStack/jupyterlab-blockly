@@ -20,7 +20,7 @@ ensured_targets = [
     str(lab_path / "static/style.js")
 ]
 
-labext_name = "jupyterlab-blockly"
+labext_name = "jupyterlab-blockly-extension"
 
 data_files_spec = [
     ("share/jupyter/labextensions/%s" % labext_name, str(lab_path.relative_to(HERE)), "**"),
@@ -30,7 +30,7 @@ data_files_spec = [
 long_description = (HERE / "README.md").read_text()
 
 # Get the package info from package.json
-pkg_json = json.loads((HERE / "package.json").read_bytes())
+pkg_json = json.loads((HERE / "packages/blockly-extension/package.json").read_bytes())
 version = (
     pkg_json["version"]
     .replace("-alpha.", "a")
@@ -51,6 +51,9 @@ setup_args = dict(
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
     install_requires=[],
+    extras_require={
+        'dev': ['click','jupyter_releaser==0.22']
+    },
     zip_safe=False,
     include_package_data=True,
     python_requires=">=3.7",

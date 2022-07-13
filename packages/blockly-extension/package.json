@@ -1,0 +1,75 @@
+{
+  "name": "jupyterlab-blockly-extension",
+  "version": "0.1.0-alpha.2",
+  "description": "Blockly extension for JupyterLab.",
+  "keywords": [
+    "jupyter",
+    "jupyterlab",
+    "jupyterlab-extension"
+  ],
+  "homepage": "https://github.com/quantstack/jupyterlab-blockly",
+  "bugs": {
+    "url": "https://github.com/quantstack/jupyterlab-blockly/issues"
+  },
+  "license": "BSD-3-Clause",
+  "author": {
+    "name": "quantstack",
+    "email": ""
+  },
+  "files": [
+    "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
+    "style/**/*.{css,js,eot,gif,html,jpg,json,png,svg,woff2,ttf}"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "style": "style/index.css",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quantstack/jupyterlab-blockly.git"
+  },
+  "scripts": {
+    "build": "jlpm run build:lib && jlpm run build:labextension:dev",
+    "build:prod": "jlpm run clean && jlpm run build:lib && jlpm run build:labextension",
+    "build:labextension": "jupyter labextension build .",
+    "build:labextension:dev": "jupyter labextension build --development True .",
+    "build:lib": "tsc",
+    "clean": "jlpm run clean:lib",
+    "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
+    "clean:labextension": "rimraf ../../jupyterlab_blockly/labextension",
+    "clean:all": "jlpm run clean:lib && jlpm run clean:labextension",
+    "install:extension": "jlpm run build",
+    "watch": "run-p watch:src watch:labextension",
+    "watch:src": "tsc -w",
+    "watch:labextension": "jupyter labextension watch ."
+  },
+  "dependencies": {
+    "@jupyterlab/application": "^3.4",
+    "@jupyterlab/apputils": "^3.4",
+    "@jupyterlab/codeeditor": "^3.4",
+    "@jupyterlab/filebrowser": "^3.4",
+    "@jupyterlab/launcher": "^3.4",
+    "@jupyterlab/settingregistry": "^3.4",
+    "@jupyterlab/rendermime": "^3.4",
+    "@jupyterlab/translation": "^3.4",
+    "@jupyterlab/ui-components": "^3.4",
+    "jupyterlab-blockly": "^0.1.0-alpha.2"
+  },
+  "devDependencies": {
+    "@jupyterlab/builder": "^3.4",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "typescript": "~4.5.2"
+  },
+  "sideEffects": [
+    "style/*.css",
+    "style/index.js"
+  ],
+  "styleModule": "style/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "jupyterlab": {
+    "extension": true,
+    "outputDir": "../../jupyterlab_blockly/labextension"
+  }
+}
