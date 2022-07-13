@@ -9,9 +9,7 @@
 To install the extension, execute:
 
 ```bash
-micromamba create -n blockly -c conda-forge python jupyterlab==3.4 ipykernel xeus-python xeus-lua jupyterlab-language-pack-es-ES jupyterlab-language-pack-fr-FR
-micromamba activate blockly
-pip install jupyterlab_blockly
+conda install -c conda-forge jupyterlab-blockly
 ```
 
 ### Kernels
@@ -27,7 +25,7 @@ pip install jupyterlab_blockly
 To remove the extension, execute:
 
 ```bash
-pip uninstall jupyterlab_blockly
+conda uninstall -c conda-forge jupyterlab-blockly
 ```
 
 ## Development install
