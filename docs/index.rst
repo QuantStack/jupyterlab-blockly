@@ -13,6 +13,11 @@ The extension uses `Blockly <https://developers.google.com/blockly>`_, an open s
 .. image:: _static/OverviewBlockly.gif
    :alt: Functionality of extension
 
+Try it directly in your browser using JupyterLite!
+
+.. image:: https://jupyterlite.rtfd.io/en/latest/_static/badge.svg
+   :target: https://jupyterlab-blockly.readthedocs.io/en/latest/lite/lab
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:

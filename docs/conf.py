@@ -35,6 +35,7 @@ extensions = [
     'myst_parser',
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
+    'jupyterlite_sphinx',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -57,3 +58,8 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 # html_static_path = ['_static']
+
+# Jupyterlite
+jupyterlite_contents = ["example.jpblockly", "logic.jpblockly", "loops.jpblockly", "text_and_lists.jpblockly", "functions.jpblockly"]
+jupyterlite_dir = "."
+jupyterlite_config = "jupyterlite_config.json"
