@@ -1,6 +1,6 @@
 # Examples
 
-To help gain a better understanding of the JupyterLab-Blockly, we created some examples you can easily access and experiment with. They can be accessed from the folder `examples` in the micGithub repository.
+To help gain a better understanding of the JupyterLab-Blockly, we created some examples you can easily access and experiment with. They can be accessed from the folder `examples` in the Github repository.
 
 The examples give you a chance to be introduced to the most important blocks and their functionalities. The extension is a great tool for introducing the most relevant concepts of coding by also letting you see the rendered code. Once you have gotten a good grasp on it, you can easily use the familiar Jupyter enviroment to move to another classical programming language, such as Python.
 
