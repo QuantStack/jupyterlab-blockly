@@ -1,2 +1,2 @@
 myst_parser==0.18.0
-juypterlab-sphinx==0.6.0
+juypterlite-sphinx==0.6.0
