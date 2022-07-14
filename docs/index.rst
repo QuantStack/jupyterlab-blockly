@@ -16,7 +16,7 @@ The extension uses `Blockly <https://developers.google.com/blockly>`_, an open s
 Try it directly in your browser using JupyterLite!
 
 .. image:: https://jupyterlite.rtfd.io/en/latest/_static/badge.svg
-   :target: https://jupyterlab-blockly.readthedocs.io/en/latest/lite/lab
+   :target: https://jupyterlab-blockly.readthedocs.io/en/latest
 
 .. toctree::
    :maxdepth: 2
