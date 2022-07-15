@@ -14,7 +14,7 @@ build_cmd = "build:prod"
 npm = ["jlpm"]
 
 [tool.check-manifest]
-ignore = ["jupyterlab_blockly/labextension/**", "packages/**", "lerna.json", "yarn.lock", ".*", "package-lock.json", "docs/**"]
+ignore = ["jupyterlab_blockly/labextension/**", "packages/**", "assets/**", "lerna.json", "yarn.lock", ".*", "package-lock.json", "docs/**"]
 
 [tool.jupyter-releaser.hooks]
 before-bump-version = ["python -m pip install jupyterlab~=3.4"]
