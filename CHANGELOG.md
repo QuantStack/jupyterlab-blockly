@@ -2,6 +2,26 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.1.0a4
+
+([Full Changelog](https://github.com/QuantStack/jupyterlab-blockly/compare/jupyterlab-blockly-extension@0.1.0-alpha.3...60ac9449a03883d76b67b56910ac638d67930707))
+
+### Bugs fixed
+
+- Fixes package.json path [#40](https://github.com/QuantStack/jupyterlab-blockly/pull/40) ([@hbcarlos](https://github.com/hbcarlos))
+
+### Documentation improvements
+
+- Embed jupyterlite into index page [#39](https://github.com/QuantStack/jupyterlab-blockly/pull/39) ([@DenisaCG](https://github.com/DenisaCG))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/QuantStack/jupyterlab-blockly/graphs/contributors?from=2022-07-14&to=2022-07-15&type=c))
+
+[@DenisaCG](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3ADenisaCG+updated%3A2022-07-14..2022-07-15&type=Issues) | [@github-actions](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Agithub-actions+updated%3A2022-07-14..2022-07-15&type=Issues) | [@hbcarlos](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Ahbcarlos+updated%3A2022-07-14..2022-07-15&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.1.0a3
 
 ([Full Changelog](https://github.com/QuantStack/jupyterlab-blockly/compare/v0.1.0a2...191e3ccfca68a173466bf096d751a38d6b917128))
@@ -34,8 +54,6 @@
 ([GitHub contributors page for this release](https://github.com/QuantStack/jupyterlab-blockly/graphs/contributors?from=2022-06-30&to=2022-07-14&type=c))
 
 [@DenisaCG](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3ADenisaCG+updated%3A2022-06-30..2022-07-14&type=Issues) | [@github-actions](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Agithub-actions+updated%3A2022-06-30..2022-07-14&type=Issues) | [@hbcarlos](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Ahbcarlos+updated%3A2022-06-30..2022-07-14&type=Issues) | [@ihuicatl](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Aihuicatl+updated%3A2022-06-30..2022-07-14&type=Issues) | [@jtpio](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Ajtpio+updated%3A2022-06-30..2022-07-14&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.1.0a2
 
