@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab-blockly-extension",
-  "version": "0.1.0-alpha.3",
+  "version": "0.1.0-alpha.4",
   "description": "Blockly extension for JupyterLab.",
   "keywords": [
     "jupyter",
@@ -52,7 +52,7 @@
     "@jupyterlab/settingregistry": "^3.4",
     "@jupyterlab/translation": "^3.4",
     "@jupyterlab/ui-components": "^3.4",
-    "jupyterlab-blockly": "^0.1.0-alpha.3"
+    "jupyterlab-blockly": "^0.1.0-alpha.4"
   },
   "devDependencies": {
     "@jupyterlab/builder": "^3.4",
