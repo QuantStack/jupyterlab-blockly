@@ -8,6 +8,7 @@
 **/*.d.ts
 
 .github
+assets
 binder
 jupyterlab_blockly
 docs

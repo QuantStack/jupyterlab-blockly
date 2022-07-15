@@ -50,9 +50,12 @@ Here is a summary of the steps to cut a new release:
 - Add `ADMIN_GITHUB_TOKEN`, `PYPI_TOKEN` and `NPM_TOKEN` to the Github Secrets in the fork
 - Go to the Actions panel
 - Run the "Draft Changelog" workflow
+  ![Draft Changelog](assets/run_draft_changelog.png)
 - Merge the Changelog PR
-- Run the "Draft Release" workflow
-- Run the "Publish Release" workflow
+  ![Merge Draft Changelog PR](assets/merge_changelog.png)
+- Using the info from the draft changelong PR, run the "Full Release" workflow
+  ![Full Release info](assets/info_full_release.png)
+  ![Full Release](assets/run_full_release.png)
 
 ## Publishing to `conda-forge`
 
