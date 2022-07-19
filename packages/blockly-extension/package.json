@@ -70,6 +70,16 @@
   },
   "jupyterlab": {
     "extension": true,
-    "outputDir": "../../jupyterlab_blockly/labextension"
+    "outputDir": "../../jupyterlab_blockly/labextension",
+    "sharedPackages": {
+      "jupyterlab-blockly": {
+        "bundled": true,
+        "singleton": true
+      },
+      "blockly": {
+        "bundled": true,
+        "singleton": true
+      }
+    }
   }
 }
