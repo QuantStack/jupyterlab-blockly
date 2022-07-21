@@ -2,6 +2,42 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.1.0a5
+
+([Full Changelog](https://github.com/QuantStack/jupyterlab-blockly/compare/jupyterlab-blockly-extension@0.1.0-alpha.4...1a0181848d9b1c4382671bbdc77db33aafeb1f00))
+
+### Enhancements made
+
+- Adds jupyterlab-blockly and blockly into the extension bundle [#47](https://github.com/QuantStack/jupyterlab-blockly/pull/47) ([@hbcarlos](https://github.com/hbcarlos))
+- Add JupyterLite badge to the README [#46](https://github.com/QuantStack/jupyterlab-blockly/pull/46) ([@jtpio](https://github.com/jtpio))
+- Switch to `environment.yml` for the docs [#45](https://github.com/QuantStack/jupyterlab-blockly/pull/45) ([@jtpio](https://github.com/jtpio))
+- Use `pydata-sphinx-theme` [#43](https://github.com/QuantStack/jupyterlab-blockly/pull/43) ([@jtpio](https://github.com/jtpio))
+- Update release documentation [#42](https://github.com/QuantStack/jupyterlab-blockly/pull/42) ([@hbcarlos](https://github.com/hbcarlos))
+
+### Bugs fixed
+
+- Include packages [#50](https://github.com/QuantStack/jupyterlab-blockly/pull/50) ([@hbcarlos](https://github.com/hbcarlos))
+
+### Maintenance and upkeep improvements
+
+- Include packages [#50](https://github.com/QuantStack/jupyterlab-blockly/pull/50) ([@hbcarlos](https://github.com/hbcarlos))
+
+### Documentation improvements
+
+- Add JupyterLite badge to the README [#46](https://github.com/QuantStack/jupyterlab-blockly/pull/46) ([@jtpio](https://github.com/jtpio))
+- Switch to `environment.yml` for the docs [#45](https://github.com/QuantStack/jupyterlab-blockly/pull/45) ([@jtpio](https://github.com/jtpio))
+- Remove unused imports [#44](https://github.com/QuantStack/jupyterlab-blockly/pull/44) ([@jtpio](https://github.com/jtpio))
+- Use `pydata-sphinx-theme` [#43](https://github.com/QuantStack/jupyterlab-blockly/pull/43) ([@jtpio](https://github.com/jtpio))
+- Update release documentation [#42](https://github.com/QuantStack/jupyterlab-blockly/pull/42) ([@hbcarlos](https://github.com/hbcarlos))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/QuantStack/jupyterlab-blockly/graphs/contributors?from=2022-07-15&to=2022-07-21&type=c))
+
+[@DenisaCG](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3ADenisaCG+updated%3A2022-07-15..2022-07-21&type=Issues) | [@github-actions](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Agithub-actions+updated%3A2022-07-15..2022-07-21&type=Issues) | [@hbcarlos](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Ahbcarlos+updated%3A2022-07-15..2022-07-21&type=Issues) | [@jtpio](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Ajtpio+updated%3A2022-07-15..2022-07-21&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.1.0a4
 
 ([Full Changelog](https://github.com/QuantStack/jupyterlab-blockly/compare/jupyterlab-blockly-extension@0.1.0-alpha.3...60ac9449a03883d76b67b56910ac638d67930707))
@@ -19,8 +55,6 @@
 ([GitHub contributors page for this release](https://github.com/QuantStack/jupyterlab-blockly/graphs/contributors?from=2022-07-14&to=2022-07-15&type=c))
 
 [@DenisaCG](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3ADenisaCG+updated%3A2022-07-14..2022-07-15&type=Issues) | [@github-actions](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Agithub-actions+updated%3A2022-07-14..2022-07-15&type=Issues) | [@hbcarlos](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Ahbcarlos+updated%3A2022-07-14..2022-07-15&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.1.0a3
 
