@@ -4,9 +4,9 @@ from pathlib import Path
 __all__ = ["__version__"]
 
 def _fetchVersion():
-    HERE = Path(__package__).parent.resolve()
+    HERE = Path(__file__).parent.resolve()
 
-    for settings in HERE.rglob("blockly-extension/package.json"):
+    for settings in HERE.rglob("package.json"):
         try:
             with settings.open() as f:
                 version = json.load(f)["version"]
