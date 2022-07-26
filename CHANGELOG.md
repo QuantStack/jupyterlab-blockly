@@ -2,6 +2,12 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.1.0
+
+No merged PRs
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.1.0a5
 
 ([Full Changelog](https://github.com/QuantStack/jupyterlab-blockly/compare/jupyterlab-blockly-extension@0.1.0-alpha.4...1a0181848d9b1c4382671bbdc77db33aafeb1f00))
@@ -35,8 +41,6 @@
 ([GitHub contributors page for this release](https://github.com/QuantStack/jupyterlab-blockly/graphs/contributors?from=2022-07-15&to=2022-07-21&type=c))
 
 [@DenisaCG](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3ADenisaCG+updated%3A2022-07-15..2022-07-21&type=Issues) | [@github-actions](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Agithub-actions+updated%3A2022-07-15..2022-07-21&type=Issues) | [@hbcarlos](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Ahbcarlos+updated%3A2022-07-15..2022-07-21&type=Issues) | [@jtpio](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Ajtpio+updated%3A2022-07-15..2022-07-21&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.1.0a4
 
