@@ -62,9 +62,7 @@ export class BlocklyRegistry implements IBlocklyRegisty {
   /**
    * Register new blocks.
    *
-   * @argument name Name of the toolbox.
-   *
-   * @argument value Toolbox to register.
+   * @argument blocks Blocks to register.
    */
   registerBlocks(blocks: JSONObject[]): void {
     Blockly.defineBlocksWithJsonArray(blocks);
@@ -73,9 +71,9 @@ export class BlocklyRegistry implements IBlocklyRegisty {
   /**
    * Register new generators.
    *
-   * @argument name Name of the toolbox.
+   * @argument name Name of the generator.
    *
-   * @argument value Toolbox to register.
+   * @argument generator Generator to register.
    *
    * #### Notes
    * When registering a generator, the name should correspond to the language
