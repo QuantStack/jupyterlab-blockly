@@ -10,3 +10,5 @@ dependencies:
   - pip:
     - jupyterlite
     - jupyterlite-sphinx
+    - jupyterlite-xeus-lua
+    
