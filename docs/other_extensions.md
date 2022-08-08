@@ -20,17 +20,17 @@ Firstly you need to install and add `jupyterlab-blockly` as a dependency for you
 jlpm add jupyterlab-blockly
 ```
 
-Once it is part of your project, all you need to do is import `IBlocklyRegisty`, as it follows: 
+Once it is part of your project, all you need to do is import `IBlocklyRegistry`, as it follows: 
 ```typescript
 // src/index.ts
 
-import { IBlocklyRegisty } from 'jupyterlab-blockly';
+import { IBlocklyRegistry } from 'jupyterlab-blockly';
 ```
 
 The `BlocklyRegistry` is the class that the JupyterLab-Blockly extension exposes to other plugins. This registry allows other plugins to register new Toolboxes, Blocks and Generators that users can use in the Blockly editor.
 
 ### Registering new Blocks
-The `IBlocklyRegisty` offers a function `registerBlocks`, which allows you to include new Blocks in your project. Blockly offers a [tool](https://blockly-demo.appspot.com/static/demos/blockfactory/index.html) which helps you easily create new Blocks and get their JSON definition and generator code in all supported programming languages.
+The `IBlocklyRegistry` offers a function `registerBlocks`, which allows you to include new Blocks in your project. Blockly offers a [tool](https://blockly-demo.appspot.com/static/demos/blockfactory/index.html) which helps you easily create new Blocks and get their JSON definition and generator code in all supported programming languages.
 
 **NOTE** : Once you create a new block, it won't appear into your Blockly editor, unless you add it to a Toolbox.
 
@@ -46,7 +46,7 @@ The `IBlocklyRegisty` offers a function `registerBlocks`, which allows you to in
 ```
 
 ### Registering a new Toolbox
-Using the `registerToolbox` function, provided by `IBlocklyRegisty`, you can register a new toolbox. Once registered, the toolbox will appear automatically in your Blockly editor. You can find more information about switching to another toolbox [here](https://jupyterlab-blockly.readthedocs.io/en/latest/toolbox.html).
+Using the `registerToolbox` function, provided by `IBlocklyRegistry`, you can register a new toolbox. Once registered, the toolbox will appear automatically in your Blockly editor. You can find more information about switching to another toolbox [here](https://jupyterlab-blockly.readthedocs.io/en/latest/toolbox.html).
 
 ```typescript
 /**
@@ -62,7 +62,7 @@ Using the `registerToolbox` function, provided by `IBlocklyRegisty`, you can reg
 ```
 
 ### Registering a new Generator
-Lastly, `IBlocklyRegisty` offers the function `registerGenerator` which lets you register a new Generator. You can read more about switching kernels [here](https://jupyterlab-blockly.readthedocs.io/en/latest/kernels.html).
+Lastly, `IBlocklyRegistry` offers the function `registerGenerator` which lets you register a new Generator. You can read more about switching kernels [here](https://jupyterlab-blockly.readthedocs.io/en/latest/kernels.html).
 
 ```typescript
 
@@ -98,8 +98,8 @@ The following code snippet showcases how to register a new toolbox, `BlocklyNiry
 const plugin: JupyterFrontEndPlugin<void> = {
   id: 'jupyterlab-niryo-one:plugin',
   autoStart: true,
-  requires: [IBlocklyRegisty],
-  activate: (app: JupyterFrontEnd, blockly: IBlocklyRegisty) => {
+  requires: [IBlocklyRegistry],
+  activate: (app: JupyterFrontEnd, blockly: IBlocklyRegistry) => {
     console.log('JupyterLab extension jupyterlab-niryo-one is activated!');
 
     //Registering the new toolbox containing all Niryo One blocks.

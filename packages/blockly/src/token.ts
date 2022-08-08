@@ -5,7 +5,7 @@ import * as Blockly from 'blockly';
 /**
  * The registry token.
  */
-export const IBlocklyRegisty = new Token<IBlocklyRegisty>(
+export const IBlocklyRegistry = new Token<IBlocklyRegistry>(
   'jupyterlab-blockly/registry'
 );
 
@@ -15,7 +15,7 @@ export const IBlocklyRegisty = new Token<IBlocklyRegisty>(
  * new Toolboxes, Blocks and Generators that users can use in the
  * Blockly editor.
  */
-export interface IBlocklyRegisty {
+export interface IBlocklyRegistry {
   /**
    * Register a toolbox for the editor.
    *

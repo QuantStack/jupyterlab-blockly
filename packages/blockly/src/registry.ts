@@ -8,7 +8,7 @@ import BlocklyLua from 'blockly/lua';
 
 import En from 'blockly/msg/en';
 
-import { IBlocklyRegisty } from './token';
+import { IBlocklyRegistry } from './token';
 import { TOOLBOX } from './utils';
 
 /**
@@ -17,7 +17,7 @@ import { TOOLBOX } from './utils';
  * new Toolboxes, Blocks and Generators that users can use in the
  * Blockly editor.
  */
-export class BlocklyRegistry implements IBlocklyRegisty {
+export class BlocklyRegistry implements IBlocklyRegistry {
   private _toolboxes: Map<string, JSONObject>;
   private _generators: Map<string, Blockly.Generator>;
 
