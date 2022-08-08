@@ -13,7 +13,7 @@ import { ITranslator } from '@jupyterlab/translation';
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
 
 import { BlocklyEditorFactory } from 'jupyterlab-blockly';
-import { IBlocklyRegisty } from 'jupyterlab-blockly';
+import { IBlocklyRegistry } from 'jupyterlab-blockly';
 import { BlocklyEditor } from 'jupyterlab-blockly';
 
 import { blockly_icon } from './icons';
@@ -37,7 +37,7 @@ const PLUGIN_ID = '@jupyterlab/translation-extension:plugin';
 /**
  * Initialization data for the jupyterlab-blocky extension.
  */
-const plugin: JupyterFrontEndPlugin<IBlocklyRegisty> = {
+const plugin: JupyterFrontEndPlugin<IBlocklyRegistry> = {
   id: 'jupyterlab-blocky:plugin',
   autoStart: true,
   requires: [
@@ -49,7 +49,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyRegisty> = {
     ITranslator
   ],
   optional: [ILauncher, ICommandPalette],
-  provides: IBlocklyRegisty,
+  provides: IBlocklyRegistry,
   activate: (
     app: JupyterFrontEnd,
     restorer: ILayoutRestorer,
@@ -60,7 +60,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyRegisty> = {
     translator: ITranslator,
     launcher: ILauncher | null,
     palette: ICommandPalette | null
-  ): IBlocklyRegisty => {
+  ): IBlocklyRegistry => {
     console.log('JupyterLab extension jupyterlab-blocky is activated!');
 
     // Namespace for the tracker
