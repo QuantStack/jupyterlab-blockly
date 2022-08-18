@@ -147,3 +147,37 @@ and, finally, add `patch-package` as a dependency:
 ```
 jlpm add patch-package
 ```
+
+## Additional configurations
+
+You will need to request the `jupyterlab-blockly` package as a dependency of your extension, in order to ensure it is installed and available to provide the token `IBlocklyRegistry`. To do this, you need to add the following line to your `setup.py` file.
+
+```python
+// setup.py : 57
+
+setup_args = dict(
+  ...
+  install_requires=['jupyterlab-blockly>=0.1.1,<0.2']
+  ... 
+)
+```
+
+Moreover, as we are working with deduplication of dependencies and the extension you are creating requires a service identified by a token from `jupyterlab-blockly`, you need to add the following configuration to your `package.json` file.
+
+```
+// package.json : 88-101
+
+"jupyterlab": {
+  "sharedPackages": {
+     "jupyterlab-blockly": { 
+       "bundled": false, 
+       "singleton": true 
+     }, 
+     "blockly": { 
+       "bundled": false, 
+       "singleton": true 
+     } 
+   }
+ }
+```
+This ensures your extension will get the exact same token the provider is using to identify the service and exclud it from its bundle as the provider will give a copy of the token. You can read more about deduplication of dependencies [here](https://jupyterlab.readthedocs.io/en/stable/extension/extension_dev.html#deduplication-of-dependencies), in the official Extension Developer Guide for JupyterLab.
