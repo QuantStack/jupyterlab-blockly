@@ -180,4 +180,4 @@ Moreover, as we are working with deduplication of dependencies and the extension
    }
  }
 ```
-This ensures your extension will get the exact same token the provider is using to identify the service and exclud it from its bundle as the provider will give a copy of the token. You can read more about deduplication of dependencies [here](https://jupyterlab.readthedocs.io/en/stable/extension/extension_dev.html#deduplication-of-dependencies), in the official Extension Developer Guide for JupyterLab.
+This ensures your extension will get the exact same token the provider is using to identify the service and exclude it from its bundle as the provider will give a copy of the token. You can read more about deduplication of dependencies [here](https://jupyterlab.readthedocs.io/en/stable/extension/extension_dev.html#deduplication-of-dependencies), in the official *Extension Developer Guide for JupyterLab*.
