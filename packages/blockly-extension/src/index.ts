@@ -11,6 +11,7 @@ import { IFileBrowserFactory } from '@jupyterlab/filebrowser';
 import { ILauncher } from '@jupyterlab/launcher';
 import { ITranslator } from '@jupyterlab/translation';
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
+import { IKernelMenu, IMainMenu } from '@jupyterlab/mainmenu';
 
 import { BlocklyEditorFactory } from 'jupyterlab-blockly';
 import { IBlocklyRegistry } from 'jupyterlab-blockly';
@@ -48,7 +49,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyRegistry> = {
     ISettingRegistry,
     ITranslator
   ],
-  optional: [ILauncher, ICommandPalette],
+  optional: [ILauncher, ICommandPalette, IMainMenu],
   provides: IBlocklyRegistry,
   activate: (
     app: JupyterFrontEnd,
@@ -59,7 +60,8 @@ const plugin: JupyterFrontEndPlugin<IBlocklyRegistry> = {
     settings: ISettingRegistry,
     translator: ITranslator,
     launcher: ILauncher | null,
-    palette: ICommandPalette | null
+    palette: ICommandPalette | null,
+    mainMenu: IMainMenu | null
   ): IBlocklyRegistry => {
     console.log('JupyterLab extension jupyterlab-blocky is activated!');
 
@@ -80,7 +82,6 @@ const plugin: JupyterFrontEndPlugin<IBlocklyRegistry> = {
     }
 
     const { commands } = app;
-    const command = CommandIDs.createNew;
 
     // Creating the widget factory to register it so the document manager knows about
     // our new DocumentWidget
@@ -159,7 +160,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyRegistry> = {
       widgetFactory.registry.setlanguage(language);
     });
 
-    commands.addCommand(command, {
+    commands.addCommand(CommandIDs.createNew, {
       label: args =>
         args['isPalette'] ? 'New Blockly Editor' : 'Blockly Editor',
       caption: 'Create a new Blockly Editor',
@@ -188,7 +189,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyRegistry> = {
     // Add the command to the launcher
     if (launcher) {
       launcher.add({
-        command,
+        command: CommandIDs.createNew,
         category: 'Other',
         rank: 1
       });
@@ -197,10 +198,39 @@ const plugin: JupyterFrontEndPlugin<IBlocklyRegistry> = {
     // Add the command to the palette
     if (palette) {
       palette.addItem({
-        command,
+        command: CommandIDs.createNew,
         args: { isPalette: true },
         category: PALETTE_CATEGORY
       });
+    }
+
+    // Add the command to the main menu
+    if (mainMenu) {
+      mainMenu.kernelMenu.kernelUsers.add({
+        tracker,
+        interruptKernel: current => {
+          const kernel = current.context.sessionContext.session?.kernel;
+          if (kernel) {
+            return kernel.interrupt();
+          }
+          return Promise.resolve(void 0);
+        },
+        reconnectToKernel: current => {
+          const kernel = current.context.sessionContext.session?.kernel;
+          if (kernel) {
+            return kernel.reconnect();
+          }
+          return Promise.resolve(void 0);
+        },
+        restartKernel: current => {
+          const kernel = current.context.sessionContext.session?.kernel;
+          if (kernel) {
+            return kernel.restart();
+          }
+          return Promise.resolve(void 0);
+        },
+        shutdownKernel: current => current.context.sessionContext.shutdown()
+      } as IKernelMenu.IKernelUser<BlocklyEditor>);
     }
 
     return widgetFactory.registry;

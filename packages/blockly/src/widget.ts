@@ -6,7 +6,7 @@ import {
 import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
 import { runIcon } from '@jupyterlab/ui-components';
 
-import { Panel } from '@lumino/widgets';
+import { SplitPanel } from '@lumino/widgets';
 import { Signal } from '@lumino/signaling';
 
 import { BlocklyLayout } from './layout';
@@ -76,7 +76,7 @@ export namespace BlocklyEditor {
 /**
  * Widget that contains the main view of the DocumentWidget.
  */
-export class BlocklyPanel extends Panel {
+export class BlocklyPanel extends SplitPanel {
   private _context: DocumentRegistry.IContext<DocumentModel>;
 
   /**
