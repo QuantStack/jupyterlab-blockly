@@ -4,7 +4,7 @@ import { CodeCell, CodeCellModel } from '@jupyterlab/cells';
 
 import { Message } from '@lumino/messaging';
 import { PartialJSONValue } from '@lumino/coreutils';
-import { PanelLayout, Widget } from '@lumino/widgets';
+import { SplitLayout, SplitPanel, Widget } from '@lumino/widgets';
 import { IIterator, ArrayIterator } from '@lumino/algorithm';
 import { Signal } from '@lumino/signaling';
 
@@ -16,8 +16,8 @@ import { THEME } from './utils';
 /**
  * A blockly layout to host the Blockly editor.
  */
-export class BlocklyLayout extends PanelLayout {
-  private _host: HTMLElement;
+export class BlocklyLayout extends SplitLayout {
+  private _host: Widget;
   private _manager: BlocklyManager;
   private _workspace: Blockly.WorkspaceSvg;
   private _sessionContext: ISessionContext;
@@ -32,13 +32,13 @@ export class BlocklyLayout extends PanelLayout {
     sessionContext: ISessionContext,
     rendermime: IRenderMimeRegistry
   ) {
-    super();
+    super({ renderer: SplitPanel.defaultRenderer, orientation: 'vertical' });
     this._manager = manager;
     this._sessionContext = sessionContext;
 
     // Creating the container for the Blockly editor
     // and the output area to render the execution replies.
-    this._host = document.createElement('div');
+    this._host = new Widget();
 
     // Creating a CodeCell widget to render the code and
     // outputs from the execution reply.
@@ -83,7 +83,8 @@ export class BlocklyLayout extends PanelLayout {
   init(): void {
     super.init();
     // Add the blockly container into the DOM
-    this.addWidget(new Widget({ node: this._host }));
+    this.addWidget(this._host);
+    this.addWidget(this._cell);
   }
 
   /**
@@ -141,8 +142,6 @@ export class BlocklyLayout extends PanelLayout {
     const code =
       extra_init + this._manager.generator.workspaceToCode(this._workspace);
     this._cell.model.sharedModel.setSource(code);
-    this.addWidget(this._cell);
-    this._resizeWorkspace();
 
     // Execute the code using the kernel, by using a static method from the
     // same class to make an execution request.
@@ -165,13 +164,15 @@ export class BlocklyLayout extends PanelLayout {
    * Handle `update-request` messages sent to the widget.
    */
   protected onUpdateRequest(msg: Message): void {
+    super.onUpdateRequest(msg);
     this._resizeWorkspace();
   }
 
   /**
    * Handle `resize-request` messages sent to the widget.
    */
-  protected onResize(msg: Message): void {
+  protected onResize(msg: Widget.ResizeMessage): void {
+    super.onResize(msg);
     this._resizeWorkspace();
   }
 
@@ -179,6 +180,7 @@ export class BlocklyLayout extends PanelLayout {
    * Handle `fit-request` messages sent to the widget.
    */
   protected onFitRequest(msg: Message): void {
+    super.onFitRequest(msg);
     this._resizeWorkspace();
   }
 
@@ -186,28 +188,25 @@ export class BlocklyLayout extends PanelLayout {
    * Handle `after-attach` messages sent to the widget.
    */
   protected onAfterAttach(msg: Message): void {
+    super.onAfterAttach(msg);
     //inject Blockly with appropiate JupyterLab theme.
-    this._workspace = Blockly.inject(this._host, {
+    this._workspace = Blockly.inject(this._host.node, {
       toolbox: this._manager.toolbox,
       theme: THEME
+    });
+
+    this._workspace.addChangeListener(() => {
+      // Get extra code from the blocks in the workspace.
+      const extra_init = this.getBlocksToplevelInit();
+      // Serializing our workspace into the chosen language generator.
+      const code =
+        extra_init + this._manager.generator.workspaceToCode(this._workspace);
+      this._cell.model.sharedModel.setSource(code);
     });
   }
 
   private _resizeWorkspace(): void {
     //Resize logic.
-    const rect = this.parent.node.getBoundingClientRect();
-    const { height } = this._cell.node.getBoundingClientRect();
-    const margin = rect.height / 3;
-
-    if (height > margin) {
-      this._host.style.height = rect.height - margin + 'px';
-      this._cell.node.style.height = margin + 'px';
-      this._cell.node.style.overflowY = 'scroll';
-    } else {
-      this._host.style.height = rect.height - height + 'px';
-      this._cell.node.style.overflowY = 'scroll';
-    }
-
     Blockly.svgResize(this._workspace);
   }
 

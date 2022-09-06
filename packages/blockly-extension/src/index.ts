@@ -210,7 +210,6 @@ const plugin: JupyterFrontEndPlugin<IBlocklyRegistry> = {
         tracker,
         interruptKernel: current => {
           const kernel = current.context.sessionContext.session?.kernel;
-          console.debug('Interrupt:', kernel);
           if (kernel) {
             return kernel.interrupt();
           }
