@@ -47,9 +47,13 @@ export class BlocklyLayout extends SplitLayout {
       rendermime
     });
     // Trust the outputs and set the mimeType for the code
+    this._cell.addClass('jp-blockly-codeCell');
     this._cell.readOnly = true;
     this._cell.model.trusted = true;
     this._cell.model.mimeType = this._manager.mimeType;
+    // adding the style to the element as a quick fix
+    // we should make it work with the css class
+    this._cell.node.style.overflow = 'scroll';
 
     this._manager.changed.connect(this._onManagerChanged, this);
   }
