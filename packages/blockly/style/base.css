@@ -9,3 +9,7 @@
 .jp-blockly-runButton:hover {
   background-color: var(--md-green-700);
 }
+
+.jp-blockly-codeCell {
+  overflow: scroll;
+}
