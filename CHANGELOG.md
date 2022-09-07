@@ -2,6 +2,34 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.2.0
+
+([Full Changelog](https://github.com/QuantStack/jupyterlab-blockly/compare/jupyterlab-blockly-extension@0.1.1...638aef090fd180e369ab24d63910d7e2f2cff6dd))
+
+### Enhancements made
+
+- Kernel controls and split panel [#66](https://github.com/QuantStack/jupyterlab-blockly/pull/66) ([@hbcarlos](https://github.com/hbcarlos))
+
+### Bugs fixed
+
+- Kernel controls and split panel [#66](https://github.com/QuantStack/jupyterlab-blockly/pull/66) ([@hbcarlos](https://github.com/hbcarlos))
+
+### Maintenance and upkeep improvements
+
+- Update docs on other extensions category [#65](https://github.com/QuantStack/jupyterlab-blockly/pull/65) ([@DenisaCG](https://github.com/DenisaCG))
+
+### Documentation improvements
+
+- Update docs on other extensions category [#65](https://github.com/QuantStack/jupyterlab-blockly/pull/65) ([@DenisaCG](https://github.com/DenisaCG))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/QuantStack/jupyterlab-blockly/graphs/contributors?from=2022-08-12&to=2022-09-07&type=c))
+
+[@DenisaCG](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3ADenisaCG+updated%3A2022-08-12..2022-09-07&type=Issues) | [@github-actions](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Agithub-actions+updated%3A2022-08-12..2022-09-07&type=Issues) | [@hbcarlos](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Ahbcarlos+updated%3A2022-08-12..2022-09-07&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.1.1
 
 ([Full Changelog](https://github.com/QuantStack/jupyterlab-blockly/compare/jupyterlab-blockly-extension@0.1.0...e9b15ccf476425daef3fd3d7b5db5cdcb632b5bb))
@@ -27,8 +55,6 @@
 ([GitHub contributors page for this release](https://github.com/QuantStack/jupyterlab-blockly/graphs/contributors?from=2022-07-26&to=2022-08-12&type=c))
 
 [@DenisaCG](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3ADenisaCG+updated%3A2022-07-26..2022-08-12&type=Issues) | [@github-actions](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Agithub-actions+updated%3A2022-07-26..2022-08-12&type=Issues) | [@hbcarlos](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Ahbcarlos+updated%3A2022-07-26..2022-08-12&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.1.0
 
