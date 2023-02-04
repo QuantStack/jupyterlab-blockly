@@ -7,6 +7,9 @@
 # The full license is in the file LICENSE, distributed with this software.  #
 #############################################################################
 
+import json
+from pathlib import Path
+
 import click
 from jupyter_releaser.util import get_version, run
 from pkg_resources import parse_version
@@ -53,6 +56,20 @@ def bump(force, spec):
     if force:
         lerna_cmd += " --yes"
     run(lerna_cmd)
+
+    HERE = Path(__file__).parent.parent.resolve()
+    path = HERE.joinpath("package.json")
+    if path.exists():
+        with path.open(mode="r") as f:
+            data = json.load(f)
+
+        data["version"] = js_version
+
+        with path.open(mode="w") as f:
+            json.dump(data, f, indent=2)
+
+    else:
+        raise FileNotFoundError(f"Could not find package.json under dir {path!s}")
 
 
 if __name__ == "__main__":
