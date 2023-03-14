@@ -23,7 +23,7 @@ jobs:
       run: |
         set -eux
         jlpm
-        jlpm run eslint:check
+        jlpm eslint:check
         python -m pip install .
 
         jupyter labextension list

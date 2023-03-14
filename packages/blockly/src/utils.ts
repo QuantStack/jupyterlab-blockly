@@ -354,6 +354,7 @@ export const TOOLBOX = {
 
 // Defining a Blockly Theme in accordance with the current JupyterLab Theme.
 const jupyterlab_theme = Blockly.Theme.defineTheme('jupyterlab', {
+  name: 'JupyterLab Blockly',
   base: Blockly.Themes.Classic,
   componentStyles: {
     workspaceBackgroundColour: 'var(--jp-layout-color0)',
@@ -366,6 +367,9 @@ const jupyterlab_theme = Blockly.Theme.defineTheme('jupyterlab', {
     insertionMarkerOpacity: 0.3,
     scrollbarOpacity: 0.4,
     cursorColour: 'var(--jp-scrollbar-background-color)'
+  },
+  fontStyle: {
+    family: 'var(--jp-ui-font-family)'
   }
 });
 

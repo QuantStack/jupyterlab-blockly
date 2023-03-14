@@ -23,20 +23,21 @@
     ]
   },
   "scripts": {
-    "build": "lerna run build",
-    "build:prod": "lerna run build:prod",
-    "clean": "lerna run clean",
-    "clean:all": "lerna run clean:all",
+    "build": "lerna run --stream build",
+    "build:prod": "lerna run --stream build:prod",
+    "clean": "lerna run --stream clean",
+    "clean:all": "lerna --stream run clean:all",
+    "deduplicate": "yarn-deduplicate -s fewer --fail",
     "eslint": "jlpm eslint:check --fix",
     "eslint:check": "eslint . --ext .ts,.tsx",
     "install": "lerna bootstrap",
-    "install:extension": "lerna run install:extension",
+    "install:extension": "lerna run --stream install:extension",
     "lint": "jlpm prettier && jlpm eslint",
     "lint:check": "jlpm prettier:check && jlpm eslint:check",
     "prettier": "jlpm prettier:base --write --list-different",
     "prettier:base": "prettier \"**/*{.ts,.tsx,.js,.jsx,.css}\"",
     "prettier:check": "jlpm prettier:base --check",
-    "watch": "lerna run watch",
+    "watch": "lerna run --stream watch",
     "postinstall": "patch-package"
   },
   "dependencies": {
@@ -49,10 +50,10 @@
     "patch-package": "^6.4.7",
     "prettier": "^2.5.1",
     "postinstall-postinstall": "^2.1.0",
-    "typescript": "~4.5.2"
+    "typescript": "~4.9.5"
   },
   "devDependencies": {
-    "lerna": "5.1.0",
-    "yarn": "1.22.17"
+    "lerna": "^6.5.1",
+    "yarn-deduplicate": "^6.0.0"
   }
 }

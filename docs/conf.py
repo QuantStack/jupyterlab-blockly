@@ -50,6 +50,25 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 html_theme = 'pydata_sphinx_theme'
+html_theme_options = {
+    'github_url': 'https://github.com/quantstack/jupyterlab-blockly',
+    'use_edit_page_button': True,
+    'icon_links': [
+        {
+            'name': 'PyPI',
+            'url': 'https://pypi.org/project/jupyterlab-blockly',
+            'icon': 'fa-solid fa-box',
+        },
+    ],
+    'pygment_light_style': 'github-light',
+    'pygment_dark_style': 'github-dark'
+}
+html_context = {
+    'github_user': 'quantstack',
+    'github_repo': 'jupyterlab-blockly',
+    'github_version': 'main',
+    'doc_path': 'docs',
+}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

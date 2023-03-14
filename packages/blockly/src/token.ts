@@ -1,6 +1,8 @@
-import { Token, JSONObject } from '@lumino/coreutils';
+import { Token } from '@lumino/coreutils';
 
 import * as Blockly from 'blockly';
+import type { BlockDefinition } from 'blockly/core/blocks';
+import type { ToolboxDefinition } from 'blockly/core/utils/toolbox';
 
 /**
  * The registry token.
@@ -23,7 +25,7 @@ export interface IBlocklyRegistry {
    *
    * @argument value Toolbox to register.
    */
-  registerToolbox(name: string, value: JSONObject): void;
+  registerToolbox(name: string, value: ToolboxDefinition): void;
 
   /**
    * Register new blocks.
@@ -32,7 +34,7 @@ export interface IBlocklyRegistry {
    *
    * @argument value Toolbox to register.
    */
-  registerBlocks(blocks: JSONObject[]): void;
+  registerBlocks(blocks: BlockDefinition[]): void;
 
   /**
    * Register new generators.

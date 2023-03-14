@@ -14,7 +14,7 @@ import click
 from jupyter_releaser.util import get_version, run
 from pkg_resources import parse_version
 
-LERNA_CMD = "jlpm run lerna version --no-push --force-publish --no-git-tag-version"
+LERNA_CMD = "jlpm lerna version --no-push --force-publish --no-git-tag-version"
 
 
 @click.command()
@@ -33,7 +33,7 @@ def bump(force, spec):
             spec += f"{curr.micro}{p}{x + 1}"
         else:
             spec += f"{curr.micro + 1}"
-    
+
     elif spec == 'patch':
         spec = f"{curr.major}.{curr.minor}."
         if curr.pre:

@@ -4,11 +4,11 @@ import { KernelSpec, KernelConnection } from '@jupyterlab/services';
 import { IChangedArgs } from '@jupyterlab/coreutils';
 
 import { ISignal, Signal } from '@lumino/signaling';
-import { JSONObject } from '@lumino/coreutils';
 
 import * as Blockly from 'blockly';
 
 import { BlocklyRegistry } from './registry';
+import { ToolboxDefinition } from 'blockly/core/utils/toolbox';
 
 /**
  * BlocklyManager the manager for each document
@@ -46,7 +46,7 @@ export class BlocklyManager {
   /**
    * Returns the selected toolbox.
    */
-  get toolbox(): JSONObject {
+  get toolbox(): ToolboxDefinition {
     return this._registry.toolboxes.get(this._toolbox);
   }
 

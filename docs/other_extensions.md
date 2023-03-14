@@ -3,7 +3,7 @@
 The JupyterLab-Blockly extension is ready to be used as a base for other projects: you can register new Blocks, Toolboxes and Generators. It is a great tool for fast prototyping.
 
 ## Creating a new JupyterLab extension
-You can easily create a new JupyterLab extension by using a `cookiecutter`. You can read more documentation about `cookiecutters` [here](https://cookiecutter.readthedocs.io/en/latest/), but the process is fairly straight-forward. 
+You can easily create a new JupyterLab extension by using a `cookiecutter`. You can read more documentation about `cookiecutters` [here](https://cookiecutter.readthedocs.io/en/latest/), but the process is fairly straight-forward.
 
 After running the following command:
 ```
@@ -20,7 +20,7 @@ Firstly you need to install and add `jupyterlab-blockly` as a dependency for you
 jlpm add jupyterlab-blockly
 ```
 
-Once it is part of your project, all you need to do is import `IBlocklyRegistry`, as it follows: 
+Once it is part of your project, all you need to do is import `IBlocklyRegistry`, as it follows:
 ```typescript
 // src/index.ts
 
@@ -40,7 +40,7 @@ The `IBlocklyRegistry` offers a function `registerBlocks`, which allows you to i
    *
    * @argument blocks Blocks to register.
    */
-  registerBlocks(blocks: JSONObject[]): void {
+  registerBlocks(blocks: BlockDefinition[]): void {
     Blockly.defineBlocksWithJsonArray(blocks);
   }
 ```
@@ -56,7 +56,7 @@ Using the `registerToolbox` function, provided by `IBlocklyRegistry`, you can re
    *
    * @argument value Toolbox to register.
    */
-  registerToolbox(name: string, value: JSONObject): void {
+  registerToolbox(name: string, value: ToolboxDefinition): void {
     this._toolboxes.set(name, value);
   }
 ```
@@ -86,7 +86,7 @@ Lastly, `IBlocklyRegistry` offers the function `registerGenerator` which lets yo
 
 
 ## Example - JupyterLab-Niryo-One
-The [JupyterLab-Niryo-One](https://github.com/QuantStack/jupyterlab-niryo-one/) extension was built on top of JupyterLab-Blockly and poses as the perfect example. The [Github repository](https://github.com/QuantStack/jupyterlab-niryo-one/) gives access to its entire codebase. 
+The [JupyterLab-Niryo-One](https://github.com/QuantStack/jupyterlab-niryo-one/) extension was built on top of JupyterLab-Blockly and poses as the perfect example. The [Github repository](https://github.com/QuantStack/jupyterlab-niryo-one/) gives access to its entire codebase.
 
 The following code snippet showcases how to register a new toolbox, `BlocklyNiryo.Toolbox`, as `niryo`.
 ```typescript
@@ -158,7 +158,7 @@ You will need to request the `jupyterlab-blockly` package as a dependency of you
 setup_args = dict(
   ...
   install_requires=['jupyterlab-blockly>=0.1.1,<0.2']
-  ... 
+  ...
 )
 ```
 
@@ -169,14 +169,14 @@ Moreover, as we are working with deduplication of dependencies and the extension
 
 "jupyterlab": {
   "sharedPackages": {
-     "jupyterlab-blockly": { 
-       "bundled": false, 
-       "singleton": true 
-     }, 
-     "blockly": { 
-       "bundled": false, 
-       "singleton": true 
-     } 
+     "jupyterlab-blockly": {
+       "bundled": false,
+       "singleton": true
+     },
+     "blockly": {
+       "bundled": false,
+       "singleton": true
+     }
    }
  }
 ```

@@ -3,7 +3,6 @@ import { ISessionContext, showErrorMessage } from '@jupyterlab/apputils';
 import { CodeCell, CodeCellModel } from '@jupyterlab/cells';
 
 import { Message } from '@lumino/messaging';
-import { PartialJSONValue } from '@lumino/coreutils';
 import { SplitLayout, SplitPanel, Widget } from '@lumino/widgets';
 import { IIterator, ArrayIterator } from '@lumino/algorithm';
 import { Signal } from '@lumino/signaling';
@@ -58,13 +57,13 @@ export class BlocklyLayout extends SplitLayout {
     this._manager.changed.connect(this._onManagerChanged, this);
   }
 
-  get workspace(): PartialJSONValue {
+  get workspace(): Blockly.Workspace {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     return Blockly.serialization.workspaces.save(this._workspace);
   }
 
-  set workspace(workspace: PartialJSONValue) {
+  set workspace(workspace: Blockly.Workspace) {
     const data = workspace === null ? { variables: [] } : workspace;
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
