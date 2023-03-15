@@ -26,7 +26,6 @@
     "build": "lerna run --stream build",
     "build:prod": "lerna run --stream build:prod",
     "clean": "lerna run --stream clean",
-    "clean:lib": "lerna --stream run clean:lib",
     "clean:all": "lerna --stream run clean:all",
     "deduplicate": "yarn-deduplicate -s fewer --fail",
     "eslint": "jlpm eslint:check --fix",

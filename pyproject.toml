@@ -80,7 +80,7 @@ before-build-python = [
     # Build the assets
     "jlpm build:prod",
     # Clean the build artifacts to not include them in sdist
-    "jlpm clean:lib"
+    "jlpm clean"
 ]
 
 [tool.check-wheel-contents]
