@@ -9,6 +9,8 @@ import { runIcon } from '@jupyterlab/ui-components';
 import { SplitPanel } from '@lumino/widgets';
 import { Signal } from '@lumino/signaling';
 
+import type Blockly from 'blockly';
+
 import { BlocklyLayout } from './layout';
 import { BlocklyManager } from './manager';
 import {
@@ -80,7 +82,7 @@ export class BlocklyPanel extends SplitPanel {
   private _context: DocumentRegistry.IContext<DocumentModel>;
 
   /**
-   * Construct a `ExamplePanel`.
+   * Construct a `BlocklyPanel`.
    *
    * @param context - The documents context.
    */
@@ -114,7 +116,7 @@ export class BlocklyPanel extends SplitPanel {
 
   private _load(): void {
     // Loading the content of the document into the workspace
-    const content = this._context.model.toJSON();
+    const content = this._context.model.toJSON() as any as Blockly.Workspace;
     (this.layout as BlocklyLayout).workspace = content;
   }
 
@@ -124,7 +126,7 @@ export class BlocklyPanel extends SplitPanel {
   ): void {
     if (state === 'started') {
       const workspace = (this.layout as BlocklyLayout).workspace;
-      this._context.model.fromJSON(workspace);
+      this._context.model.fromJSON(workspace as any);
     }
   }
 }

@@ -28,16 +28,16 @@
     "url": "https://github.com/quantstack/jupyterlab-blockly.git"
   },
   "scripts": {
-    "build": "jlpm run build:lib && jlpm run build:labextension:dev",
-    "build:prod": "jlpm run clean && jlpm run build:lib && jlpm run build:labextension",
+    "build": "jlpm build:lib && jlpm build:labextension:dev",
+    "build:prod": "jlpm clean && jlpm build:lib && jlpm build:labextension",
     "build:labextension": "jupyter labextension build .",
     "build:labextension:dev": "jupyter labextension build --development True .",
     "build:lib": "tsc",
-    "clean": "jlpm run clean:lib",
+    "clean": "jlpm clean:lib",
     "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
     "clean:labextension": "rimraf ../../jupyterlab_blockly/labextension",
-    "clean:all": "jlpm run clean:lib && jlpm run clean:labextension",
-    "install:extension": "jlpm run build",
+    "clean:all": "jlpm clean:lib && jlpm clean:labextension",
+    "install:extension": "jlpm build",
     "watch": "run-p watch:src watch:labextension",
     "watch:src": "tsc -w",
     "watch:labextension": "jupyter labextension watch ."
@@ -56,10 +56,11 @@
     "jupyterlab-blockly": "^0.2.1"
   },
   "devDependencies": {
-    "@jupyterlab/builder": "^3.4",
+    "@jupyterlab/builder": "^3.5",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.2",
-    "typescript": "~4.5.2"
+    "rimraf": "^4.4.0",
+    "typescript": "~4.9.5",
+    "source-map-loader": "^4.0.1"
   },
   "sideEffects": [
     "style/*.css",
@@ -81,6 +82,7 @@
         "bundled": true,
         "singleton": true
       }
-    }
+    },
+    "webpackConfig": "./webpack.config.js"
   }
 }

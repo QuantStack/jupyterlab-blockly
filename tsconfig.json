@@ -9,10 +9,11 @@
     "module": "esnext",
     "moduleResolution": "node",
     "noEmitOnError": true,
+    "sourceMap": true,
     "noUnusedLocals": true,
     "preserveWatchOutput": true,
     "resolveJsonModule": true,
-    "target": "es2017",
+    "target": "es2018",
     "types": []
   }
 }

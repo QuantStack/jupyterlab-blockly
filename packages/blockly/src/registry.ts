@@ -1,15 +1,15 @@
-import { JSONObject } from '@lumino/coreutils';
-
 import * as Blockly from 'blockly';
 
-import BlocklyPy from 'blockly/python';
-import BlocklyJS from 'blockly/javascript';
-import BlocklyLua from 'blockly/lua';
+import { pythonGenerator } from 'blockly/python';
+import { javascriptGenerator } from 'blockly/javascript';
+import { luaGenerator } from 'blockly/lua';
 
 import En from 'blockly/msg/en';
 
 import { IBlocklyRegistry } from './token';
 import { TOOLBOX } from './utils';
+import type { ToolboxDefinition } from 'blockly/core/utils/toolbox';
+import { BlockDefinition } from 'blockly/core/blocks';
 
 /**
  * BlocklyRegistry is the class that JupyterLab-Blockly exposes
@@ -18,26 +18,26 @@ import { TOOLBOX } from './utils';
  * Blockly editor.
  */
 export class BlocklyRegistry implements IBlocklyRegistry {
-  private _toolboxes: Map<string, JSONObject>;
+  private _toolboxes: Map<string, ToolboxDefinition>;
   private _generators: Map<string, Blockly.Generator>;
 
   /**
    * Constructor of BlocklyRegistry.
    */
   constructor() {
-    this._toolboxes = new Map<string, JSONObject>();
+    this._toolboxes = new Map<string, ToolboxDefinition>();
     this._toolboxes.set('default', TOOLBOX);
 
     this._generators = new Map<string, Blockly.Generator>();
-    this._generators.set('python', BlocklyPy);
-    this._generators.set('javascript', BlocklyJS);
-    this._generators.set('lua', BlocklyLua);
+    this._generators.set('python', pythonGenerator);
+    this._generators.set('javascript', javascriptGenerator);
+    this._generators.set('lua', luaGenerator);
   }
 
   /**
    * Returns a map with all the toolboxes.
    */
-  get toolboxes(): Map<string, JSONObject> {
+  get toolboxes(): Map<string, ToolboxDefinition> {
     return this._toolboxes;
   }
 
@@ -55,7 +55,7 @@ export class BlocklyRegistry implements IBlocklyRegistry {
    *
    * @argument value Toolbox to register.
    */
-  registerToolbox(name: string, value: JSONObject): void {
+  registerToolbox(name: string, value: ToolboxDefinition): void {
     this._toolboxes.set(name, value);
   }
 
@@ -64,7 +64,7 @@ export class BlocklyRegistry implements IBlocklyRegistry {
    *
    * @argument blocks Blocks to register.
    */
-  registerBlocks(blocks: JSONObject[]): void {
+  registerBlocks(blocks: BlockDefinition[]): void {
     Blockly.defineBlocksWithJsonArray(blocks);
   }
 
