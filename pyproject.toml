@@ -1,6 +1,6 @@
 [build-system]
 build-backend = "hatchling.build"
-requires = ["hatchling>=1.4.0", "hatch-nodejs-version", "jupyterlab~=3.4"]
+requires = ["hatchling>=1.4.0", "hatch-nodejs-version", "jupyterlab~=3.6"]
 
 [project]
 name = "jupyterlab_blockly"
@@ -23,14 +23,15 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
 ]
 dependencies = [
-	"jupyterlab~=3.4"
+	"jupyterlab~=3.6"
 ]
 dynamic = ["version", "description", "authors", "urls", "keywords"]
 
 [project.optional-dependencies]
 dev = [
     "click",
-    "jupyter_releaser==0.22"
+    "pre-commit",
+    "jupyter_releaser"
 ]
 
 [tool.hatch.version]
@@ -39,9 +40,12 @@ source = "nodejs"
 [tool.hatch.metadata.hooks.nodejs]
 fields = ["description", "authors", "urls"]
 
-[tool.hatch.build]
-artifacts = ["package.json", "scripts", "packages", "patches", "jupyterlab_blockly/labextension"]
-exclude = [".github", "binder"]
+[tool.hatch.build.targets.sdist]
+artifacts = ["/jupyterlab_blockly/labextension"]
+exclude = ["/.github", "/binder", "node_modules"]
+
+[tool.hatch.build.targets.sdist.force-include]
+"./packages" = "packages"
 
 [tool.hatch.build.targets.wheel.shared-data]
 "jupyterlab_blockly/labextension" = "share/jupyter/labextensions/jupyterlab-blockly-extension"
@@ -57,21 +61,27 @@ ensured-targets = [
 skip-if-exists = ["jupyterlab_blockly/labextension/static/style.js"]
 
 [tool.hatch.build.hooks.jupyter-builder.build-kwargs]
+npm = ["jlpm"]
 build_cmd = "build:prod"
-npm = ["jlpm"]
-
-[tool.hatch.build.hooks.jupyter-builder.editable-build-kwargs]
-build_cmd = "install:extension"
-npm = ["jlpm"]
-build_dir = "jupyterlab_blockly/labextension"
+editable_build_cmd = "install:extension"
 
 [tool.jupyter-releaser.options]
 version-cmd = "python scripts/bump-version.py --force"
 
 [tool.jupyter-releaser.hooks]
-before-bump-version = ["python -m pip install jupyterlab~=3.4", "jlpm"]
-before-build-npm = ["python -m pip install jupyterlab~=3.4", "jlpm", "jlpm build:prod"]
-before-build-python = ["jlpm clean:all"]
+before-bump-version = [
+    "python -m pip install --pre -U jupyterlab~=3.6",
+    "jlpm"
+]
+before-build-npm = [
+    "jlpm build:prod"
+]
+before-build-python = [
+    # Build the assets
+    "jlpm build:prod",
+    # Clean the build artifacts to not include them in sdist
+    "jlpm clean"
+]
 
 [tool.check-wheel-contents]
 ignore = ["W002"]
