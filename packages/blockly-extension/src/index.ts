@@ -7,11 +7,19 @@ import { jsonIcon } from '@jupyterlab/ui-components';
 import { WidgetTracker, ICommandPalette } from '@jupyterlab/apputils';
 import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
 import { IEditorServices } from '@jupyterlab/codeeditor';
+import { CodeCell } from '@jupyterlab/cells';
 import { IFileBrowserFactory } from '@jupyterlab/filebrowser';
 import { ILauncher } from '@jupyterlab/launcher';
 import { ITranslator } from '@jupyterlab/translation';
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
 import { IKernelMenu, IMainMenu } from '@jupyterlab/mainmenu';
+
+import { IJupyterWidgetRegistry } from '@jupyter-widgets/base';
+
+import {
+  WidgetRenderer,
+  registerWidgetManager,
+} from '@jupyter-widgets/jupyterlab-manager';
 
 import { BlocklyEditorFactory } from 'jupyterlab-blockly';
 import { IBlocklyRegistry } from 'jupyterlab-blockly';
@@ -49,7 +57,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyRegistry> = {
     ISettingRegistry,
     ITranslator
   ],
-  optional: [ILauncher, ICommandPalette, IMainMenu],
+  optional: [ILauncher, ICommandPalette, IMainMenu, IJupyterWidgetRegistry],
   provides: IBlocklyRegistry,
   activate: (
     app: JupyterFrontEnd,
@@ -61,7 +69,8 @@ const plugin: JupyterFrontEndPlugin<IBlocklyRegistry> = {
     translator: ITranslator,
     launcher: ILauncher | null,
     palette: ICommandPalette | null,
-    mainMenu: IMainMenu | null
+    mainMenu: IMainMenu | null,
+    widgetRegistry: IJupyterWidgetRegistry | null
   ): IBlocklyRegistry => {
     console.log('JupyterLab extension jupyterlab-blocky is activated!');
 
@@ -233,8 +242,36 @@ const plugin: JupyterFrontEndPlugin<IBlocklyRegistry> = {
       } as IKernelMenu.IKernelUser<BlocklyEditor>);
     }
 
+    if (widgetRegistry) {
+      tracker.forEach((panel) => {
+        registerWidgetManager(
+          (panel.context as any),
+          panel.content.rendermime,
+          widgetRenderers([panel.content.cell])
+        );
+      });
+  
+      tracker.widgetAdded.connect((sender, panel) => {
+        registerWidgetManager(
+          (panel.context as any),
+          panel.content.rendermime,
+          widgetRenderers([panel.content.cell])
+        );
+      });
+    }
+
     return widgetFactory.registry;
   }
 };
+
+function* widgetRenderers(
+  cells: CodeCell[]
+): IterableIterator<WidgetRenderer> {
+  for (const w of cells) {
+    if (w instanceof WidgetRenderer) {
+      yield w;
+    }
+  }
+}
 
 export default plugin;
