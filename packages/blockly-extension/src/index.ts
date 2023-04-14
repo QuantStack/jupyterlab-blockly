@@ -18,7 +18,7 @@ import { IJupyterWidgetRegistry } from '@jupyter-widgets/base';
 
 import {
   WidgetRenderer,
-  registerWidgetManager,
+  registerWidgetManager
 } from '@jupyter-widgets/jupyterlab-manager';
 
 import { BlocklyEditorFactory } from 'jupyterlab-blockly';
@@ -243,17 +243,17 @@ const plugin: JupyterFrontEndPlugin<IBlocklyRegistry> = {
     }
 
     if (widgetRegistry) {
-      tracker.forEach((panel) => {
+      tracker.forEach(panel => {
         registerWidgetManager(
-          (panel.context as any),
+          panel.context as any,
           panel.content.rendermime,
           widgetRenderers([panel.content.cell])
         );
       });
-  
+
       tracker.widgetAdded.connect((sender, panel) => {
         registerWidgetManager(
-          (panel.context as any),
+          panel.context as any,
           panel.content.rendermime,
           widgetRenderers([panel.content.cell])
         );
@@ -264,9 +264,7 @@ const plugin: JupyterFrontEndPlugin<IBlocklyRegistry> = {
   }
 };
 
-function* widgetRenderers(
-  cells: CodeCell[]
-): IterableIterator<WidgetRenderer> {
+function* widgetRenderers(cells: CodeCell[]): IterableIterator<WidgetRenderer> {
   for (const w of cells) {
     if (w instanceof WidgetRenderer) {
       yield w;
