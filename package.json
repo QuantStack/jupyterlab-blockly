@@ -1,7 +1,7 @@
 {
   "name": "jupyterlab-blockly-root",
   "private": true,
-  "version": "0.3.0-alpha.0",
+  "version": "0.3.0-alpha.1",
   "description": "Blockly extension for JupyterLab.",
   "keywords": [
     "jupyter",

@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab-blockly-extension",
-  "version": "0.3.0-alpha.0",
+  "version": "0.3.0-alpha.1",
   "description": "Blockly extension for JupyterLab.",
   "keywords": [
     "jupyter",
@@ -56,7 +56,7 @@
     "@jupyterlab/settingregistry": "^3.6",
     "@jupyterlab/translation": "^3.6",
     "@jupyterlab/ui-components": "^3.6",
-    "jupyterlab-blockly": "^0.3.0-alpha.0"
+    "jupyterlab-blockly": "^0.3.0-alpha.1"
   },
   "devDependencies": {
     "@jupyterlab/builder": "^3.6",
@@ -90,8 +90,8 @@
         "singleton": true
       },
       "@jupyter-widgets/jupyterlab-manager": {
-          "bundled": false,
-          "singleton": true
+        "bundled": false,
+        "singleton": true
       }
     },
     "webpackConfig": "./webpack.config.js"
