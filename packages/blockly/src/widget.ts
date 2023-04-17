@@ -19,6 +19,7 @@ import {
   SelectToolbox,
   Spacer
 } from './toolbar';
+import { CodeCell } from '@jupyterlab/cells';
 
 /**
  * DocumentWidget: widget that represents the view or editor for a file type.
@@ -80,6 +81,7 @@ export namespace BlocklyEditor {
  */
 export class BlocklyPanel extends SplitPanel {
   private _context: DocumentRegistry.IContext<DocumentModel>;
+  private _rendermime: IRenderMimeRegistry;
 
   /**
    * Construct a `BlocklyPanel`.
@@ -96,11 +98,26 @@ export class BlocklyPanel extends SplitPanel {
     });
     this.addClass('jp-BlocklyPanel');
     this._context = context;
+    this._rendermime = rendermime;
 
     // Load the content of the file when the context is ready
     this._context.ready.then(() => this._load());
     // Connect to the save signal
     this._context.saveState.connect(this._onSave, this);
+  }
+
+  /*
+   * The code cell.
+   */
+  get cell(): CodeCell {
+    return (this.layout as BlocklyLayout).cell;
+  }
+
+  /*
+   * The rendermime instance used in the code cell.
+   */
+  get rendermime(): IRenderMimeRegistry {
+    return this._rendermime;
   }
 
   /**

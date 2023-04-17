@@ -57,12 +57,25 @@ export class BlocklyLayout extends SplitLayout {
     this._manager.changed.connect(this._onManagerChanged, this);
   }
 
+  /*
+   * The code cell.
+   */
+  get cell(): CodeCell {
+    return this._cell;
+  }
+
+  /*
+   * The current workspace.
+   */
   get workspace(): Blockly.Workspace {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     return Blockly.serialization.workspaces.save(this._workspace);
   }
 
+  /*
+   * Set a new workspace.
+   */
   set workspace(workspace: Blockly.Workspace) {
     const data = workspace === null ? { variables: [] } : workspace;
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -138,12 +151,16 @@ export class BlocklyLayout extends SplitLayout {
     return finalToplevelInit;
   }
 
+  /*
+   * Generates and runs the code from the current workspace.
+   */
   run(): void {
     // Get extra code from the blocks in the workspace.
     const extra_init = this.getBlocksToplevelInit();
     // Serializing our workspace into the chosen language generator.
     const code =
       extra_init + this._manager.generator.workspaceToCode(this._workspace);
+    //const code = "import ipywidgets as widgets\nwidgets.IntSlider()";
     this._cell.model.sharedModel.setSource(code);
 
     // Execute the code using the kernel, by using a static method from the

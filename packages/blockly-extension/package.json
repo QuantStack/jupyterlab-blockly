@@ -43,8 +43,11 @@
     "watch:labextension": "jupyter labextension watch ."
   },
   "dependencies": {
+    "@jupyter-widgets/base": "^6.0.4",
+    "@jupyter-widgets/jupyterlab-manager": "^5.0.7",
     "@jupyterlab/application": "^3.6",
     "@jupyterlab/apputils": "^3.6",
+    "@jupyterlab/cells": "^3.6",
     "@jupyterlab/codeeditor": "^3.6",
     "@jupyterlab/filebrowser": "^3.6",
     "@jupyterlab/launcher": "^3.6",
@@ -81,6 +84,14 @@
       "blockly": {
         "bundled": true,
         "singleton": true
+      },
+      "@jupyter-widgets/base": {
+        "bundled": false,
+        "singleton": true
+      },
+      "@jupyter-widgets/jupyterlab-manager": {
+          "bundled": false,
+          "singleton": true
       }
     },
     "webpackConfig": "./webpack.config.js"
