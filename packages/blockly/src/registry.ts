@@ -51,38 +51,35 @@ export class BlocklyRegistry implements IBlocklyRegistry {
   /**
    * Register a toolbox for the editor.
    *
-   * @argument name Name of the toolbox.
+   * @argument name The name of the toolbox.
    *
-   * @argument value Toolbox to register.
+   * @argument toolbox The toolbox to register.
    */
-  registerToolbox(name: string, value: ToolboxDefinition): void {
-    this._toolboxes.set(name, value);
+  registerToolbox(name: string, toolbox: ToolboxDefinition): void {
+    this._toolboxes.set(name, toolbox);
   }
 
   /**
-   * Register new blocks.
+   * Register block definitions.
    *
-   * @argument blocks Blocks to register.
+   * @argument blocks A list of block definitions to register.
    */
   registerBlocks(blocks: BlockDefinition[]): void {
     Blockly.defineBlocksWithJsonArray(blocks);
   }
 
   /**
-   * Register new generators.
+   * Register a language generator.
    *
-   * @argument name Name of the generator.
+   * @argument language The language output by the generator.
    *
-   * @argument generator Generator to register.
+   * @argument generator The generator to register.
    *
    * #### Notes
-   * When registering a generator, the name should correspond to the language
-   * used by a kernel.
-   *
-   * If you register a generator for an existing language this will be overwritten.
+   * If a generator already exists for the given language it is overwritten.
    */
-  registerGenerator(name: string, generator: Blockly.Generator): void {
-    this._generators.set(name, generator);
+  registerGenerator(language: string, generator: Blockly.Generator): void {
+    this._generators.set(language, generator);
   }
 
   setlanguage(language: string): void {
