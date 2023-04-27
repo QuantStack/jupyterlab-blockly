@@ -21,33 +21,28 @@ export interface IBlocklyRegistry {
   /**
    * Register a toolbox for the editor.
    *
-   * @argument name Name of the toolbox.
+   * @argument name The name of the toolbox.
    *
-   * @argument value Toolbox to register.
+   * @argument toolbox The toolbox to register.
    */
-  registerToolbox(name: string, value: ToolboxDefinition): void;
+  registerToolbox(name: string, toobox: ToolboxDefinition): void;
 
   /**
-   * Register new blocks.
+   * Register block definitions.
    *
-   * @argument name Name of the toolbox.
-   *
-   * @argument value Toolbox to register.
+   * @argument blocks A list of block definitions to register.
    */
   registerBlocks(blocks: BlockDefinition[]): void;
 
   /**
-   * Register new generators.
+   * Register a language generator.
    *
-   * @argument name Name of the toolbox.
+   * @argument language The language output by the generator.
    *
-   * @argument value Toolbox to register.
+   * @argument generator The generator to register.
    *
    * #### Notes
-   * When registering a generator, the name should correspond to the language
-   * used by a kernel.
-   *
-   * If you register a generator for an existing language this will be overwritten.
+   * If a generator already exists for the given language it is overwritten.
    */
-  registerGenerator(name: string, generator: Blockly.Generator): void;
+  registerGenerator(language: string, generator: Blockly.Generator): void;
 }
