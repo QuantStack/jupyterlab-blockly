@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@jupyter-widgets/base": "^4 || ^5",
-    "@jupyter-widgets/jupyterlab-manager": "^3",
+    "@jupyter-widgets/jupyterlab-manager": "^3.0.0",
     "@jupyterlab/application": "^3.6",
     "@jupyterlab/apputils": "^3.6",
     "@jupyterlab/cells": "^3.6",

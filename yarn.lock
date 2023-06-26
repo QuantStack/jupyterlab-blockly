@@ -231,7 +231,7 @@
     jquery-ui "^1.12.1"
     underscore "^1.8.3"
 
-"@jupyter-widgets/jupyterlab-manager@^3":
+"@jupyter-widgets/jupyterlab-manager@^3.0.0":
   version "3.1.4"
   resolved "https://registry.yarnpkg.com/@jupyter-widgets/jupyterlab-manager/-/jupyterlab-manager-3.1.4.tgz#ef4422e6ca13d38fa8696393f3302e8beffa58d5"
   integrity sha512-MfGSNskDmq7E5jtWrE+qyPnkFJkMDuAxKsIwaB+hGqWn7tERIFjaM5hfOBWhUy/AU7kQibFeviF9OKmi/0A/Tg==
