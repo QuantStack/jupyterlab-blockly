@@ -2,6 +2,22 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.3.0alpha4
+
+([Full Changelog](https://github.com/QuantStack/jupyterlab-blockly/compare/jupyterlab-blockly-extension@0.3.0-alpha.3...4cf51ef60269431b78ec59265818991bf561d8e9))
+
+### Bugs fixed
+
+- Pin jupyterlab_widgets [#79](https://github.com/QuantStack/jupyterlab-blockly/pull/79) ([@hbcarlos](https://github.com/hbcarlos))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/QuantStack/jupyterlab-blockly/graphs/contributors?from=2023-05-04&to=2023-06-26&type=c))
+
+[@hbcarlos](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Ahbcarlos+updated%3A2023-05-04..2023-06-26&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.3.0alpha3
 
 ([Full Changelog](https://github.com/QuantStack/jupyterlab-blockly/compare/jupyterlab-blockly-extension@0.3.0-alpha.2...013d18a69082f6b6f5e08b240c16c76d9c64632f))
@@ -27,8 +43,6 @@
 ([GitHub contributors page for this release](https://github.com/QuantStack/jupyterlab-blockly/graphs/contributors?from=2023-04-26&to=2023-05-04&type=c))
 
 [@afshin](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Aafshin+updated%3A2023-04-26..2023-05-04&type=Issues) | [@github-actions](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Agithub-actions+updated%3A2023-04-26..2023-05-04&type=Issues) | [@hbcarlos](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Ahbcarlos+updated%3A2023-04-26..2023-05-04&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.3.0alpha2
 
