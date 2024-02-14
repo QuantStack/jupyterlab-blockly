@@ -1,0 +1,16 @@
+name: jupyterlab-blockly-docs
+
+channels:
+  - conda-forge
+
+dependencies:
+  - mamba
+  - myst-parser
+  - pydata-sphinx-theme
+  - jupyterlab
+  - yarn
+  - pip:
+    - ..
+    - jupyterlite-core
+    - jupyterlite-sphinx
+    - jupyterlite-xeus

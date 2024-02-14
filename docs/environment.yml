@@ -1,13 +1,7 @@
-name: jupyterlab-blockly-docs
-
+name: xeus-kernels
 channels:
+  - https://repo.mamba.pm/emscripten-forge
   - conda-forge
-
 dependencies:
-  - mamba
-  - myst-parser
-  - pydata-sphinx-theme
-  - pip:
-    - jupyterlite ==0.1.0b18
-    - jupyterlite-sphinx
-    - jupyterlite-xeus-lua
+  - xeus-python
+  - xeus-lua
