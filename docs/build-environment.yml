@@ -4,14 +4,11 @@ channels:
   - conda-forge
 
 dependencies:
-  - python=3.9
   - mamba
   - myst-parser
   - pydata-sphinx-theme
-  - jupyterlab
-  - yarn
   - pip:
-    - ..
+    - jupyterlab-blockly
     - jupyterlite-core
     - jupyterlite-sphinx
     - jupyterlite-xeus
