@@ -78,4 +78,3 @@ html_context = {
 # Jupyterlite
 jupyterlite_contents = ["example.jpblockly", "logic.jpblockly", "loops.jpblockly", "text_and_lists.jpblockly", "functions.jpblockly"]
 jupyterlite_dir = "."
-jupyterlite_config = "jupyterlite_config.json"
