@@ -10,6 +10,7 @@ dependencies:
   - python=3.9
   - pip:
     - jupyterlab-blockly
-    - jupyterlite-core===0.1.2
-    - jupyterlite-sphinx
-    - jupyterlite-xeus
+    # Remove these pins when we support jupyterlab v4 in jupyterlab-blockly
+    - jupyterlite-core===0.1.3
+    - jupyterlite-sphinx===0.9.3
+    - jupyterlite-xeus===0.1.8
