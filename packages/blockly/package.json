@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab-blockly",
-  "version": "0.3.0-alpha.4",
+  "version": "0.3.0",
   "description": "Blockly extension for JupyterLab.",
   "keywords": [
     "blockly",

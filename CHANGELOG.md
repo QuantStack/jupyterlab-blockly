@@ -2,6 +2,50 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.3.0
+
+([Full Changelog](https://github.com/QuantStack/jupyterlab-blockly/compare/jupyterlab-blockly-extension@0.2.1...92f8b725ceb3d8cc5a5b72528e25004ad8863ff1))
+
+### Enhancements made
+
+- Update JupyterLite deployment and docs [#87](https://github.com/QuantStack/jupyterlab-blockly/pull/87) ([@DenisaCG](https://github.com/DenisaCG))
+- Migrate to JupyterLab 4 [#85](https://github.com/QuantStack/jupyterlab-blockly/pull/85) ([@DenisaCG](https://github.com/DenisaCG))
+- Update `IBlocklyRegistry` docstrings [#76](https://github.com/QuantStack/jupyterlab-blockly/pull/76) ([@afshin](https://github.com/afshin))
+- Add support for widgets [#73](https://github.com/QuantStack/jupyterlab-blockly/pull/73) ([@hbcarlos](https://github.com/hbcarlos))
+
+### Bugs fixed
+
+- Restore `bump-version` script [#89](https://github.com/QuantStack/jupyterlab-blockly/pull/89) ([@DenisaCG](https://github.com/DenisaCG))
+- Fix Binder configuration [#86](https://github.com/QuantStack/jupyterlab-blockly/pull/86) ([@DenisaCG](https://github.com/DenisaCG))
+- Pin jupyterlab_widgets [#79](https://github.com/QuantStack/jupyterlab-blockly/pull/79) ([@hbcarlos](https://github.com/hbcarlos))
+- Support ipywidgets 7 [#77](https://github.com/QuantStack/jupyterlab-blockly/pull/77) ([@hbcarlos](https://github.com/hbcarlos))
+
+### Maintenance and upkeep improvements
+
+- Support ipywidgets 7 [#77](https://github.com/QuantStack/jupyterlab-blockly/pull/77) ([@hbcarlos](https://github.com/hbcarlos))
+- Ignore blockly source map warnings [#75](https://github.com/QuantStack/jupyterlab-blockly/pull/75) ([@hbcarlos](https://github.com/hbcarlos))
+- Updates to JupyterLab 3.6 and fixes check release [#72](https://github.com/QuantStack/jupyterlab-blockly/pull/72) ([@hbcarlos](https://github.com/hbcarlos))
+- Bump a bunch of versions [#71](https://github.com/QuantStack/jupyterlab-blockly/pull/71) ([@bollwyvl](https://github.com/bollwyvl))
+- Uses hatch [#70](https://github.com/QuantStack/jupyterlab-blockly/pull/70) ([@hbcarlos](https://github.com/hbcarlos))
+
+### Documentation improvements
+
+- Update release information [#88](https://github.com/QuantStack/jupyterlab-blockly/pull/88) ([@DenisaCG](https://github.com/DenisaCG))
+- Update JupyterLite deployment and docs [#87](https://github.com/QuantStack/jupyterlab-blockly/pull/87) ([@DenisaCG](https://github.com/DenisaCG))
+- Update `IBlocklyRegistry` docstrings [#76](https://github.com/QuantStack/jupyterlab-blockly/pull/76) ([@afshin](https://github.com/afshin))
+
+### Other merged PRs
+
+- Update lite build in documentation [#83](https://github.com/QuantStack/jupyterlab-blockly/pull/83) ([@martinRenou](https://github.com/martinRenou))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/QuantStack/jupyterlab-blockly/graphs/contributors?from=2022-09-07&to=2024-08-15&type=c))
+
+[@afshin](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Aafshin+updated%3A2022-09-07..2024-08-15&type=Issues) | [@bollwyvl](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Abollwyvl+updated%3A2022-09-07..2024-08-15&type=Issues) | [@DenisaCG](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3ADenisaCG+updated%3A2022-09-07..2024-08-15&type=Issues) | [@github-actions](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Agithub-actions+updated%3A2022-09-07..2024-08-15&type=Issues) | [@hbcarlos](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Ahbcarlos+updated%3A2022-09-07..2024-08-15&type=Issues) | [@martinRenou](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3AmartinRenou+updated%3A2022-09-07..2024-08-15&type=Issues) | [@SylvainCorlay](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3ASylvainCorlay+updated%3A2022-09-07..2024-08-15&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.3.0alpha4
 
 ([Full Changelog](https://github.com/QuantStack/jupyterlab-blockly/compare/jupyterlab-blockly-extension@0.3.0-alpha.3...4cf51ef60269431b78ec59265818991bf561d8e9))
@@ -15,8 +59,6 @@
 ([GitHub contributors page for this release](https://github.com/QuantStack/jupyterlab-blockly/graphs/contributors?from=2023-05-04&to=2023-06-26&type=c))
 
 [@hbcarlos](https://github.com/search?q=repo%3AQuantStack%2Fjupyterlab-blockly+involves%3Ahbcarlos+updated%3A2023-05-04..2023-06-26&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.3.0alpha3
 
