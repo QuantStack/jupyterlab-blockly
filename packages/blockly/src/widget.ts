@@ -5,7 +5,9 @@ import {
 } from '@jupyterlab/docregistry';
 import { IRenderMimeRegistry } from '@jupyterlab/rendermime';
 import { runIcon } from '@jupyterlab/ui-components';
+import { showErrorMessage } from '@jupyterlab/apputils';
 
+import { PartialJSONObject } from '@lumino/coreutils';
 import { SplitPanel } from '@lumino/widgets';
 import { Signal } from '@lumino/signaling';
 
@@ -82,6 +84,7 @@ export namespace BlocklyEditor {
  */
 export class BlocklyPanel extends SplitPanel {
   private _context: DocumentRegistry.IContext<DocumentModel>;
+  private _manager: BlocklyManager;
   private _rendermime: IRenderMimeRegistry;
 
   /**
@@ -105,6 +108,7 @@ export class BlocklyPanel extends SplitPanel {
     });
     this.addClass('jp-BlocklyPanel');
     this._context = context;
+    this._manager = manager;
     this._rendermime = rendermime;
 
     // Load the content of the file when the context is ready
@@ -139,9 +143,55 @@ export class BlocklyPanel extends SplitPanel {
   }
 
   private _load(): void {
-    // Loading the content of the document into the workspace
-    const content = this._context.model.toJSON() as any as Blockly.Workspace;
-    (this.layout as BlocklyLayout).workspace = content;
+    const fileContent = this._context.model.toJSON();
+    const fileFormat = fileContent['format'];
+    // Check if format is set or if we have legacy content
+    if (fileFormat === undefined && fileContent['blocks']) {
+      // Load legacy content
+      (this.layout as BlocklyLayout).workspace =
+        fileContent as any as Blockly.Workspace;
+    } else if (fileFormat === 2) {
+      // Load the content from the "workspace" key
+      const workspace = fileContent['workspace'] as any as Blockly.Workspace;
+      (this.layout as BlocklyLayout).workspace = workspace;
+      const metadata = fileContent['metadata'];
+      if (metadata) {
+        if (metadata['toolbox']) {
+          const toolbox = metadata['toolbox'];
+          if (
+            this._manager.listToolboxes().find(value => value.value === toolbox)
+          ) {
+            this._manager.setToolbox(metadata['toolbox']);
+          } else {
+            // Unknown toolbox
+            showErrorMessage(
+              'Unknown toolbox',
+              `The toolbox '${toolbox}' is not available. Using default toolbox.`
+            );
+          }
+        }
+        if (metadata['kernel'] && metadata['kernel'] !== 'No kernel') {
+          const kernel = metadata['kernel'];
+          if (
+            this._manager.listKernels().find(value => value.value === kernel)
+          ) {
+            this._manager.selectKernel(metadata['kernel']);
+          } else {
+            // Unknown kernel
+            console.warn(`Unknown kernel in blockly file: ${kernel}`);
+          }
+        }
+        if (metadata['allowed_blocks']) {
+          this._manager.setAllowedBlocks(metadata['allowed_blocks']);
+        }
+      }
+    } else {
+      // Unsupported format
+      showErrorMessage(
+        'Unsupported file format',
+        `The file format '${fileFormat}' is not supported by the Blockly editor.`
+      );
+    }
   }
 
   private _onSave(
@@ -150,7 +200,16 @@ export class BlocklyPanel extends SplitPanel {
   ): void {
     if (state === 'started') {
       const workspace = (this.layout as BlocklyLayout).workspace;
-      this._context.model.fromJSON(workspace as any);
+      const fileContent: PartialJSONObject = {
+        format: 2,
+        workspace: workspace as any,
+        metadata: {
+          toolbox: this._manager.getToolbox(),
+          allowed_blocks: this._manager.getAllowedBlocks(),
+          kernel: this._manager.kernel
+        }
+      };
+      this._context.model.fromJSON(fileContent);
     }
   }
 }
