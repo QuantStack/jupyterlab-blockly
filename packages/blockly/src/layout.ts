@@ -10,7 +10,7 @@ import { Signal } from '@lumino/signaling';
 import * as Blockly from 'blockly';
 
 import { BlocklyManager } from './manager';
-import { THEME } from './utils';
+import { getTheme } from './utils';
 
 /**
  * A blockly layout to host the Blockly editor.
@@ -207,6 +207,8 @@ export class BlocklyLayout extends SplitLayout {
    */
   protected onFitRequest(msg: Message): void {
     super.onFitRequest(msg);
+    // Can be a result of a theme change
+    this._workspace.setTheme(getTheme());
     this._resizeWorkspace();
   }
 
@@ -218,7 +220,7 @@ export class BlocklyLayout extends SplitLayout {
     //inject Blockly with appropiate JupyterLab theme.
     this._workspace = Blockly.inject(this._host.node, {
       toolbox: this._manager.toolbox,
-      theme: THEME
+      theme: getTheme()
     });
 
     this._workspace.addChangeListener(() => {

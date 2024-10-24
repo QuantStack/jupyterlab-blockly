@@ -352,25 +352,30 @@ export const TOOLBOX = {
   ]
 };
 
-// Defining a Blockly Theme in accordance with the current JupyterLab Theme.
-const jupyterlab_theme = Blockly.Theme.defineTheme('jupyterlab', {
-  name: 'JupyterLab Blockly',
-  base: Blockly.Themes.Classic,
-  componentStyles: {
-    workspaceBackgroundColour: 'var(--jp-layout-color0)',
-    toolboxBackgroundColour: 'var(--jp-layout-color2)',
-    toolboxForegroundColour: 'var(--jp-ui-font-color0)',
-    flyoutBackgroundColour: 'var(--jp-border-color2)',
-    flyoutForegroundColour: 'var(--jp-layout-color3)',
-    flyoutOpacity: 1,
-    scrollbarColour: 'var(--jp-border-color0)',
-    insertionMarkerOpacity: 0.3,
-    scrollbarOpacity: 0.4,
-    cursorColour: 'var(--jp-scrollbar-background-color)'
-  },
-  fontStyle: {
-    family: 'var(--jp-ui-font-family)'
-  }
-});
+const getJupyterLabTheme = (): Blockly.Theme => {
+  const rootStyles = getComputedStyle(document.documentElement);
 
-export const THEME: Blockly.Theme = jupyterlab_theme;
+  const getStyle = (style: string) => rootStyles.getPropertyValue(style);
+
+  return Blockly.Theme.defineTheme('jupyterLab', {
+    name: 'JupyterLab',
+    base: Blockly.Themes.Classic,
+    componentStyles: {
+      workspaceBackgroundColour: getStyle('--jp-layout-color0'),
+      toolboxBackgroundColour: getStyle('--jp-layout-color2'),
+      toolboxForegroundColour: getStyle('--jp-ui-font-color0'),
+      flyoutBackgroundColour: getStyle('--jp-border-color2'),
+      flyoutForegroundColour: getStyle('--jp-layout-color3'),
+      flyoutOpacity: 1,
+      scrollbarColour: getStyle('--jp-border-color0'),
+      insertionMarkerOpacity: 0.3,
+      scrollbarOpacity: 0.4,
+      cursorColour: getStyle('--jp-scrollbar-background-color')
+    },
+    fontStyle: {
+      family: getStyle('--jp-ui-font-family')
+    }
+  });
+};
+
+export const getTheme = getJupyterLabTheme;

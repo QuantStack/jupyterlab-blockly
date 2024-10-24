@@ -41,7 +41,7 @@
     "prettier": "jlpm prettier:base --write --list-different",
     "prettier:base": "prettier \"**/*{.ts,.tsx,.js,.jsx,.css}\"",
     "prettier:check": "jlpm prettier:base --check",
-    "watch": "lerna run --stream watch"
+    "watch": "lerna run --stream --parallel watch"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.12.1",
